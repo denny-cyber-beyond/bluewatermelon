@@ -116,14 +116,14 @@ canvas#stars {
 .hero-cta {
   display: inline-flex; align-items: center; gap: 10px;
   margin-top: 52px;
-  font-family: var(--sans); font-size: 14px; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: #ffffff; background: var(--blue);
-  padding: 16px 40px; text-decoration: none;
-  transition: background 0.25s, transform 0.2s;
+  font-family: var(--sans); font-size: 15px; font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #ffffff; background: transparent;
+  padding: 0; text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
   opacity: 0; animation: fadeUp 1s ease 1.4s forwards;
 }
-.hero-cta:hover { background: #1A2DBB; transform: translateY(-1px); }
+.hero-cta:hover { opacity: 0.65; }
 .hero-cta-arrow { font-size: 18px; transition: transform 0.2s; }
 .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
 
