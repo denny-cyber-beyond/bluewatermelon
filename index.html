@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>파란수박 — 지구기록보관소</title>
+<meta name="description" content="외계인이 설립한 지구기록보관소. 모든 지구인은 한 권의 책입니다.">
+<link rel="icon" type="image/png" href="1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* HERO */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #09090F;
+}
+
+canvas.star-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* CSS 지구 — 더 사실적 */
+.earth {
+  position: absolute;
+  bottom: -22vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72vw;
+  max-width: 960px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 45% 35% at 28% 32%, #2B3EE8 0%, transparent 55%),
+    radial-gradient(ellipse 30% 25% at 68% 28%, #1A2FA0 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 55% 65%, #2DBD6E 0%, transparent 45%),
+    radial-gradient(ellipse 25% 20% at 35% 70%, #1A8A50 0%, transparent 40%),
+    radial-gradient(ellipse 20% 18% at 80% 55%, #2DBD6E 0%, transparent 40%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #061428 40%, #030A18 100%);
+  box-shadow:
+    inset -50px -30px 100px rgba(0,0,0,0.85),
+    inset 20px 10px 60px rgba(43,62,232,0.12),
+    0 0 160px rgba(43,62,232,0.12),
+    0 0 60px rgba(43,62,232,0.06);
+}
+
+/* 대기권 광륜 */
+.earth::after {
+  content: '';
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%,
+    transparent 46%,
+    rgba(43,62,232,0.10) 52%,
+    rgba(43,62,232,0.05) 62%,
+    transparent 70%);
+}
+
+/* 구름층 */
+.earth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 60% 12% at 50% 22%, rgba(255,255,255,0.07) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 8% at 30% 48%, rgba(255,255,255,0.05) 0%, transparent 100%),
+    radial-gradient(ellipse 50% 10% at 70% 72%, rgba(255,255,255,0.04) 0%, transparent 100%);
+}
+
+/* 별똥별 (속마음분홍) */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #FC5C7D;
+  border-radius: 50%;
+  z-index: 2;
+  opacity: 0;
+}
+
+.shooting-star::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 2px;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to left, #FC5C7D, transparent);
+}
+
+@keyframes shoot {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  5%   { opacity: 1; }
+  80%  { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(-300px, 150px); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 24px;
+  margin-top: -18vh;
+}
+
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.4s forwards;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(60px, 10vw, 130px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.8s forwards;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+/* 네비 버튼들 */
+.hero-nav {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 56px;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.2s forwards;
+  flex-wrap: wrap;
+}
+
+.hero-nav-btn {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-decoration: none;
+  padding: 14px 32px;
+  border: 1px solid #1E1E2E;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.hero-nav-btn:hover {
+  color: var(--white);
+  border-color: var(--blue);
+  background: rgba(43,62,232,0.08);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(180,180,200,0.35);
+  opacity: 0;
+  animation: fadeUp 1s ease 1.8s forwards;
+}
+
+.hero-scroll::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: rgba(180,180,200,0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; transform: scaleY(0.5); transform-origin: top; }
+  50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="9.png" alt="파란수박">
+  </a>
+  <ul class="nav-links">
+    <li><a href="report.html">REPORT</a></li>
+    <li><a href="lab.html">실험실</a></li>
+    <li><a href="hq.html">파란수박본부</a></li>
+    <li><a href="contact.html">안녕하세요</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <canvas class="star-field" id="stars"></canvas>
+  <div class="earth"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">지구기록보관소 — Galactic Record Bureau</p>
+    <h1 class="hero-title">
+      우리는<br>
+      <em>지구에서</em><br>
+      왔습니다
+    </h1>
+    <nav class="hero-nav">
+      <a href="report.html" class="hero-nav-btn">보고서</a>
+      <a href="lab.html" class="hero-nav-btn">실험실</a>
+      <a href="hq.html" class="hero-nav-btn">파란수박본부</a>
+      <a href="contact.html" class="hero-nav-btn">안녕하세요</a>
+    </nav>
+  </div>
+
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<footer>
+  <div class="footer-brand">© 2026 파란수박 — 지구기록보관소</div>
+  <div class="footer-coords">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON</div>
+</footer>
+
+<script>
+// 별 파티클
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  const count = Math.floor((canvas.width * canvas.height) / 3500);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.6 + 0.3,
+      speed: Math.random() * 0.007 + 0.002,
+      phase: Math.random() * Math.PI * 2,
+      bright: Math.random() * 0.5 + 0.5
+    });
+  }
+}
+
+function draw(t) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const s of stars) {
+    const a = (Math.sin(t * s.speed + s.phase) + 1) / 2 * s.bright * 0.8 + 0.2;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(210,220,255,${a})`;
+    ctx.fill();
+  }
+  requestAnimationFrame(draw);
+}
+
+resize();
+initStars();
+requestAnimationFrame(draw);
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+// 별똥별 (속마음분홍)
+function spawnShootingStar() {
+  const el = document.createElement('div');
+  el.className = 'shooting-star';
+  const x = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
+  const y = Math.random() * window.innerHeight * 0.4;
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  const dur = (Math.random() * 1.2 + 0.8).toFixed(2);
+  el.style.animation = `shoot ${dur}s ease-out forwards`;
+  document.getElementById('hero').appendChild(el);
+  setTimeout(() => el.remove(), dur * 1000 + 100);
+}
+
+function scheduleShootingStar() {
+  const delay = Math.random() * 5000 + 3000;
+  setTimeout(() => {
+    spawnShootingStar();
+    scheduleShootingStar();
+  }, delay);
+}
+scheduleShootingStar();
+
+// nav 스크롤
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(9,9,15,0.92)';
+    nav.style.backdropFilter = 'blur(12px)';
+    nav.style.borderBottom = '1px solid #1E1E2E';
+  } else {
+    nav.style.background = 'transparent';
+    nav.style.backdropFilter = 'none';
+    nav.style.borderBottom = 'none';
+  }
+}, { passive: true });
+</script>
+</body>
+</html>
