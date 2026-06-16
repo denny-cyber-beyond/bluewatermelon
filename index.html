@@ -218,7 +218,7 @@ canvas#stars {
     <h1 class="hero-title">
       우리는<br>
       <span class="changing" id="changing-text">100억 자산가</span>보다<br>
-      당신의 책을 쓰고 싶다
+      당신이 쓰는 책이 궁금해
     </h1>
     <p class="hero-sub" data-ko="모든 지구인은 한 권의 책입니다" data-en="Every earthling is a book waiting to be written">모든 지구인은 한 권의 책입니다</p>
     <a href="report.html" class="hero-cta">
@@ -392,9 +392,9 @@ function toggleLang() {
   });
   const title = document.querySelector('.hero-title');
   if (!isKo) {
-    title.innerHTML = `We want to write<br>your book more than<br><span class="changing" id="changing-text">${enList[idx]}</span>'s`;
+    title.innerHTML = `We're more curious<br>about your book than<br><span class="changing" id="changing-text">${enList[idx]}</span>'s`;
   } else {
-    title.innerHTML = `우리는<br><span class="changing" id="changing-text">${koList[idx]}</span>보다<br>당신의 책을 쓰고 싶다`;
+    title.innerHTML = `우리는<br><span class="changing" id="changing-text">${koList[idx]}</span>보다<br>당신이 쓰는 책이 궁금해`;
   }
 }
 
