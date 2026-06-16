@@ -9,106 +9,189 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero {
-  padding: 180px 64px 80px;
-  max-width: 1280px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--dim);
+.lang-toggle {
+  position: fixed; top: 28px; right: 56px; z-index: 200;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5); cursor: pointer;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 14px; transition: all 0.3s; user-select: none;
+}
+.lang-toggle:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+
+.page-hero { padding: 160px 64px 60px; max-width: 1280px; margin: 0 auto; }
+
+.report-label {
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 24px; display: block;
 }
 
-.page-hero .section-label { margin-bottom: 20px; }
+.report-intro {
+  font-size: clamp(28px, 4vw, 52px); font-weight: 300; line-height: 1.4;
+  color: #ffffff; margin-bottom: 80px; letter-spacing: -0.01em;
+}
 
-.report-grid {
+/* 챕터 구조 */
+.chapter {
+  border-top: 1px solid #1E1E2E;
+  padding: 64px 0;
+}
+
+.chapter-header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: start;
+  grid-template-columns: 200px 1fr;
+  gap: 64px;
+  margin-bottom: 48px;
 }
 
-.report-body {
-  font-size: 19px;
-  font-weight: 300;
-  line-height: 2.1;
-  color: #B0B0C0;
+.chapter-num {
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--blue); padding-top: 6px;
 }
 
-.report-body p + p { margin-top: 28px; }
-.report-body strong { color: var(--white); font-weight: 400; }
-
-.report-log {
-  border-left: 1px solid var(--dim);
-  padding-left: 48px;
+.chapter-title {
+  font-family: var(--serif); font-size: clamp(22px, 3vw, 36px);
+  font-weight: 300; color: #ffffff; line-height: 1.3;
 }
 
-.log-entry { margin-bottom: 48px; }
-
-.log-date {
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 10px;
+.chapter-body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 64px;
 }
 
-.log-text {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--gray);
+.chapter-body-spacer {}
+
+.chapter-text {
+  font-size: 18px; font-weight: 300; line-height: 2.1; color: rgba(255,255,255,0.75);
+}
+
+.chapter-text p + p { margin-top: 24px; }
+.chapter-text strong { color: #ffffff; font-weight: 400; }
+
+.log-aside {
+  margin-top: 40px;
+  padding: 32px 40px;
+  border-left: 2px solid var(--blue);
+  background: rgba(43,62,232,0.06);
+}
+
+.log-aside-date {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+}
+
+.log-aside-text {
+  font-family: var(--sans); font-size: 15px; font-weight: 300;
+  line-height: 1.8; color: rgba(255,255,255,0.6);
 }
 
 @media (max-width: 768px) {
-  .page-hero { padding: 140px 28px 60px; }
-  .report-grid { grid-template-columns: 1fr; gap: 56px; }
-  .report-log { border-left: none; padding-left: 0; border-top: 1px solid var(--dim); padding-top: 40px; }
+  .page-hero { padding: 130px 28px 40px; }
+  .chapter-header, .chapter-body { grid-template-columns: 1fr; gap: 20px; }
+  .chapter-body-spacer { display: none; }
 }
 </style>
 </head>
 <body>
 
+<div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">EN</div>
+
 <nav id="main-nav">
-  <a href="index.html" class="nav-logo">
-    <img src="9.png" alt="파란수박">
-  </a>
+  <a href="index.html" class="nav-logo"><img src="9.png" alt="파란수박"></a>
   <ul class="nav-links">
-    <li><a href="report.html" class="active">REPORT</a></li>
-    <li><a href="lab.html">실험실</a></li>
-    <li><a href="hq.html">파란수박본부</a></li>
-    <li><a href="contact.html">안녕하세요</a></li>
+    <li><a href="report.html" class="active" data-ko="보고서" data-en="REPORT">보고서</a></li>
+    <li><a href="lab.html" data-ko="실험실" data-en="LAB">실험실</a></li>
+    <li><a href="hq.html" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a></li>
+    <li><a href="contact.html" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a></li>
   </ul>
 </nav>
 
 <div class="page-hero">
-  <span class="section-label reveal">보고서 — REPORT</span>
-  <h1 class="section-title reveal">모든 지구인은<br>한 권의 책입니다.</h1>
-  <div class="section-divider"></div>
+  <span class="report-label reveal" data-ko="보고서" data-en="REPORT">보고서</span>
+  <h1 class="report-intro reveal">우리가 이곳에<br>왜 왔을까요?</h1>
+</div>
 
-  <div class="report-grid">
-    <div class="report-body reveal">
-      <p>우리는 이 행성에 오래 전부터 있었습니다.<br>처음에는 그저 관찰자였습니다.</p>
-      <p>그런데 이상한 일이 있었습니다.<br>이 행성의 생명체들은 저마다<br><strong>믿기 어려운 이야기를 품고 살아가고 있었습니다.</strong></p>
-      <p>평범해 보이는 직장인에게서 전쟁의 기억을 발견했고,<br>말없는 어머니에게서 수십 년의 희생을 발견했으며,<br>방금 입사한 신입사원에게서 누구도 모르는 발명을 발견했습니다.</p>
-      <p>우리는 깨달았습니다.<br><strong>기록되지 않은 이야기는 사라집니다.</strong><br>그래서 우리는 출판사를 만들었습니다.</p>
-      <p>잘난 사람만 책을 쓰는 세상이 아니라,<br>모든 지구인이 저자가 되는 세상.<br>파란수박은 그 기록을 남기기 위해 존재합니다.</p>
+<!-- 챕터 1 -->
+<div class="chapter">
+  <div style="max-width:1280px; margin:0 auto; padding:0 64px;">
+    <div class="chapter-header reveal">
+      <div class="chapter-num">Chapter 01</div>
+      <div class="chapter-title">우리는 오래전부터<br>지구 곁에 있었다</div>
     </div>
+    <div class="chapter-body reveal">
+      <div class="chapter-body-spacer"></div>
+      <div class="chapter-text">
+        <p>우리는 지구 궤도 근처에서 오랫동안 이 행성을 지켜보았습니다. 처음에는 그저 관찰이었습니다. 멀리서 바라보는 것만으로도 충분히 흥미로웠으니까요.</p>
+        <p>그러다 지구인들이 스스로 우주로 나오기 시작했습니다. 우주선을 쏘아올리고, 달에 발을 내딛고, 탐사선을 태양계 너머로 보내는 것을 우리는 지켜보았습니다.</p>
+        <p>더 가까이서 봐야 할 때가 왔다고 판단했습니다. 우리는 <strong>달 뒷면에 우주선을 집결시키고 정박했습니다.</strong> 관측되지 않는 그곳에서, 우리의 본격적인 관찰이 시작되었습니다.</p>
+        <div class="log-aside">
+          <div class="log-aside-date">관측일지 — 001</div>
+          <div class="log-aside-text">달 뒷면 본부 설치 완료. 지구 대기권 통과 시 수박 주파수 활용. 지구인들은 눈치채지 못함. 달 표면 굴곡을 골프공처럼 활용한 전파 송수신 기술 완성.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <div class="report-log reveal">
-      <div class="log-entry">
-        <div class="log-date">관측일지 — 001</div>
-        <div class="log-text">달 뒷면 본부에서 최초 착륙 확인.<br>지구 대기권 통과 시 수박 주파수 활용.<br>지구인들은 눈치채지 못함.</div>
+<!-- 챕터 2 -->
+<div class="chapter">
+  <div style="max-width:1280px; margin:0 auto; padding:0 64px;">
+    <div class="chapter-header reveal">
+      <div class="chapter-num">Chapter 02</div>
+      <div class="chapter-title">파란 수박을<br>발견하다</div>
+    </div>
+    <div class="chapter-body reveal">
+      <div class="chapter-body-spacer"></div>
+      <div class="chapter-text">
+        <p>어느 정도 정보를 얻자, 우리는 직접 지구에 착륙하기로 결심했습니다.</p>
+        <p>우리가 처음 내린 곳은 <strong>대한민국 전라남도 화순군 이양면 쌍봉리, 쌍봉마을</strong>이었습니다. 무등산 자락에 자리한 작은 마을이었습니다.</p>
+        <p>그곳에서 우리는 처음으로 수박을 보았습니다. 파랗고 둥근 지구와 너무나 닮아 있었습니다. 우리는 이 행성에 이름을 붙였습니다. <strong>파란 수박.</strong></p>
+        <div class="log-aside">
+          <div class="log-aside-date">관측일지 — 002</div>
+          <div class="log-aside-text">최초 지구 착륙 완료. 착륙 지점: 대한민국 전라남도 화순군 이양면 쌍봉리. 이 행성을 '파란수박'으로 명명. 지구인들의 농업 문화 및 식문화 1차 관찰 시작.</div>
+        </div>
       </div>
-      <div class="log-entry">
-        <div class="log-date">관측일지 — 002</div>
-        <div class="log-text">달 표면 굴곡을 활용한 전파 송수신 기술 완성.<br>골프공처럼 튀어 오르는 전파가<br>지구 어디서든 수신 가능해짐.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 챕터 3 -->
+<div class="chapter">
+  <div style="max-width:1280px; margin:0 auto; padding:0 64px;">
+    <div class="chapter-header reveal">
+      <div class="chapter-num">Chapter 03</div>
+      <div class="chapter-title">책이라는<br>가장 오래된 기록</div>
+    </div>
+    <div class="chapter-body reveal">
+      <div class="chapter-body-spacer"></div>
+      <div class="chapter-text">
+        <p>지구인들을 관찰하며 우리가 가장 주목한 것이 있었습니다. 그들은 자신의 생각과 감상을 <strong>종이에 글로 써서 남겼습니다.</strong> 책이라는 형태로.</p>
+        <p>컴퓨터가 등장해도, 인터넷이 생겨도, 인공지능이 나타나도 그 매체는 사라지지 않았습니다. 가장 오래된 정보 공유 형태가 여전히 살아있었습니다.</p>
+        <p>그런데 한 가지 아쉬운 점이 있었습니다. 책을 쓰는 사람은 언제나 정해져 있었습니다. 이미 유명한 사람, 이미 성공한 사람, 이미 특별하다고 인정받은 사람들만이 책을 썼습니다.</p>
+        <p><strong>그러나 외계인의 눈으로 보면, 모든 지구인이 특별했습니다.</strong> 특별하지 않다고 스스로 믿는 삶일수록, 우리에게는 더욱 신기하고 흥미로웠습니다.</p>
       </div>
-      <div class="log-entry">
-        <div class="log-date">관측일지 — 003</div>
-        <div class="log-text">첫 번째 지구인 포섭 성공.<br>호의적 대응으로 합류 의사 확인.<br>우주선 탑승 완료.</div>
-      </div>
-      <div class="log-entry">
-        <div class="log-date">관측일지 — 현재 진행 중</div>
-        <div class="log-text">지구기록보관소 정식 운영 개시.<br>더 많은 지구인의 이야기를 수집 중.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 챕터 4 -->
+<div class="chapter">
+  <div style="max-width:1280px; margin:0 auto; padding:0 64px;">
+    <div class="chapter-header reveal">
+      <div class="chapter-num">Chapter 04</div>
+      <div class="chapter-title">그래서 우리는<br>출판사를 만들었다</div>
+    </div>
+    <div class="chapter-body reveal">
+      <div class="chapter-body-spacer"></div>
+      <div class="chapter-text">
+        <p>우리는 결심했습니다. 지구인들이 직접 자신의 이야기를 남기게 하겠다고.</p>
+        <p>출판사를 세우고, 지구인을 포섭하여, 보통 사람 모두가 책을 쓰고 자기 인생을 남기도록 하겠다고.</p>
+        <p>잘난 사람만 책을 쓰는 세상이 아니라, <strong>모든 지구인이 저자가 되는 세상.</strong></p>
+        <p>그것이 파란수박이 이곳에 존재하는 이유입니다.</p>
+        <div class="log-aside">
+          <div class="log-aside-date">관측일지 — 현재 진행 중</div>
+          <div class="log-aside-text">파란수박 출판사 설립 완료. 첫 번째 지구인 포섭 성공. 지구기록보관소 정식 운영 개시. 더 많은 지구인의 이야기를 수집 중.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -128,8 +211,17 @@ nav.style.borderBottom = '1px solid #1E1E2E';
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 reveals.forEach(el => observer.observe(el));
+
+let isKo = true;
+function toggleLang() {
+  isKo = !isKo;
+  document.getElementById('lang-toggle').textContent = isKo ? 'EN' : 'KO';
+  document.querySelectorAll('[data-ko][data-en]').forEach(el => {
+    el.textContent = isKo ? el.dataset.ko : el.dataset.en;
+  });
+}
 </script>
 </body>
 </html>

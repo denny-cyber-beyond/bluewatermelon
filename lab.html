@@ -9,126 +9,120 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero {
-  padding: 180px 64px 80px;
-  max-width: 1280px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--dim);
+.lang-toggle {
+  position: fixed; top: 28px; right: 56px; z-index: 200;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5); cursor: pointer;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 14px; transition: all 0.3s; user-select: none;
 }
+.lang-toggle:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+
+.page-hero { padding: 160px 64px 60px; max-width: 1280px; margin: 0 auto; }
 
 .experiment-item {
+  border-top: 1px solid #1E1E2E;
+  padding: 72px 64px;
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 160px 1fr auto;
-  align-items: center;
-  gap: 48px;
-  padding: 56px 0;
-  border-bottom: 1px solid var(--dim);
-  text-decoration: none;
-  color: inherit;
-  cursor: default;
+  grid-template-columns: 220px 1fr;
+  gap: 80px;
+  align-items: start;
 }
 
-.experiment-item.clickable { cursor: pointer; }
-.experiment-item.clickable:hover .exp-title { color: var(--blue); }
-.experiment-item.clickable:hover .exp-arrow { transform: translateX(10px); color: var(--blue); }
+.exp-left {}
 
-.exp-num {
-  font-family: var(--sans);
-  font-size: 13px;
-  letter-spacing: 0.18em;
-  color: var(--gray);
+.exp-code {
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.2em;
+  color: var(--blue); margin-bottom: 12px;
 }
 
-.exp-tag {
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 12px;
+.exp-status {
+  display: inline-block;
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gray);
+  padding: 6px 12px; border: 1px solid #1E1E2E;
 }
 
-.exp-tag.soon { color: var(--gray); }
+.exp-right {}
 
-.exp-title {
-  font-family: var(--serif);
-  font-size: clamp(26px, 3.5vw, 40px);
-  font-weight: 300;
-  transition: color 0.3s;
-  margin-bottom: 10px;
+.exp-name {
+  font-family: var(--serif); font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300; color: #ffffff; line-height: 1.2; margin-bottom: 32px;
+}
+
+.exp-hints {
+  display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px;
+}
+
+.exp-hint {
+  font-family: var(--sans); font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.45); letter-spacing: 0.03em;
 }
 
 .exp-desc {
-  font-family: var(--sans);
-  font-size: 15px;
-  color: var(--gray);
-  font-weight: 300;
-  line-height: 1.7;
-}
-
-.exp-arrow {
-  font-size: 24px;
-  color: var(--gray);
-  transition: transform 0.3s, color 0.3s;
-}
-
-.coming-badge {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gray);
-  padding: 6px 14px;
-  border: 1px solid #1E1E2E;
-  margin-top: 16px;
+  font-size: 17px; font-weight: 300; line-height: 1.9;
+  color: rgba(255,255,255,0.5);
 }
 
 @media (max-width: 768px) {
-  .page-hero { padding: 140px 28px 60px; }
-  .experiment-item { grid-template-columns: 80px 1fr auto; gap: 20px; padding: 40px 0; }
+  .page-hero { padding: 130px 28px 40px; }
+  .experiment-item { grid-template-columns: 1fr; gap: 28px; padding: 48px 28px; }
 }
 </style>
 </head>
 <body>
 
+<div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">EN</div>
+
 <nav id="main-nav">
-  <a href="index.html" class="nav-logo">
-    <img src="9.png" alt="파란수박">
-  </a>
+  <a href="index.html" class="nav-logo"><img src="9.png" alt="파란수박"></a>
   <ul class="nav-links">
-    <li><a href="report.html">REPORT</a></li>
-    <li><a href="lab.html" class="active">실험실</a></li>
-    <li><a href="hq.html">파란수박본부</a></li>
-    <li><a href="contact.html">안녕하세요</a></li>
+    <li><a href="report.html" data-ko="보고서" data-en="REPORT">보고서</a></li>
+    <li><a href="lab.html" class="active" data-ko="실험실" data-en="LAB">실험실</a></li>
+    <li><a href="hq.html" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a></li>
+    <li><a href="contact.html" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a></li>
   </ul>
 </nav>
 
 <div class="page-hero">
-  <span class="section-label reveal">실험실 — LAB</span>
-  <h1 class="section-title reveal">관측된 지구인의<br>기록들.</h1>
+  <span class="section-label reveal" data-ko="실험실" data-en="LAB">실험실</span>
+  <h1 class="section-title reveal" style="color:#ffffff;">관측된 지구인의<br>기록들.</h1>
   <div class="section-divider"></div>
+</div>
 
-  <div class="experiment-item reveal">
-    <span class="exp-num">실험 — 001</span>
-    <div class="exp-info">
-      <div class="exp-tag">국방 · 창업 · 논픽션</div>
-      <div class="exp-title">더 베테랑</div>
-      <div class="exp-desc">군인 출신 창업자들의 이야기.<br>세계 각국의 군 창업 백과.</div>
-      <span class="coming-badge">Coming Soon</span>
-    </div>
-    <span class="exp-arrow">→</span>
+<!-- BW-01 -->
+<div class="experiment-item reveal">
+  <div class="exp-left">
+    <div class="exp-code">BW-01</div>
+    <div class="exp-status" data-ko="준비 중" data-en="COMING SOON">준비 중</div>
   </div>
-
-  <div class="experiment-item reveal">
-    <span class="exp-num">실험 — 002</span>
-    <div class="exp-info">
-      <div class="exp-tag soon">준비 중</div>
-      <div class="exp-title">다음 기록</div>
-      <div class="exp-desc">다음 관측 기록이 수집되고 있습니다.<br>지구인의 이야기를 기다리고 있습니다.</div>
-      <span class="coming-badge">Coming Soon</span>
+  <div class="exp-right">
+    <div class="exp-name">프로젝트 : 풍영정</div>
+    <div class="exp-hints">
+      <span class="exp-hint">#오천만권짜리시리즈</span>
+      <span class="exp-hint">#너도나도모두작가</span>
+      <span class="exp-hint">#외계인이들려주는</span>
     </div>
-    <span class="exp-arrow">→</span>
+    <div class="exp-desc" data-ko="모든 지구인이 글을 쓰는 프로젝트. 더 많은 정보는 곧 공개됩니다." data-en="A project where every earthling writes. More details coming soon.">모든 지구인이 글을 쓰는 프로젝트. 더 많은 정보는 곧 공개됩니다.</div>
+  </div>
+</div>
+
+<!-- BW-02 -->
+<div class="experiment-item reveal">
+  <div class="exp-left">
+    <div class="exp-code">BW-02</div>
+    <div class="exp-status" data-ko="준비 중" data-en="COMING SOON">준비 중</div>
+  </div>
+  <div class="exp-right">
+    <div class="exp-name">프로젝트 : 쿵쿵따</div>
+    <div class="exp-hints">
+      <span class="exp-hint">#쿵쿵따리쿵쿵따</span>
+      <span class="exp-hint">#쿵쓰쿵쓰</span>
+      <span class="exp-hint">#철인3종팀경기</span>
+    </div>
+    <div class="exp-desc" data-ko="모두가 함께 글을 쓰는 프로젝트. 더 많은 정보는 곧 공개됩니다." data-en="A project where everyone writes together. More details coming soon.">모두가 함께 글을 쓰는 프로젝트. 더 많은 정보는 곧 공개됩니다.</div>
   </div>
 </div>
 
@@ -146,8 +140,17 @@ nav.style.borderBottom = '1px solid #1E1E2E';
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 reveals.forEach(el => observer.observe(el));
+
+let isKo = true;
+function toggleLang() {
+  isKo = !isKo;
+  document.getElementById('lang-toggle').textContent = isKo ? 'EN' : 'KO';
+  document.querySelectorAll('[data-ko][data-en]').forEach(el => {
+    el.textContent = isKo ? el.dataset.ko : el.dataset.en;
+  });
+}
 </script>
 </body>
 </html>

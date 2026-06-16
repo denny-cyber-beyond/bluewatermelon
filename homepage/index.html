@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
+/* HERO */
 #hero {
   position: relative;
   width: 100%;
@@ -28,6 +29,7 @@ canvas.star-field {
   z-index: 1;
 }
 
+/* CSS 지구 — 더 사실적 */
 .earth {
   position: absolute;
   bottom: -22vh;
@@ -47,9 +49,11 @@ canvas.star-field {
   box-shadow:
     inset -50px -30px 100px rgba(0,0,0,0.85),
     inset 20px 10px 60px rgba(43,62,232,0.12),
-    0 0 160px rgba(43,62,232,0.12);
+    0 0 160px rgba(43,62,232,0.12),
+    0 0 60px rgba(43,62,232,0.06);
 }
 
+/* 대기권 광륜 */
 .earth::after {
   content: '';
   position: absolute;
@@ -62,6 +66,7 @@ canvas.star-field {
     transparent 70%);
 }
 
+/* 구름층 */
 .earth::before {
   content: '';
   position: absolute;
@@ -69,9 +74,11 @@ canvas.star-field {
   border-radius: 50%;
   background:
     radial-gradient(ellipse 60% 12% at 50% 22%, rgba(255,255,255,0.07) 0%, transparent 100%),
-    radial-gradient(ellipse 40% 8% at 30% 48%, rgba(255,255,255,0.05) 0%, transparent 100%);
+    radial-gradient(ellipse 40% 8% at 30% 48%, rgba(255,255,255,0.05) 0%, transparent 100%),
+    radial-gradient(ellipse 50% 10% at 70% 72%, rgba(255,255,255,0.04) 0%, transparent 100%);
 }
 
+/* 별똥별 (속마음분홍) */
 .shooting-star {
   position: absolute;
   width: 2px;
@@ -103,56 +110,44 @@ canvas.star-field {
   z-index: 3;
   text-align: center;
   padding: 0 24px;
-  margin-top: -16vh;
+  margin-top: -18vh;
 }
 
 .hero-eyebrow {
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--blue);
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   opacity: 0;
   animation: fadeUp 1s ease 0.4s forwards;
 }
 
 .hero-title {
   font-family: var(--serif);
-  font-size: clamp(36px, 6vw, 80px);
+  font-size: clamp(60px, 10vw, 130px);
   font-weight: 300;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: #ffffff;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   opacity: 0;
   animation: fadeUp 1s ease 0.8s forwards;
 }
 
-.hero-title .changing-wrap {
-  display: inline-block;
-  position: relative;
-  min-width: 320px;
-  text-align: center;
+.hero-title em {
+  font-style: normal;
+  color: var(--blue);
 }
 
-.hero-title .changing {
-  color: #FC5C7D;
-  display: inline-block;
-  transition: opacity 0.3s ease;
-}
-
-.hero-title .static {
-  color: #ffffff;
-}
-
+/* 네비 버튼들 */
 .hero-nav {
   position: relative;
   z-index: 3;
   display: flex;
   gap: 16px;
   justify-content: center;
-  margin-top: 64px;
+  margin-top: 56px;
   opacity: 0;
   animation: fadeUp 1s ease 1.2s forwards;
   flex-wrap: wrap;
@@ -160,20 +155,21 @@ canvas.star-field {
 
 .hero-nav-btn {
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
   text-decoration: none;
   padding: 14px 32px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid #1E1E2E;
   transition: color 0.3s, border-color 0.3s, background 0.3s;
 }
 
 .hero-nav-btn:hover {
-  color: #ffffff;
+  color: var(--white);
   border-color: var(--blue);
-  background: rgba(43,62,232,0.12);
+  background: rgba(43,62,232,0.08);
 }
 
 .hero-scroll {
@@ -190,7 +186,7 @@ canvas.star-field {
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: rgba(180,180,200,0.35);
   opacity: 0;
   animation: fadeUp 1s ease 1.8s forwards;
 }
@@ -200,29 +196,9 @@ canvas.star-field {
   display: block;
   width: 1px;
   height: 40px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(180,180,200,0.2);
   animation: pulse 2s ease-in-out infinite;
 }
-
-/* 한/영 토글 */
-.lang-toggle {
-  position: fixed;
-  top: 28px;
-  right: 56px;
-  z-index: 200;
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.5);
-  cursor: pointer;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 6px 14px;
-  transition: all 0.3s;
-  user-select: none;
-}
-
-.lang-toggle:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -237,17 +213,15 @@ canvas.star-field {
 </head>
 <body>
 
-<div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">EN</div>
-
 <nav id="main-nav">
   <a href="index.html" class="nav-logo">
     <img src="9.png" alt="파란수박">
   </a>
   <ul class="nav-links">
-    <li><a href="report.html" data-ko="보고서" data-en="REPORT">보고서</a></li>
-    <li><a href="lab.html" data-ko="실험실" data-en="LAB">실험실</a></li>
-    <li><a href="hq.html" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a></li>
-    <li><a href="contact.html" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a></li>
+    <li><a href="report.html">REPORT</a></li>
+    <li><a href="lab.html">실험실</a></li>
+    <li><a href="hq.html">파란수박본부</a></li>
+    <li><a href="contact.html">안녕하세요</a></li>
   </ul>
 </nav>
 
@@ -259,14 +233,14 @@ canvas.star-field {
     <p class="hero-eyebrow">지구기록보관소 — Galactic Record Bureau</p>
     <h1 class="hero-title">
       우리는<br>
-      <span class="changing-wrap"><span class="changing" id="changing-text">100억 자산가</span></span>보다<br>
-      <span class="static">당신이 궁금하다</span>
+      <em>지구에서</em><br>
+      왔습니다
     </h1>
     <nav class="hero-nav">
-      <a href="report.html" class="hero-nav-btn" data-ko="보고서" data-en="REPORT">보고서</a>
-      <a href="lab.html" class="hero-nav-btn" data-ko="실험실" data-en="LAB">실험실</a>
-      <a href="hq.html" class="hero-nav-btn" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a>
-      <a href="contact.html" class="hero-nav-btn" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a>
+      <a href="report.html" class="hero-nav-btn">보고서</a>
+      <a href="lab.html" class="hero-nav-btn">실험실</a>
+      <a href="hq.html" class="hero-nav-btn">파란수박본부</a>
+      <a href="contact.html" class="hero-nav-btn">안녕하세요</a>
     </nav>
   </div>
 
@@ -291,12 +265,12 @@ function resize() {
 
 function initStars() {
   stars = [];
-  const count = Math.floor((canvas.width * canvas.height) / 3000);
+  const count = Math.floor((canvas.width * canvas.height) / 3500);
   for (let i = 0; i < count; i++) {
     stars.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 1.8 + 0.4,
+      r: Math.random() * 1.6 + 0.3,
       speed: Math.random() * 0.007 + 0.002,
       phase: Math.random() * Math.PI * 2,
       bright: Math.random() * 0.5 + 0.5
@@ -307,10 +281,10 @@ function initStars() {
 function draw(t) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (const s of stars) {
-    const a = (Math.sin(t * s.speed + s.phase) + 1) / 2 * s.bright * 0.85 + 0.25;
+    const a = (Math.sin(t * s.speed + s.phase) + 1) / 2 * s.bright * 0.8 + 0.2;
     ctx.beginPath();
     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(220,228,255,${a})`;
+    ctx.fillStyle = `rgba(210,220,255,${a})`;
     ctx.fill();
   }
   requestAnimationFrame(draw);
@@ -321,7 +295,7 @@ initStars();
 requestAnimationFrame(draw);
 window.addEventListener('resize', () => { resize(); initStars(); });
 
-// 별똥별
+// 별똥별 (속마음분홍)
 function spawnShootingStar() {
   const el = document.createElement('div');
   el.className = 'shooting-star';
@@ -337,71 +311,12 @@ function spawnShootingStar() {
 
 function scheduleShootingStar() {
   const delay = Math.random() * 5000 + 3000;
-  setTimeout(() => { spawnShootingStar(); scheduleShootingStar(); }, delay);
+  setTimeout(() => {
+    spawnShootingStar();
+    scheduleShootingStar();
+  }, delay);
 }
 scheduleShootingStar();
-
-// 타이핑 애니메이션
-const phrases = [
-  '100억 자산가',
-  '5선 국회의원',
-  '대기업 대표',
-  '1천만 인플루언서',
-  '유명 연예인',
-  '노벨상 수상자',
-];
-let idx = 0;
-const changingEl = document.getElementById('changing-text');
-
-function changePhrase() {
-  changingEl.style.opacity = '0';
-  setTimeout(() => {
-    idx = (idx + 1) % phrases.length;
-    changingEl.textContent = phrases[idx];
-    changingEl.style.opacity = '1';
-  }, 350);
-}
-
-setInterval(changePhrase, 2200);
-
-// 한/영 토글
-let isKo = true;
-
-function toggleLang() {
-  isKo = !isKo;
-  document.getElementById('lang-toggle').textContent = isKo ? 'EN' : 'KO';
-
-  document.querySelectorAll('[data-ko][data-en]').forEach(el => {
-    el.textContent = isKo ? el.dataset.ko : el.dataset.en;
-  });
-
-  // 히어로 카피도 변경
-  const title = document.querySelector('.hero-title');
-  if (!isKo) {
-    title.innerHTML = `We are more curious about<br><span class="changing-wrap"><span class="changing" id="changing-text">billionaires</span></span><br><span class="static">than you</span>`;
-  } else {
-    title.innerHTML = `우리는<br><span class="changing-wrap"><span class="changing" id="changing-text">100억 자산가</span></span>보다<br><span class="static">당신이 궁금하다</span>`;
-  }
-
-  idx = 0;
-  const koList = ['100억 자산가','5선 국회의원','대기업 대표','1천만 인플루언서','유명 연예인','노벨상 수상자'];
-  const enList = ['billionaires','5-term politicians','CEOs','10M influencers','celebrities','Nobel laureates'];
-  const currentPhrases = isKo ? koList : enList;
-
-  clearInterval(window._phraseInterval);
-  window._phraseInterval = setInterval(() => {
-    const el = document.getElementById('changing-text');
-    if (!el) return;
-    el.style.opacity = '0';
-    setTimeout(() => {
-      idx = (idx + 1) % currentPhrases.length;
-      el.textContent = currentPhrases[idx];
-      el.style.opacity = '1';
-    }, 350);
-  }, 2200);
-}
-
-window._phraseInterval = setInterval(changePhrase, 2200);
 
 // nav 스크롤
 const nav = document.getElementById('main-nav');

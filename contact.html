@@ -3,118 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>안녕하세요 — 파란수박</title>
+<title>안녕하세요? — 파란수박</title>
 <link rel="icon" type="image/png" href="1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero {
-  padding: 180px 64px 120px;
-  max-width: 1280px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--dim);
+.lang-toggle {
+  position: fixed; top: 28px; right: 56px; z-index: 200;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5); cursor: pointer;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 14px; transition: all 0.3s; user-select: none;
 }
+.lang-toggle:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+
+.page-hero { padding: 160px 64px 120px; max-width: 1280px; margin: 0 auto; }
 
 .contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start;
 }
 
 .contact-lore {
-  font-size: 19px;
-  font-weight: 300;
-  line-height: 2.1;
-  color: var(--gray);
+  font-size: 19px; font-weight: 300; line-height: 2.1; color: rgba(255,255,255,0.7);
 }
-
 .contact-lore p + p { margin-top: 24px; }
-.contact-lore strong { color: var(--white); font-weight: 400; }
+.contact-lore strong { color: #ffffff; font-weight: 400; }
 
-.contact-action {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
+.contact-action { display: flex; flex-direction: column; gap: 28px; }
 
 .signal-label {
-  font-family: var(--sans);
-  font-size: 13px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--blue);
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--blue);
 }
 
 .signal-addr {
-  font-family: var(--sans);
-  font-size: clamp(18px, 2.2vw, 28px);
-  font-weight: 300;
-  color: var(--white);
-  text-decoration: none;
-  border-bottom: 1px solid var(--dim);
-  padding-bottom: 20px;
-  transition: border-color 0.3s, color 0.3s;
-  display: block;
+  font-family: var(--sans); font-size: clamp(16px, 2vw, 24px); font-weight: 300;
+  color: #ffffff; text-decoration: none;
+  border-bottom: 1px solid #1E1E2E; padding-bottom: 20px;
+  transition: border-color 0.3s, color 0.3s; display: block;
 }
-
 .signal-addr:hover { color: var(--blue); border-color: var(--blue); }
 
 .signal-note {
-  font-family: var(--sans);
-  font-size: 14px;
-  color: var(--gray);
-  line-height: 1.9;
+  font-family: var(--sans); font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.9;
 }
 
 .transmission-btn {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: var(--blue);
-  padding: 20px 48px;
-  text-decoration: none;
-  transition: background 0.3s;
-  align-self: flex-start;
+  display: inline-block; font-family: var(--sans); font-size: 14px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff;
+  background: var(--blue); padding: 20px 48px; text-decoration: none;
+  transition: background 0.3s; align-self: flex-start;
 }
-
 .transmission-btn:hover { background: #1A2DB0; }
 
 .signal-note-small {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: #444458;
-  margin-top: 8px;
+  font-family: var(--sans); font-size: 13px; color: rgba(255,255,255,0.25);
 }
 
 @media (max-width: 768px) {
-  .page-hero { padding: 140px 28px 80px; }
+  .page-hero { padding: 130px 28px 80px; }
   .contact-grid { grid-template-columns: 1fr; gap: 56px; }
 }
 </style>
 </head>
 <body>
 
+<div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">EN</div>
+
 <nav id="main-nav">
-  <a href="index.html" class="nav-logo">
-    <img src="9.png" alt="파란수박">
-  </a>
+  <a href="index.html" class="nav-logo"><img src="9.png" alt="파란수박"></a>
   <ul class="nav-links">
-    <li><a href="report.html">REPORT</a></li>
-    <li><a href="lab.html">실험실</a></li>
-    <li><a href="hq.html">파란수박본부</a></li>
-    <li><a href="contact.html" class="active">안녕하세요</a></li>
+    <li><a href="report.html" data-ko="보고서" data-en="REPORT">보고서</a></li>
+    <li><a href="lab.html" data-ko="실험실" data-en="LAB">실험실</a></li>
+    <li><a href="hq.html" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a></li>
+    <li><a href="contact.html" class="active" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a></li>
   </ul>
 </nav>
 
 <div class="page-hero">
-  <span class="section-label reveal">안녕하세요 — HELLO?</span>
-  <h1 class="section-title reveal">항성 간 통신을<br>시도하세요.</h1>
+  <span class="section-label reveal" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</span>
+  <h1 class="section-title reveal" style="color:#ffffff;">항성 간 통신을<br>시도하세요.</h1>
   <div class="section-divider"></div>
 
   <div class="contact-grid">
@@ -125,15 +94,15 @@
     </div>
 
     <div class="contact-action reveal">
-      <span class="signal-label">주파수 — Direct Signal</span>
-      <a href="mailto:hello@bluewatermelon.co.kr" class="signal-addr">
-        hello@bluewatermelon.co.kr
+      <span class="signal-label" data-ko="주파수 — 직접 신호" data-en="FREQUENCY — Direct Signal">주파수 — 직접 신호</span>
+      <a href="mailto:donghoon807@gmail.com" class="signal-addr">
+        donghoon807@gmail.com
       </a>
-      <p class="signal-note">
+      <p class="signal-note" data-ko="출판 문의 · 원고 투고 · 협업 제안&#10;모든 신호를 수신합니다." data-en="Publishing inquiry · Manuscript · Collaboration&#10;We receive all signals.">
         출판 문의 · 원고 투고 · 협업 제안<br>
         모든 신호를 수신합니다.
       </p>
-      <a href="mailto:hello@bluewatermelon.co.kr" class="transmission-btn">
+      <a href="mailto:donghoon807@gmail.com" class="transmission-btn" data-ko="신호 발송하기" data-en="Send Signal">
         신호 발송하기
       </a>
       <p class="signal-note-small">※ 수신 확인까지 1–3 지구일 소요됩니다.</p>
@@ -155,8 +124,17 @@ nav.style.borderBottom = '1px solid #1E1E2E';
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 reveals.forEach(el => observer.observe(el));
+
+let isKo = true;
+function toggleLang() {
+  isKo = !isKo;
+  document.getElementById('lang-toggle').textContent = isKo ? 'EN' : 'KO';
+  document.querySelectorAll('[data-ko][data-en]').forEach(el => {
+    el.textContent = isKo ? el.dataset.ko : el.dataset.en;
+  });
+}
 </script>
 </body>
 </html>
