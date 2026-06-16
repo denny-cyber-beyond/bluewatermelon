@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>파란수박 — 지구기록보관소</title>
-<meta name="description" content="외계인이 설립한 지구기록보관소. 모든 지구인은 한 권의 책입니다.">
+<meta name="description" content="외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.">
 <link rel="icon" type="image/png" href="1.png">
+<link rel="apple-touch-icon" href="1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -21,7 +22,6 @@ canvas#stars {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
 }
 
-/* 지구 — 화면 하단 절반에 배치 */
 .earth-wrap {
   position: absolute;
   bottom: -35vh; left: 50%;
@@ -46,7 +46,6 @@ canvas#stars {
     0 0 60px rgba(43,62,232,0.05);
 }
 
-/* 대기권 */
 .earth-atmos {
   position: absolute; inset: -3%; border-radius: 50%;
   background: radial-gradient(ellipse at 50% 50%,
@@ -56,7 +55,6 @@ canvas#stars {
     transparent 66%);
 }
 
-/* 구름 */
 .earth-clouds {
   position: absolute; inset: 0; border-radius: 50%;
   background:
@@ -65,7 +63,6 @@ canvas#stars {
     radial-gradient(ellipse 45% 9% at 72% 74%, rgba(255,255,255,0.04) 0%, transparent 100%);
 }
 
-/* 히어로 텍스트 — 화면 상단 중앙 고정 */
 .hero-content {
   position: absolute;
   top: 50%; left: 50%;
@@ -77,40 +74,17 @@ canvas#stars {
   margin-top: -8vh;
 }
 
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--sans); font-size: 12px; font-weight: 400;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 8px 18px; margin-bottom: 40px;
-  opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
-}
-.hero-badge-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--blue); flex-shrink: 0;
-  animation: blink 2s ease-in-out infinite;
-}
-
 .hero-title {
   font-family: 'Noto Serif KR', Georgia, serif;
   font-size: clamp(44px, 6.5vw, 92px);
   font-weight: 300; line-height: 1.38;
   color: #ffffff; letter-spacing: -0.015em;
-  opacity: 0; animation: fadeUp 1s ease 0.8s forwards;
+  opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
   text-shadow: 0 4px 48px rgba(0,0,0,0.7);
 }
 .hero-title .changing {
   color: #FC5C7D;
-  transition: opacity 0.28s;
-}
-
-.hero-sub {
-  font-family: var(--sans); font-size: 16px; font-weight: 300;
-  color: rgba(255,255,255,0.45); letter-spacing: 0.02em;
-  margin-top: 20px;
-  opacity: 0; animation: fadeUp 1s ease 1.1s forwards;
+  transition: opacity 0.7s ease;
 }
 
 .hero-cta {
@@ -121,20 +95,19 @@ canvas#stars {
   color: #ffffff; background: transparent;
   padding: 0; text-decoration: none;
   transition: opacity 0.2s, transform 0.2s;
-  opacity: 0; animation: fadeUp 1s ease 1.4s forwards;
+  opacity: 0; animation: fadeUp 1s ease 1.1s forwards;
 }
 .hero-cta:hover { opacity: 0.65; }
 .hero-cta-arrow { font-size: 18px; transition: transform 0.2s; }
 .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
 
-/* 스크롤 힌트 */
 .hero-scroll {
   position: absolute; bottom: 28px; left: 50%;
   transform: translateX(-50%); z-index: 10;
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   font-family: var(--sans); font-size: 10px; letter-spacing: 0.25em;
   text-transform: uppercase; color: rgba(255,255,255,0.2);
-  opacity: 0; animation: fadeUp 1s ease 2s forwards;
+  opacity: 0; animation: fadeUp 1s ease 1.7s forwards;
 }
 .hero-scroll-line {
   width: 1px; height: 40px;
@@ -142,7 +115,6 @@ canvas#stars {
   animation: scrollLine 2.4s ease-in-out infinite;
 }
 
-/* 숫자 통계 섹션 */
 .hero-stats {
   position: absolute; bottom: 0; left: 0; right: 0;
   z-index: 15;
@@ -150,7 +122,7 @@ canvas#stars {
   border-top: 1px solid rgba(255,255,255,0.06);
   background: rgba(8,8,16,0.6);
   backdrop-filter: blur(12px);
-  opacity: 0; animation: fadeUp 1s ease 1.7s forwards;
+  opacity: 0; animation: fadeUp 1s ease 1.4s forwards;
 }
 .stat-item {
   padding: 24px 48px;
@@ -170,10 +142,6 @@ canvas#stars {
   from { opacity:0; transform:translateY(20px); }
   to   { opacity:1; transform:translateY(0); }
 }
-@keyframes blink {
-  0%,100% { opacity:1; }
-  50% { opacity:0.3; }
-}
 @keyframes scrollLine {
   0%   { transform:scaleY(0); transform-origin:top; opacity:0; }
   40%  { transform:scaleY(1); transform-origin:top; opacity:1; }
@@ -181,9 +149,8 @@ canvas#stars {
   100% { transform:scaleY(0); transform-origin:bottom; opacity:0; }
 }
 
-/* 동작 줄이기(reduce motion) 환경에서도 히어로 콘텐츠가 보이도록 fallback */
 @media (prefers-reduced-motion: reduce) {
-  .hero-badge, .hero-title, .hero-sub, .hero-cta, .hero-stats, .hero-scroll {
+  .hero-title, .hero-cta, .hero-stats, .hero-scroll {
     opacity: 1 !important;
   }
 }
@@ -194,9 +161,8 @@ canvas#stars {
 <!-- NAV -->
 <nav class="site-nav" id="site-nav">
   <a href="index.html" class="nav-logo">
-    <img src="9.png" alt="파란수박"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-    <span class="nav-logo-fallback">파란수박</span>
+    <img src="9.png" alt="파란수박" onerror="this.style.display='none'">
+    <span class="nav-logo-text">파란<br>수박</span>
   </a>
   <ul class="nav-links">
     <li><a href="report.html" data-ko="보고서" data-en="REPORT">보고서</a></li>
@@ -218,16 +184,11 @@ canvas#stars {
   </div>
 
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      지구기록보관소 — Galactic Record Bureau
-    </div>
     <h1 class="hero-title">
       우리는<br>
       <span class="changing" id="changing-text">100억 자산가</span>보다<br>
-      당신이 쓰는 책이 궁금해
+      당신이 쓰는 책이 더 궁금해
     </h1>
-    <p class="hero-sub" data-ko="모든 지구인은 한 권의 책입니다" data-en="Every earthling is a book waiting to be written">모든 지구인은 한 권의 책입니다</p>
     <a href="report.html" class="hero-cta">
       <span data-ko="파란수박 알아보기" data-en="Discover Blue Watermelon">파란수박 알아보기</span>
       <span class="hero-cta-arrow">→</span>
@@ -240,7 +201,7 @@ canvas#stars {
       <div class="stat-label" data-ko="진행 중인 프로젝트" data-en="Active Projects">진행 중인 프로젝트</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">∞</div>
+      <div class="stat-num" data-ko="82억" data-en="8.2B">82억</div>
       <div class="stat-label" data-ko="잠재적 지구인 저자" data-en="Potential Earthling Authors">잠재적 지구인 저자</div>
     </div>
     <div class="stat-item">
@@ -258,11 +219,10 @@ canvas#stars {
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-brand-col">
-    <img src="9.png" alt="파란수박" class="footer-logo"
-      onerror="this.style.display='none'">
+    <img src="9.png" alt="파란수박" class="footer-logo" onerror="this.style.display='none'">
     <p class="footer-tagline">
-      외계인이 설립한 지구기록보관소.<br>
-      모든 지구인은 한 권의 책입니다.
+      외계인이 설립한 출판사<br>
+      파란 수박
     </p>
   </div>
   <div class="footer-links-col">
@@ -312,7 +272,6 @@ function initStars() {
 }
 
 function spawnMeteor() {
-  // 오른쪽 위 → 왼쪽 아래 방향
   const spd = 7 + Math.random() * 5;
   const ang = Math.PI * (0.6 + Math.random() * 0.1);
   meteors.push({
@@ -345,7 +304,6 @@ function draw(t) {
     const m = meteors[i];
     const mag = Math.sqrt(m.vx * m.vx + m.vy * m.vy);
     const nx  = m.vx / mag, ny = m.vy / mag;
-    // 꼬리 = 머리에서 진행 반대 방향
     const tx = m.x - nx * m.len, ty = m.y - ny * m.len;
     const g = ctx.createLinearGradient(m.x, m.y, tx, ty);
     g.addColorStop(0,   `rgba(252,92,125,${m.life * 0.95})`);
@@ -357,7 +315,6 @@ function draw(t) {
     ctx.strokeStyle = g;
     ctx.lineWidth = 1.6;
     ctx.stroke();
-    // 머리 글로우
     ctx.beginPath();
     ctx.arc(m.x, m.y, 2, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(255,190,205,${m.life})`;
@@ -374,11 +331,11 @@ function draw(t) {
 resize(); initStars(); requestAnimationFrame(draw); scheduleMeteor();
 window.addEventListener('resize', () => { resize(); initStars(); });
 
-// ─── 타이핑 ───
+// ─── 텍스트 전환 (스르륵 페이드) ───
 const koList = ['100억 자산가','5선 국회의원','대기업 대표','1천만 인플루언서','유명 연예인','노벨상 수상자'];
 const enList = ['billionaires','5-term politicians','CEOs','10M influencers','celebrities','Nobel laureates'];
 let idx = 0, isKo = true;
-const cEl = document.getElementById('changing-text');
+let cEl = document.getElementById('changing-text');
 
 function changePhrase() {
   cEl.style.opacity = '0';
@@ -386,9 +343,9 @@ function changePhrase() {
     idx = (idx + 1) % koList.length;
     cEl.textContent = isKo ? koList[idx] : enList[idx];
     cEl.style.opacity = '1';
-  }, 300);
+  }, 700);
 }
-setInterval(changePhrase, 2500);
+setInterval(changePhrase, 4000);
 
 // ─── 한/영 ───
 function toggleLang() {
@@ -401,8 +358,9 @@ function toggleLang() {
   if (!isKo) {
     title.innerHTML = `We're more curious<br>about your book than<br><span class="changing" id="changing-text">${enList[idx]}</span>'s`;
   } else {
-    title.innerHTML = `우리는<br><span class="changing" id="changing-text">${koList[idx]}</span>보다<br>당신이 쓰는 책이 궁금해`;
+    title.innerHTML = `우리는<br><span class="changing" id="changing-text">${koList[idx]}</span>보다<br>당신이 쓰는 책이 더 궁금해`;
   }
+  cEl = document.getElementById('changing-text');
 }
 
 // ─── nav 스크롤 ───
