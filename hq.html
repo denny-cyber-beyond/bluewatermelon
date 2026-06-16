@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>파란수박본부 — 파란수박</title>
+<link rel="icon" type="image/png" href="../1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  padding: 180px 64px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--dim);
+}
+
+.hq-intro {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--gray);
+  max-width: 600px;
+  margin-bottom: 80px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2px;
+}
+
+.team-card {
+  background: #0E0E1A;
+  padding: 48px 44px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+
+.team-card:hover { background: #13132A; }
+
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transition: transform 0.4s;
+  transform-origin: left;
+}
+
+.team-card:hover::before { transform: scaleX(1); }
+
+.card-id {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 24px;
+}
+
+.card-name {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.card-species {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--gray);
+  letter-spacing: 0.05em;
+  margin-bottom: 28px;
+}
+
+.card-obs {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #8A8A9A;
+}
+
+.card-status {
+  display: inline-block;
+  margin-top: 28px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green);
+  padding: 6px 12px;
+  border: 1px solid rgba(45,189,110,0.25);
+}
+
+.card-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  background: #0A0A14;
+}
+
+.card-empty-text {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #2A2A42;
+  text-align: center;
+  line-height: 2.4;
+}
+
+.card-empty-link {
+  color: var(--blue);
+  text-decoration: none;
+  margin-top: 16px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .page-hero { padding: 140px 28px 60px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="../9.png" alt="파란수박">
+  </a>
+  <ul class="nav-links">
+    <li><a href="report.html">REPORT</a></li>
+    <li><a href="lab.html">실험실</a></li>
+    <li><a href="hq.html" class="active">파란수박본부</a></li>
+    <li><a href="contact.html">안녕하세요</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="section-label reveal">파란수박본부 — HQ</span>
+  <h1 class="section-title reveal">우리가 발견한<br>지구인들.</h1>
+  <div class="section-divider"></div>
+
+  <p class="hq-intro reveal">
+    파란수박본부는 달 뒷면에 있습니다.<br>
+    우리가 포섭한 지구인들은 지금 이 우주선에서<br>
+    본 행성을 향해 기록을 송신하고 있습니다.
+  </p>
+
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="card-id">관찰 대상 #001</div>
+      <div class="card-name">정동훈</div>
+      <div class="card-species">종: 호모 사피엔스 / 한반도 서식</div>
+      <div class="card-obs">
+        군인이었다가 연구자가 되었으며 책을 씁니다.
+        공군에서 7년간 하늘을 관제했고,
+        지금은 창업과 국방의 교차점을 연구합니다.
+        이 행성에서 보기 드문 유형입니다.
+      </div>
+      <span class="card-status">● 우주선 탑승 중</span>
+    </div>
+
+    <div class="team-card card-empty reveal">
+      <div class="card-empty-text">
+        다음 포섭 대상<br>관측 중<br>
+        <a href="contact.html" class="card-empty-link">신호를 보내세요 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">© 2026 파란수박 — 지구기록보관소</div>
+  <div class="footer-coords">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON</div>
+</footer>
+
+<script>
+const nav = document.getElementById('main-nav');
+nav.style.background = 'rgba(9,9,15,0.92)';
+nav.style.backdropFilter = 'blur(12px)';
+nav.style.borderBottom = '1px solid #1E1E2E';
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

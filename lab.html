@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실험실 — 파란수박</title>
+<link rel="icon" type="image/png" href="../1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  padding: 180px 64px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--dim);
+}
+
+.experiment-item {
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  align-items: center;
+  gap: 48px;
+  padding: 56px 0;
+  border-bottom: 1px solid var(--dim);
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+}
+
+.experiment-item.clickable { cursor: pointer; }
+.experiment-item.clickable:hover .exp-title { color: var(--blue); }
+.experiment-item.clickable:hover .exp-arrow { transform: translateX(10px); color: var(--blue); }
+
+.exp-num {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--gray);
+}
+
+.exp-tag {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.exp-tag.soon { color: var(--gray); }
+
+.exp-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 300;
+  transition: color 0.3s;
+  margin-bottom: 10px;
+}
+
+.exp-desc {
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--gray);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.exp-arrow {
+  font-size: 24px;
+  color: var(--gray);
+  transition: transform 0.3s, color 0.3s;
+}
+
+.coming-badge {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 6px 14px;
+  border: 1px solid #1E1E2E;
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .page-hero { padding: 140px 28px 60px; }
+  .experiment-item { grid-template-columns: 80px 1fr auto; gap: 20px; padding: 40px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="../9.png" alt="파란수박">
+  </a>
+  <ul class="nav-links">
+    <li><a href="report.html">REPORT</a></li>
+    <li><a href="lab.html" class="active">실험실</a></li>
+    <li><a href="hq.html">파란수박본부</a></li>
+    <li><a href="contact.html">안녕하세요</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="section-label reveal">실험실 — LAB</span>
+  <h1 class="section-title reveal">관측된 지구인의<br>기록들.</h1>
+  <div class="section-divider"></div>
+
+  <div class="experiment-item reveal">
+    <span class="exp-num">실험 — 001</span>
+    <div class="exp-info">
+      <div class="exp-tag">국방 · 창업 · 논픽션</div>
+      <div class="exp-title">더 베테랑</div>
+      <div class="exp-desc">군인 출신 창업자들의 이야기.<br>세계 각국의 군 창업 백과.</div>
+      <span class="coming-badge">Coming Soon</span>
+    </div>
+    <span class="exp-arrow">→</span>
+  </div>
+
+  <div class="experiment-item reveal">
+    <span class="exp-num">실험 — 002</span>
+    <div class="exp-info">
+      <div class="exp-tag soon">준비 중</div>
+      <div class="exp-title">다음 기록</div>
+      <div class="exp-desc">다음 관측 기록이 수집되고 있습니다.<br>지구인의 이야기를 기다리고 있습니다.</div>
+      <span class="coming-badge">Coming Soon</span>
+    </div>
+    <span class="exp-arrow">→</span>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">© 2026 파란수박 — 지구기록보관소</div>
+  <div class="footer-coords">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON</div>
+</footer>
+
+<script>
+const nav = document.getElementById('main-nav');
+nav.style.background = 'rgba(9,9,15,0.92)';
+nav.style.backdropFilter = 'blur(12px)';
+nav.style.borderBottom = '1px solid #1E1E2E';
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
