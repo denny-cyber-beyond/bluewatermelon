@@ -11,32 +11,22 @@
 <link rel="stylesheet" href="style.css">
 <style>
 #hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative; width: 100%; height: 100vh;
+  overflow: hidden; display: flex;
+  align-items: center; justify-content: center;
   background: #09090F;
 }
 
 canvas.star-field {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 1;
 }
 
 .earth {
-  position: absolute;
-  bottom: -22vh;
-  left: 50%;
+  position: absolute; bottom: -22vh; left: 50%;
   transform: translateX(-50%);
-  width: 72vw;
-  max-width: 960px;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  width: 72vw; max-width: 960px;
+  aspect-ratio: 1; border-radius: 50%;
   background:
     radial-gradient(ellipse 45% 35% at 28% 32%, #2B3EE8 0%, transparent 55%),
     radial-gradient(ellipse 30% 25% at 68% 28%, #1A2FA0 0%, transparent 50%),
@@ -48,190 +38,107 @@ canvas.star-field {
     inset -50px -30px 100px rgba(0,0,0,0.85),
     inset 20px 10px 60px rgba(43,62,232,0.12),
     0 0 160px rgba(43,62,232,0.12);
+  z-index: 0;
 }
 
 .earth::after {
-  content: '';
-  position: absolute;
-  inset: -16px;
-  border-radius: 50%;
+  content: ''; position: absolute; inset: -16px; border-radius: 50%;
   background: radial-gradient(ellipse at 50% 50%,
-    transparent 46%,
-    rgba(43,62,232,0.10) 52%,
-    rgba(43,62,232,0.05) 62%,
-    transparent 70%);
+    transparent 46%, rgba(43,62,232,0.10) 52%,
+    rgba(43,62,232,0.05) 62%, transparent 70%);
 }
 
 .earth::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
   background:
     radial-gradient(ellipse 60% 12% at 50% 22%, rgba(255,255,255,0.07) 0%, transparent 100%),
     radial-gradient(ellipse 40% 8% at 30% 48%, rgba(255,255,255,0.05) 0%, transparent 100%);
 }
 
 .shooting-star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #FC5C7D;
-  border-radius: 50%;
-  z-index: 2;
-  opacity: 0;
+  position: absolute; width: 2px; height: 2px;
+  background: #FC5C7D; border-radius: 50%; z-index: 2; opacity: 0;
 }
-
 .shooting-star::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 2px;
-  width: 80px;
-  height: 1px;
+  content: ''; position: absolute; top: 0; right: 2px;
+  width: 100px; height: 1px;
   background: linear-gradient(to left, #FC5C7D, transparent);
 }
-
 @keyframes shoot {
-  0%   { opacity: 0; transform: translate(0, 0); }
+  0%   { opacity: 0; transform: translate(0,0); }
   5%   { opacity: 1; }
   80%  { opacity: 0.8; }
-  100% { opacity: 0; transform: translate(-300px, 150px); }
+  100% { opacity: 0; transform: translate(-320px, 160px); }
 }
 
 .hero-content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  padding: 0 24px;
-  margin-top: -16vh;
+  position: relative; z-index: 3;
+  text-align: center; padding: 0 32px;
+  margin-top: -14vh;
 }
 
 .hero-eyebrow {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 36px;
-  opacity: 0;
-  animation: fadeUp 1s ease 0.4s forwards;
+  font-family: var(--sans); font-size: 15px; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 40px;
+  opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
 }
 
 .hero-title {
   font-family: var(--serif);
-  font-size: clamp(36px, 6vw, 80px);
-  font-weight: 300;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: #ffffff;
-  opacity: 0;
-  animation: fadeUp 1s ease 0.8s forwards;
-}
-
-.hero-title .changing-wrap {
-  display: inline-block;
-  position: relative;
-  min-width: 320px;
-  text-align: center;
+  font-size: clamp(42px, 7vw, 96px);
+  font-weight: 300; line-height: 1.35;
+  letter-spacing: -0.01em; color: #ffffff;
+  opacity: 0; animation: fadeUp 1s ease 0.8s forwards;
 }
 
 .hero-title .changing {
-  color: #FC5C7D;
-  display: inline-block;
+  color: #FC5C7D; display: inline-block;
   transition: opacity 0.3s ease;
-}
-
-.hero-title .static {
-  color: #ffffff;
+  min-width: 2em;
 }
 
 .hero-nav {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 64px;
-  opacity: 0;
+  position: relative; z-index: 3;
+  display: flex; gap: 16px; justify-content: center;
+  margin-top: 64px; opacity: 0;
   animation: fadeUp 1s ease 1.2s forwards;
   flex-wrap: wrap;
 }
 
 .hero-nav-btn {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  padding: 14px 32px;
-  border: 1px solid rgba(255,255,255,0.15);
+  font-family: var(--sans); font-size: 15px; font-weight: 400;
+  letter-spacing: 0.08em; color: rgba(255,255,255,0.65);
+  text-decoration: none; padding: 16px 36px;
+  border: 1px solid rgba(255,255,255,0.18);
   transition: color 0.3s, border-color 0.3s, background 0.3s;
 }
-
 .hero-nav-btn:hover {
-  color: #ffffff;
-  border-color: var(--blue);
+  color: #ffffff; border-color: var(--blue);
   background: rgba(43,62,232,0.12);
 }
 
 .hero-scroll {
-  position: absolute;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  opacity: 0;
-  animation: fadeUp 1s ease 1.8s forwards;
+  position: absolute; bottom: 36px; left: 50%;
+  transform: translateX(-50%); z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+  opacity: 0; animation: fadeUp 1s ease 1.8s forwards;
 }
-
 .hero-scroll::after {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 40px;
+  content: ''; display: block; width: 1px; height: 40px;
   background: rgba(255,255,255,0.2);
   animation: pulse 2s ease-in-out infinite;
 }
-
-/* 한/영 토글 */
-.lang-toggle {
-  position: fixed;
-  top: 28px;
-  right: 56px;
-  z-index: 200;
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.5);
-  cursor: pointer;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 6px 14px;
-  transition: all 0.3s;
-  user-select: none;
-}
-
-.lang-toggle:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes pulse {
-  0%, 100% { opacity: 0.2; transform: scaleY(0.5); transform-origin: top; }
-  50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+  0%,100% { opacity:0.2; transform:scaleY(0.5); transform-origin:top; }
+  50%     { opacity:1;   transform:scaleY(1);   transform-origin:top; }
 }
 </style>
 </head>
@@ -259,8 +166,8 @@ canvas.star-field {
     <p class="hero-eyebrow">지구기록보관소 — Galactic Record Bureau</p>
     <h1 class="hero-title">
       우리는<br>
-      <span class="changing-wrap"><span class="changing" id="changing-text">100억 자산가</span></span>보다<br>
-      <span class="static">당신이 궁금하다</span>
+      <span class="changing" id="changing-text">100억 자산가</span>보다<br>
+      당신이 궁금하다
     </h1>
     <nav class="hero-nav">
       <a href="report.html" class="hero-nav-btn" data-ko="보고서" data-en="REPORT">보고서</a>
@@ -291,7 +198,7 @@ function resize() {
 
 function initStars() {
   stars = [];
-  const count = Math.floor((canvas.width * canvas.height) / 3000);
+  const count = Math.floor((canvas.width * canvas.height) / 2800);
   for (let i = 0; i < count; i++) {
     stars.push({
       x: Math.random() * canvas.width,
@@ -321,14 +228,12 @@ initStars();
 requestAnimationFrame(draw);
 window.addEventListener('resize', () => { resize(); initStars(); });
 
-// 별똥별
+// 별똥별 (속마음분홍)
 function spawnShootingStar() {
   const el = document.createElement('div');
   el.className = 'shooting-star';
-  const x = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
-  const y = Math.random() * window.innerHeight * 0.4;
-  el.style.left = x + 'px';
-  el.style.top = y + 'px';
+  el.style.left = (Math.random() * window.innerWidth * 0.7 + window.innerWidth * 0.15) + 'px';
+  el.style.top = (Math.random() * window.innerHeight * 0.45) + 'px';
   const dur = (Math.random() * 1.2 + 0.8).toFixed(2);
   el.style.animation = `shoot ${dur}s ease-out forwards`;
   document.getElementById('hero').appendChild(el);
@@ -336,72 +241,45 @@ function spawnShootingStar() {
 }
 
 function scheduleShootingStar() {
-  const delay = Math.random() * 5000 + 3000;
-  setTimeout(() => { spawnShootingStar(); scheduleShootingStar(); }, delay);
+  setTimeout(() => { spawnShootingStar(); scheduleShootingStar(); }, Math.random() * 4000 + 2500);
 }
 scheduleShootingStar();
 
 // 타이핑 애니메이션
-const phrases = [
-  '100억 자산가',
-  '5선 국회의원',
-  '대기업 대표',
-  '1천만 인플루언서',
-  '유명 연예인',
-  '노벨상 수상자',
-];
+const koList = ['100억 자산가','5선 국회의원','대기업 대표','1천만 인플루언서','유명 연예인','노벨상 수상자'];
+const enList = ['billionaires','5-term politicians','CEOs','10M influencers','celebrities','Nobel laureates'];
 let idx = 0;
-const changingEl = document.getElementById('changing-text');
+let isKo = true;
+const el = document.getElementById('changing-text');
 
 function changePhrase() {
-  changingEl.style.opacity = '0';
+  el.style.opacity = '0';
   setTimeout(() => {
-    idx = (idx + 1) % phrases.length;
-    changingEl.textContent = phrases[idx];
-    changingEl.style.opacity = '1';
+    idx = (idx + 1) % koList.length;
+    el.textContent = isKo ? koList[idx] : enList[idx];
+    el.style.opacity = '1';
   }, 350);
 }
 
-setInterval(changePhrase, 2200);
+let interval = setInterval(changePhrase, 2200);
 
 // 한/영 토글
-let isKo = true;
-
 function toggleLang() {
   isKo = !isKo;
   document.getElementById('lang-toggle').textContent = isKo ? 'EN' : 'KO';
-
-  document.querySelectorAll('[data-ko][data-en]').forEach(el => {
-    el.textContent = isKo ? el.dataset.ko : el.dataset.en;
+  document.querySelectorAll('[data-ko][data-en]').forEach(e => {
+    e.textContent = isKo ? e.dataset.ko : e.dataset.en;
   });
+  el.textContent = isKo ? koList[idx] : enList[idx];
 
-  // 히어로 카피도 변경
+  // 히어로 타이틀 고정 텍스트 변경
   const title = document.querySelector('.hero-title');
   if (!isKo) {
-    title.innerHTML = `We are more curious about<br><span class="changing-wrap"><span class="changing" id="changing-text">billionaires</span></span><br><span class="static">than you</span>`;
+    title.innerHTML = `We are more curious<br>about <span class="changing" id="changing-text">${enList[idx]}</span><br>than you`;
   } else {
-    title.innerHTML = `우리는<br><span class="changing-wrap"><span class="changing" id="changing-text">100억 자산가</span></span>보다<br><span class="static">당신이 궁금하다</span>`;
+    title.innerHTML = `우리는<br><span class="changing" id="changing-text">${koList[idx]}</span>보다<br>당신이 궁금하다`;
   }
-
-  idx = 0;
-  const koList = ['100억 자산가','5선 국회의원','대기업 대표','1천만 인플루언서','유명 연예인','노벨상 수상자'];
-  const enList = ['billionaires','5-term politicians','CEOs','10M influencers','celebrities','Nobel laureates'];
-  const currentPhrases = isKo ? koList : enList;
-
-  clearInterval(window._phraseInterval);
-  window._phraseInterval = setInterval(() => {
-    const el = document.getElementById('changing-text');
-    if (!el) return;
-    el.style.opacity = '0';
-    setTimeout(() => {
-      idx = (idx + 1) % currentPhrases.length;
-      el.textContent = currentPhrases[idx];
-      el.style.opacity = '1';
-    }, 350);
-  }, 2200);
 }
-
-window._phraseInterval = setInterval(changePhrase, 2200);
 
 // nav 스크롤
 const nav = document.getElementById('main-nav');

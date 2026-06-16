@@ -9,20 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.lang-toggle {
-  position: fixed; top: 28px; right: 56px; z-index: 200;
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.5); cursor: pointer;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
-  padding: 6px 14px; transition: all 0.3s; user-select: none;
-}
-.lang-toggle:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
-
 .page-hero { padding: 160px 64px 60px; max-width: 1280px; margin: 0 auto; }
 
 .hq-intro {
-  font-size: 19px; font-weight: 300; line-height: 2;
-  color: rgba(255,255,255,0.6); max-width: 600px; margin-bottom: 80px;
+  font-size: 20px; font-weight: 300; line-height: 2;
+  color: rgba(255,255,255,0.65); max-width: 600px; margin-bottom: 80px;
 }
 
 .team-grid {
@@ -37,9 +28,7 @@
   transition: background 0.4s; cursor: pointer;
   text-decoration: none; color: inherit; display: block;
 }
-
 .team-card:hover { background: #13132A; }
-
 .team-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0;
   height: 1px; background: var(--blue);
@@ -48,76 +37,71 @@
 .team-card:hover::before { transform: scaleX(1); }
 
 .card-photo {
-  width: 72px; height: 72px; border-radius: 50%;
+  width: 80px; height: 80px; border-radius: 50%;
   background: #1A1A2E; border: 1px solid #2A2A4A;
   margin-bottom: 28px; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
 }
-
 .card-photo-placeholder {
-  font-family: var(--sans); font-size: 22px; color: #2B3EE8; font-weight: 500;
+  font-family: var(--sans); font-size: 26px; color: #2B3EE8; font-weight: 500;
 }
 
 .card-num {
-  font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--blue); margin-bottom: 10px;
+  font-family: var(--sans); font-size: 18px; font-weight: 500;
+  letter-spacing: 0.15em; color: var(--blue); margin-bottom: 14px;
 }
 
 .card-name-row {
-  display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;
+  display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px;
 }
-
 .card-name {
-  font-family: var(--serif); font-size: 24px; font-weight: 400; color: #ffffff;
+  font-family: var(--serif); font-size: 28px; font-weight: 400; color: #ffffff;
 }
-
 .card-name-en {
-  font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.4);
+  font-family: var(--sans); font-size: 15px; color: rgba(255,255,255,0.4);
 }
 
 .card-role {
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em;
-  color: var(--green); margin-bottom: 8px; text-transform: uppercase;
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.1em;
+  color: var(--green); margin-bottom: 10px; text-transform: uppercase;
 }
 
 .card-species {
-  font-family: var(--sans); font-size: 13px;
-  color: rgba(255,255,255,0.35); margin-bottom: 28px; line-height: 1.7;
+  font-family: var(--sans); font-size: 14px;
+  color: rgba(255,255,255,0.35); margin-bottom: 28px; line-height: 1.8;
 }
 
 .card-story {
-  font-size: 16px; font-weight: 300; line-height: 1.9;
-  color: rgba(255,255,255,0.6);
+  font-size: 17px; font-weight: 300; line-height: 1.95;
+  color: rgba(255,255,255,0.65);
 }
 
 .card-status {
   display: inline-block; margin-top: 28px;
-  font-family: var(--sans); font-size: 11px; letter-spacing: 0.15em;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--green);
   padding: 6px 12px; border: 1px solid rgba(45,189,110,0.25);
 }
 
 .card-arrow {
   position: absolute; bottom: 52px; right: 48px;
-  font-family: var(--sans); font-size: 18px;
-  color: rgba(255,255,255,0.2); transition: color 0.3s, transform 0.3s;
+  font-size: 20px; color: rgba(255,255,255,0.2);
+  transition: color 0.3s, transform 0.3s;
 }
 .team-card:hover .card-arrow { color: var(--blue); transform: translateX(4px); }
 
 .card-empty {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  min-height: 360px; background: #0A0A14; cursor: default;
+  min-height: 380px; background: #0A0A14; cursor: default;
 }
-
 .card-empty:hover { background: #0D0D18; }
 .card-empty::before { display: none; }
 
 .card-empty-text {
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: #2A2A42; text-align: center; line-height: 2.4;
+  font-family: var(--sans); font-size: 13px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #2A2A42; text-align: center; line-height: 2.6;
 }
-
 .card-empty-link {
   color: var(--blue); text-decoration: none; margin-top: 16px; display: block;
   transition: opacity 0.3s;
@@ -145,15 +129,17 @@
 
 <div class="page-hero">
   <span class="section-label reveal" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</span>
-  <h1 class="section-title reveal" style="color:#ffffff;">우리가 발견한<br>지구인들.</h1>
+  <h1 class="section-title reveal">우리가 발견한<br>지구인들.</h1>
   <div class="section-divider"></div>
-  <p class="hq-intro reveal">파란수박본부는 달 뒷면에 있습니다.<br>우리가 포섭한 지구인들은 지금 이 우주선에서<br>본 행성을 향해 기록을 송신하고 있습니다.</p>
+  <p class="hq-intro reveal">
+    파란수박본부는 달 뒷면에 있습니다.<br>
+    우리가 포섭한 지구인들은 지금 이 우주선에서<br>
+    본 행성을 향해 기록을 송신하고 있습니다.
+  </p>
 </div>
 
-<div style="max-width:1280px; margin:0 auto; padding:0 64px 120px;">
+<div style="max-width:1280px; margin:0 auto; padding:0 64px 140px;">
   <div class="team-grid">
-
-    <!-- 정동훈 카드 -->
     <a href="member-001.html" class="team-card reveal">
       <div class="card-photo">
         <div class="card-photo-placeholder">D</div>
@@ -169,20 +155,18 @@
         서식지: 파란수박
       </div>
       <div class="card-story">
-        공군에서 일하던 001은 지구인을 연구하는 외계인에게 이끌려 파란수박본부로 포섭되었다. 외계인이 별명을 붙여주려다 친근한 외계인 캐릭터인 도로로를 추천했는데, "도로로는 병장이고 나는 중사였으니 차라리 '케로로'로 해달라"며 선을 그었다.
+        공군에서 일하던 #001은 지구인을 연구하는 외계인에게 이끌려 파란수박본부로 포섭되었다. 외계인이 별명을 붙여주려다 친근한 외계인 캐릭터인 도로로를 추천했는데, "도로로는 병장이고 나는 중사였으니 차라리 '케로로'로 해달라"며 선을 그었다.
       </div>
       <span class="card-status">● 우주선 탑승 중</span>
       <span class="card-arrow">→</span>
     </a>
 
-    <!-- 빈 카드 -->
     <div class="team-card card-empty reveal">
       <div class="card-empty-text">
         다음 포섭 대상<br>모집 중<br>
         <a href="contact.html" class="card-empty-link">신호를 보내세요 →</a>
       </div>
     </div>
-
   </div>
 </div>
 
