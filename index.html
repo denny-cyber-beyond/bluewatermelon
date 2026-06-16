@@ -23,9 +23,9 @@ canvas#stars {
 }
 
 .earth-wrap {
-  position: absolute; bottom: -20vh; left: 50%;
+  position: absolute; bottom: -28vh; left: 50%;
   transform: translateX(-50%);
-  width: min(75vw, 920px); aspect-ratio: 1;
+  width: min(68vw, 820px); aspect-ratio: 1;
   z-index: 2; pointer-events: none;
 }
 
@@ -68,7 +68,7 @@ canvas#stars {
 .hero-content {
   position: relative; z-index: 10;
   text-align: center; padding: 0 48px;
-  margin-top: -16vh;
+  margin-top: -30vh;
 }
 
 .hero-badge {
@@ -139,9 +139,11 @@ canvas#stars {
 /* 숫자 통계 섹션 */
 .hero-stats {
   position: absolute; bottom: 0; left: 0; right: 0;
-  z-index: 10;
+  z-index: 15;
   display: grid; grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid rgba(255,255,255,0.06);
+  background: rgba(8,8,16,0.6);
+  backdrop-filter: blur(12px);
   opacity: 0; animation: fadeUp 1s ease 1.7s forwards;
 }
 .stat-item {
