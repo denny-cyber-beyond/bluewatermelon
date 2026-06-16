@@ -9,140 +9,75 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero { padding: 160px 64px 60px; max-width: 1280px; margin: 0 auto; }
-
+.page-hero { padding: 148px 64px 56px; max-width: 1280px; margin: 0 auto; }
 .report-intro {
-  font-size: clamp(32px, 5vw, 64px); font-weight: 300; line-height: 1.35;
-  color: #ffffff; margin-bottom: 80px; letter-spacing: -0.01em;
+  font-size: clamp(32px, 5vw, 64px); font-weight: 300; line-height: 1.3;
+  color: #fff; letter-spacing: -0.015em; margin-bottom: 72px;
 }
-
-.chapter { border-top: 1px solid #1E1E2E; padding: 72px 0; }
-
-.chapter-inner { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
-
-.chapter-header {
-  display: grid; grid-template-columns: 220px 1fr;
-  gap: 64px; margin-bottom: 48px;
-}
-
+.chapter { border-top: 1px solid #16162A; }
+.chapter-inner { max-width: 1280px; margin: 0 auto; padding: 64px 64px; }
+.chapter-grid { display: grid; grid-template-columns: 200px 1fr; gap: 72px; }
 .chapter-num {
-  font-family: var(--sans); font-size: 16px; font-weight: 500;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--blue); padding-top: 8px;
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #2B3EE8; padding-top: 6px;
 }
-
 .chapter-title {
-  font-family: var(--serif); font-size: clamp(26px, 3.5vw, 44px);
-  font-weight: 300; color: #ffffff; line-height: 1.25;
+  font-size: clamp(24px, 3vw, 40px); font-weight: 300;
+  color: #fff; line-height: 1.25; margin-bottom: 36px;
 }
-
-.chapter-body { display: grid; grid-template-columns: 220px 1fr; gap: 64px; }
-
 .chapter-text {
-  font-size: 19px; font-weight: 300; line-height: 2.1;
-  color: rgba(255,255,255,0.8);
+  font-size: 18px; font-weight: 300; line-height: 2.1; color: rgba(255,255,255,0.72);
 }
-.chapter-text p + p { margin-top: 28px; }
-.chapter-text strong { color: #ffffff; font-weight: 400; }
-
+.chapter-text p+p { margin-top: 24px; }
+.chapter-text strong { color: #fff; font-weight: 400; }
 .log-aside {
-  margin-top: 44px; padding: 32px 40px;
-  border-left: 2px solid var(--blue);
-  background: rgba(43,62,232,0.06);
+  margin-top: 40px; padding: 28px 36px;
+  border-left: 2px solid #2B3EE8; background: rgba(43,62,232,0.05);
 }
 .log-date {
-  font-family: var(--sans); font-size: 13px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #2B3EE8; margin-bottom: 10px;
 }
-.log-text {
-  font-family: var(--sans); font-size: 16px; font-weight: 300;
-  line-height: 1.85; color: rgba(255,255,255,0.55);
-}
+.log-text { font-family: var(--sans); font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.45); }
 
-/* 브랜드 섹션 */
-.brand-section { border-top: 1px solid #1E1E2E; padding: 72px 0; }
-.brand-inner { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
+/* 브랜드 */
+.brand-section { border-top: 1px solid #16162A; }
+.brand-inner { max-width: 1280px; margin: 0 auto; padding: 64px 64px 120px; }
+.brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 64px; }
+.brand-sub { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 28px; }
+.logo-row { display: flex; align-items: center; gap: 20px; padding: 24px 28px; background: #0E0E1C; margin-bottom: 2px; }
+.logo-row img { height: 44px; width: auto; }
+.logo-row-dark { background: #ffffff; }
+.logo-caption { font-family: var(--sans); font-size: 13px; color: rgba(255,255,255,0.4); }
+.logo-row-dark .logo-caption { color: rgba(0,0,0,0.4); }
+.logo-desc { font-size: 16px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.6); margin-top: 28px; }
+.color-row { display: flex; align-items: center; gap: 24px; padding: 22px 28px; background: #0E0E1C; margin-bottom: 2px; }
+.swatch { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; }
+.color-name-text { font-family: var(--serif); font-size: 19px; font-weight: 400; color: #fff; margin-bottom: 3px; }
+.color-hex { font-family: var(--sans); font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; margin-bottom: 6px; }
+.color-meaning-text { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.5); }
 
-.brand-intro {
-  font-size: 19px; font-weight: 300; line-height: 2;
-  color: rgba(255,255,255,0.7); max-width: 640px; margin-bottom: 72px;
-}
-
-.brand-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px;
-}
-
-.brand-logo-box {
-  display: flex; flex-direction: column; gap: 32px;
-}
-
-.logo-variant {
-  display: flex; align-items: center; gap: 24px;
-  padding: 28px 32px; background: #0E0E1A;
-}
-
-.logo-variant-dark { background: #ffffff; }
-
-.logo-img { height: 48px; width: auto; }
-
-.logo-label {
-  font-family: var(--sans); font-size: 14px;
-  color: rgba(255,255,255,0.5); letter-spacing: 0.05em;
-}
-.logo-variant-dark .logo-label { color: rgba(0,0,0,0.5); }
-
-.logo-desc {
-  font-size: 16px; font-weight: 300; line-height: 1.9;
-  color: rgba(255,255,255,0.65); margin-top: 24px;
-}
-
-.color-grid {
-  display: flex; flex-direction: column; gap: 24px;
-}
-
-.color-item {
-  display: flex; align-items: center; gap: 28px; padding: 24px 32px;
-  background: #0E0E1A;
-}
-
-.color-swatch {
-  width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
-}
-
-.color-info {}
-.color-name {
-  font-family: var(--serif); font-size: 20px; font-weight: 400;
-  color: #ffffff; margin-bottom: 4px;
-}
-.color-code {
-  font-family: var(--sans); font-size: 13px;
-  color: rgba(255,255,255,0.35); letter-spacing: 0.1em; margin-bottom: 8px;
-}
-.color-meaning {
-  font-size: 15px; font-weight: 300; line-height: 1.7;
-  color: rgba(255,255,255,0.55);
-}
-
-@media (max-width: 768px) {
-  .page-hero { padding: 130px 28px 40px; }
-  .chapter-header, .chapter-body { grid-template-columns: 1fr; gap: 20px; }
-  .chapter-inner, .brand-inner { padding: 0 28px; }
+@media(max-width:900px){
+  .page-hero { padding: 120px 28px 40px; }
+  .chapter-inner, .brand-inner { padding: 48px 28px; }
+  .chapter-grid { grid-template-columns: 1fr; gap: 20px; }
   .brand-grid { grid-template-columns: 1fr; gap: 48px; }
 }
 </style>
 </head>
 <body>
-
-<div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">EN</div>
-
-<nav id="main-nav">
-  <a href="index.html" class="nav-logo"><img src="9.png" alt="파란수박"></a>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="9.png" alt="파란수박" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="nav-logo-fallback">파란수박</span>
+  </a>
   <ul class="nav-links">
     <li><a href="report.html" class="active" data-ko="보고서" data-en="REPORT">보고서</a></li>
     <li><a href="lab.html" data-ko="실험실" data-en="LAB">실험실</a></li>
     <li><a href="hq.html" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a></li>
     <li><a href="contact.html" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a></li>
   </ul>
+  <div class="nav-lang" id="nav-lang" onclick="toggleLang()">EN</div>
 </nav>
 
 <div class="page-hero">
@@ -151,174 +86,102 @@
   <div class="section-divider"></div>
 </div>
 
-<!-- 챕터 1 -->
-<div class="chapter">
-  <div class="chapter-inner">
-    <div class="chapter-header reveal">
-      <div class="chapter-num">Chapter 01</div>
+<div class="chapter"><div class="chapter-inner">
+  <div class="chapter-grid reveal">
+    <div><div class="chapter-num">Chapter 01</div></div>
+    <div>
       <div class="chapter-title">우리는 오래전부터<br>지구 곁에 있었다</div>
-    </div>
-    <div class="chapter-body reveal">
-      <div></div>
       <div class="chapter-text">
         <p>우리는 지구 궤도 근처에서 오랫동안 이 행성을 지켜보았습니다. 처음에는 그저 관찰이었습니다. 멀리서 바라보는 것만으로도 충분히 흥미로웠으니까요. 이 행성에는 셀 수 없이 많은 생명체가 살고 있었고, 그 중 하나인 지구인은 유독 독특한 방식으로 살아가고 있었습니다.</p>
         <p>그러다 지구인들이 스스로 우주로 나오기 시작했습니다. 우주선을 쏘아올리고, 달에 발을 내딛고, 탐사선을 태양계 너머로 보내는 것을 우리는 가까이서 지켜보았습니다. 그들은 우리를 찾고 있었지만, 우리는 이미 그 곁에 있었습니다.</p>
         <p>더 가까이서 봐야 할 때가 왔다고 판단했습니다. 우리는 <strong>달 뒷면에 우주선을 집결시키고 정박했습니다.</strong> 관측되지 않는 그곳에서, 달 표면의 굴곡을 골프공처럼 활용한 전파 반사 기술로 지구 어디서나 신호를 주고받으며, 우리의 본격적인 관찰이 시작되었습니다.</p>
-        <div class="log-aside">
-          <div class="log-date">관측일지 — 001</div>
-          <div class="log-text">달 뒷면 본부 설치 완료. 지구 대기권 통과 시 수박 주파수 활용 성공. 지구인들은 눈치채지 못함. 달 표면 굴곡을 활용한 전파 송수신 기술 완성. 항성 간 통신 개시.</div>
-        </div>
+        <div class="log-aside"><div class="log-date">관측일지 — 001</div><div class="log-text">달 뒷면 본부 설치 완료. 수박 주파수 대기권 통과 성공. 지구인 눈치채지 못함. 달 표면 굴곡 활용 전파 송수신 기술 완성. 항성 간 통신 개시.</div></div>
       </div>
     </div>
   </div>
-</div>
+</div></div>
 
-<!-- 챕터 2 -->
-<div class="chapter">
-  <div class="chapter-inner">
-    <div class="chapter-header reveal">
-      <div class="chapter-num">Chapter 02</div>
+<div class="chapter"><div class="chapter-inner">
+  <div class="chapter-grid reveal">
+    <div><div class="chapter-num">Chapter 02</div></div>
+    <div>
       <div class="chapter-title">파란 수박을<br>발견하다</div>
-    </div>
-    <div class="chapter-body reveal">
-      <div></div>
       <div class="chapter-text">
-        <p>어느 정도 정보를 얻자, 우리는 직접 지구에 착륙하기로 결심했습니다. 수천 번의 회의 끝에 내린 결정이었습니다. 위험 부담이 없는 것은 아니었지만, 관찰만으로는 얻을 수 없는 것들이 있었습니다.</p>
+        <p>어느 정도 정보를 얻자, 우리는 직접 지구에 착륙하기로 결심했습니다. 수천 번의 회의 끝에 내린 결정이었습니다.</p>
         <p>우리가 처음 내린 곳은 <strong>대한민국 전라남도 화순군 이양면 쌍봉리, 쌍봉마을</strong>이었습니다. 무등산 자락에 자리한 작은 마을이었습니다. 우주에서 보던 화려한 도시도, 거대한 문명의 중심도 아니었지만, 그곳에서 우리는 처음으로 이 행성의 숨결을 느꼈습니다.</p>
-        <p>그곳에서 우리는 처음으로 수박을 보았습니다. 초록 껍질 아래 붉은 속을 감추고, 파랗고 둥근 지구와 너무나 닮아 있었습니다. 겉으로 보이는 것과 안에 품은 것이 다른 그 모습이 우리에게는 낯설고도 경이로웠습니다. 우리는 이 행성에 이름을 붙였습니다. <strong>파란 수박.</strong></p>
-        <div class="log-aside">
-          <div class="log-date">관측일지 — 002</div>
-          <div class="log-text">최초 지구 착륙 완료. 착륙 지점: 대한민국 전라남도 화순군 이양면 쌍봉리. 이 행성을 '파란수박'으로 공식 명명. 지구인들의 농업 문화 및 식문화 1차 관찰 시작. 수박의 외형과 지구의 유사성 기록 완료.</div>
-        </div>
+        <p>그곳에서 우리는 처음으로 수박을 보았습니다. 초록 껍질 아래 붉은 속을 감추고, 파랗고 둥근 지구와 너무나 닮아 있었습니다. 우리는 이 행성에 이름을 붙였습니다. <strong>파란 수박.</strong></p>
+        <div class="log-aside"><div class="log-date">관측일지 — 002</div><div class="log-text">최초 지구 착륙 완료. 착륙 지점: 대한민국 전라남도 화순군 이양면 쌍봉리. 이 행성을 '파란수박'으로 공식 명명.</div></div>
       </div>
     </div>
   </div>
-</div>
+</div></div>
 
-<!-- 챕터 3 -->
-<div class="chapter">
-  <div class="chapter-inner">
-    <div class="chapter-header reveal">
-      <div class="chapter-num">Chapter 03</div>
+<div class="chapter"><div class="chapter-inner">
+  <div class="chapter-grid reveal">
+    <div><div class="chapter-num">Chapter 03</div></div>
+    <div>
       <div class="chapter-title">책이라는<br>가장 오래된 기록</div>
-    </div>
-    <div class="chapter-body reveal">
-      <div></div>
       <div class="chapter-text">
         <p>지구인들을 관찰하며 우리가 가장 주목한 것이 있었습니다. 그들은 자신의 생각과 감상을 <strong>종이에 글로 써서 남겼습니다.</strong> 책이라는 형태로. 수천 년 전부터 이어진, 이 행성에서 가장 오래된 정보 공유의 방식이었습니다.</p>
-        <p>컴퓨터가 등장해도, 인터넷이 생겨도, 인공지능이 나타나도 그 매체는 사라지지 않았습니다. 오히려 더욱 소중해지는 것 같았습니다. 디지털 세계의 정보는 언제든 사라질 수 있지만, 종이 위의 글은 오래도록 남았습니다. 우리는 이 형태의 기록이 지구인에게 얼마나 깊은 의미를 가지는지 이해하기 시작했습니다.</p>
-        <p>그런데 한 가지 아쉬운 점이 있었습니다. 책을 쓰는 사람은 언제나 정해져 있었습니다. 이미 유명한 사람, 이미 성공한 사람, 이미 특별하다고 인정받은 사람들만이 책을 썼습니다. 스스로 특별하지 않다고 생각하는 삶들은 조용히 잊혀져 갔습니다.</p>
-        <p><strong>그러나 외계인의 눈으로 보면, 모든 지구인이 특별했습니다.</strong> 특별하지 않다고 스스로 믿는 삶일수록, 우리에게는 더욱 신기하고 흥미로웠습니다. 우리가 수백 광년을 날아온 것은 유명인의 이야기를 듣기 위해서가 아니었습니다.</p>
+        <p>컴퓨터가 등장해도, 인터넷이 생겨도, 인공지능이 나타나도 그 매체는 사라지지 않았습니다. 디지털 세계의 정보는 언제든 사라질 수 있지만, 종이 위의 글은 오래도록 남았습니다.</p>
+        <p>그런데 한 가지 아쉬운 점이 있었습니다. 책을 쓰는 사람은 언제나 정해져 있었습니다. <strong>그러나 외계인의 눈으로 보면, 모든 지구인이 특별했습니다.</strong> 특별하지 않다고 스스로 믿는 삶일수록, 우리에게는 더욱 신기하고 흥미로웠습니다.</p>
       </div>
     </div>
   </div>
-</div>
+</div></div>
 
-<!-- 챕터 4 -->
-<div class="chapter">
-  <div class="chapter-inner">
-    <div class="chapter-header reveal">
-      <div class="chapter-num">Chapter 04</div>
+<div class="chapter"><div class="chapter-inner">
+  <div class="chapter-grid reveal">
+    <div><div class="chapter-num">Chapter 04</div></div>
+    <div>
       <div class="chapter-title">그래서 우리는<br>출판사를 만들었다</div>
-    </div>
-    <div class="chapter-body reveal">
-      <div></div>
       <div class="chapter-text">
-        <p>우리는 결심했습니다. 지구인들이 직접 자신의 이야기를 남기게 하겠다고. 관찰하는 것을 넘어, 그들의 삶을 기록으로 남기는 일에 함께하기로.</p>
-        <p>출판사를 세우고, 지구인을 포섭하여, 보통 사람 모두가 책을 쓰고 자기 인생을 남기도록 하겠다고. 누군가의 허락을 받아야만 저자가 될 수 있는 세상이 아니라, 살아 숨쉬는 모든 이가 자신만의 한 권을 가질 수 있는 세상을 만들겠다고.</p>
-        <p>잘난 사람만 책을 쓰는 세상이 아니라, <strong>모든 지구인이 저자가 되는 세상.</strong> 그것이 파란수박이 이곳에 존재하는 이유입니다. 우리는 지금도 달 뒷면 본부에서 더 많은 지구인의 이야기를 수집하고 있습니다.</p>
-        <div class="log-aside">
-          <div class="log-date">관측일지 — 현재 진행 중</div>
-          <div class="log-text">파란수박 출판사 설립 완료. 첫 번째 지구인 포섭 성공. 지구기록보관소 정식 운영 개시. 지구인들의 이야기를 책으로 남기는 프로젝트 가동 중. 더 많은 지구인의 신호를 기다리고 있음.</div>
-        </div>
+        <p>우리는 결심했습니다. 지구인들이 직접 자신의 이야기를 남기게 하겠다고.</p>
+        <p>출판사를 세우고, 지구인을 포섭하여, 보통 사람 모두가 책을 쓰고 자기 인생을 남기도록 하겠다고. 잘난 사람만 책을 쓰는 세상이 아니라, <strong>모든 지구인이 저자가 되는 세상.</strong></p>
+        <p>그것이 파란수박이 이곳에 존재하는 이유입니다. 우리는 지금도 달 뒷면 본부에서 더 많은 지구인의 이야기를 수집하고 있습니다.</p>
+        <div class="log-aside"><div class="log-date">관측일지 — 현재 진행 중</div><div class="log-text">파란수박 출판사 설립 완료. 첫 번째 지구인 포섭 성공. 지구기록보관소 정식 운영 개시. 더 많은 지구인의 신호를 기다리고 있음.</div></div>
       </div>
     </div>
   </div>
-</div>
+</div></div>
 
-<!-- 브랜드 아이덴티티 섹션 -->
-<div class="brand-section">
-  <div class="brand-inner">
-    <span class="section-label reveal">브랜드 아이덴티티 — BRAND IDENTITY</span>
-    <h2 class="section-title reveal">파란수박의<br>색과 모양.</h2>
-    <div class="section-divider"></div>
-
-    <p class="brand-intro reveal">
-      파란수박의 모든 색과 형태에는 이유가 있습니다.<br>
-      외계인이 지구를 처음 바라봤을 때 느낀 감각들이 그대로 담겼습니다.
-    </p>
-
-    <div class="brand-grid">
-      <!-- 로고 설명 -->
-      <div class="brand-logo-box reveal">
-        <h3 style="font-family:var(--sans);font-size:18px;font-weight:500;color:#ffffff;margin-bottom:8px;letter-spacing:0.05em;">심볼 — 우편 소인</h3>
-        <p class="logo-desc">원과 파동선이 겹쳐진 심볼은 우편 소인에서 착안했습니다. 편지에 찍히는 소인처럼, 이 행성에서 오고 가는 모든 신호와 기록의 흔적을 상징합니다. 동시에 달 뒷면 본부에서 지구로 전파를 쏘는 장면이기도 합니다.</p>
-        <div class="logo-variant">
-          <img src="9.png" class="logo-img" alt="파란수박 로고 라인">
-          <span class="logo-label">라인 버전 — 명함·인쇄물</span>
-        </div>
-        <div class="logo-variant" style="background:#2B3EE8;">
-          <img src="1.png" class="logo-img" alt="파란수박 로고 채움">
-          <span class="logo-label" style="color:rgba(255,255,255,0.6);">채움 버전 — SNS·파비콘</span>
-        </div>
-      </div>
-
-      <!-- 컬러 설명 -->
-      <div class="color-grid reveal">
-        <div class="color-item">
-          <div class="color-swatch" style="background:#2B3EE8;"></div>
-          <div class="color-info">
-            <div class="color-name">파아란파랑</div>
-            <div class="color-code">#2B3EE8</div>
-            <div class="color-meaning">외계인이 우주에서 지구를 바라볼 때 가장 먼저 눈에 들어오는 색. 바다와 하늘, 그리고 이 행성 전체를 뒤덮은 물의 빛깔입니다.</div>
-          </div>
-        </div>
-        <div class="color-item">
-          <div class="color-swatch" style="background:#2DBD6E;"></div>
-          <div class="color-info">
-            <div class="color-name">새초롬초록</div>
-            <div class="color-code">#2DBD6E</div>
-            <div class="color-meaning">수박의 겉껍질을 상징합니다. 모두가 진심을 조금씩 숨기고 살아가는 세상에서 겉모습에 드러나는 새초롬함. 우리가 포섭하고 싶은 그 평범함입니다.</div>
-          </div>
-        </div>
-        <div class="color-item">
-          <div class="color-swatch" style="background:#FC5C7D;"></div>
-          <div class="color-info">
-            <div class="color-name">속마음분홍</div>
-            <div class="color-code">#FC5C7D</div>
-            <div class="color-meaning">수박의 과육을 상징합니다. 새초롬한 겉모습 안에 누구나 품고 있는 따뜻한 속마음. 별똥별처럼 가끔씩 반짝이며 지나갑니다.</div>
-          </div>
-        </div>
-      </div>
+<!-- 브랜드 아이덴티티 -->
+<div class="brand-section"><div class="brand-inner">
+  <span class="section-label reveal">브랜드 아이덴티티 — BRAND IDENTITY</span>
+  <h2 class="section-title reveal">파란수박의<br>색과 모양.</h2>
+  <div class="section-divider"></div>
+  <div class="brand-grid">
+    <div class="reveal">
+      <div class="brand-sub">심볼 — Symbol</div>
+      <div class="logo-row"><img src="9.png" alt="로고 라인"><span class="logo-caption">라인 버전 — 명함·인쇄물</span></div>
+      <div class="logo-row logo-row-dark"><img src="1.png" alt="로고 채움"><span class="logo-caption">채움 버전 — SNS·파비콘</span></div>
+      <p class="logo-desc">원과 파동선이 겹쳐진 심볼은 우편 소인에서 착안했습니다. 달 뒷면 본부에서 지구로 전파를 쏘는 장면이기도 합니다.</p>
+    </div>
+    <div class="reveal">
+      <div class="brand-sub">컬러 시스템 — Color System</div>
+      <div class="color-row"><div class="swatch" style="background:#2B3EE8"></div><div><div class="color-name-text">파아란파랑</div><div class="color-hex">#2B3EE8</div><div class="color-meaning-text">외계인이 우주에서 지구를 바라볼 때 가장 먼저 눈에 들어오는 색. 바다와 하늘의 빛깔.</div></div></div>
+      <div class="color-row"><div class="swatch" style="background:#2DBD6E"></div><div><div class="color-name-text">새초롬초록</div><div class="color-hex">#2DBD6E</div><div class="color-meaning-text">수박의 겉껍질. 모두가 진심을 조금씩 숨기고 살아가는 세상의 새초롬함.</div></div></div>
+      <div class="color-row"><div class="swatch" style="background:#FC5C7D"></div><div><div class="color-name-text">속마음분홍</div><div class="color-hex">#FC5C7D</div><div class="color-meaning-text">수박의 과육. 새초롬한 겉모습 안에 누구나 품고 있는 따뜻한 속마음.</div></div></div>
     </div>
   </div>
-</div>
+</div></div>
 
-<footer>
-  <div class="footer-brand">© 2026 파란수박 — 지구기록보관소</div>
-  <div class="footer-coords">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON</div>
+<footer class="site-footer">
+  <div class="footer-brand-col"><img src="9.png" alt="파란수박" class="footer-logo" onerror="this.style.display='none'"><p class="footer-tagline">외계인이 설립한 지구기록보관소.<br>모든 지구인은 한 권의 책입니다.</p></div>
+  <div class="footer-links-col"><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a href="report.html">보고서</a></li><li><a href="lab.html">실험실</a></li><li><a href="hq.html">파란수박본부</a></li><li><a href="contact.html">안녕하세요?</a></li></ul></div>
+  <div class="footer-contact-col"><div class="footer-col-title">Contact</div><a href="mailto:donghoon807@gmail.com" class="footer-email">donghoon807@gmail.com</a><p class="footer-copy">수신 확인까지 1–3 지구일 소요됩니다.</p></div>
 </footer>
+<div class="footer-bottom"><span class="footer-bottom-text">© 2026 파란수박 — 지구기록보관소</span><span class="footer-bottom-text">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON</span></div>
 
 <script>
-const nav = document.getElementById('main-nav');
-nav.style.background = 'rgba(9,9,15,0.92)';
-nav.style.backdropFilter = 'blur(12px)';
-nav.style.borderBottom = '1px solid #1E1E2E';
-
+const nav = document.getElementById('site-nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+nav.classList.add('scrolled');
 const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.06 });
-reveals.forEach(el => observer.observe(el));
-
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+reveals.forEach(el => obs.observe(el));
 let isKo = true;
-function toggleLang() {
-  isKo = !isKo;
-  document.getElementById('lang-toggle').textContent = isKo ? 'EN' : 'KO';
-  document.querySelectorAll('[data-ko][data-en]').forEach(el => {
-    el.textContent = isKo ? el.dataset.ko : el.dataset.en;
-  });
-}
+function toggleLang() { isKo = !isKo; document.getElementById('nav-lang').textContent = isKo ? 'EN' : 'KO'; document.querySelectorAll('[data-ko][data-en]').forEach(el => { el.textContent = isKo ? el.dataset.ko : el.dataset.en; }); }
 </script>
 </body>
 </html>

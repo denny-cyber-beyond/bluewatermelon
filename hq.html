@@ -9,192 +9,107 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero { padding: 160px 64px 60px; max-width: 1280px; margin: 0 auto; }
-
-.hq-intro {
-  font-size: 20px; font-weight: 300; line-height: 2;
-  color: rgba(255,255,255,0.65); max-width: 600px; margin-bottom: 80px;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 2px;
-}
-
+.page-hero { padding: 148px 64px 56px; max-width: 1280px; margin: 0 auto; }
+.hq-intro { font-size: 19px; font-weight: 300; line-height: 2; color: rgba(255,255,255,0.6); max-width: 580px; margin-bottom: 72px; }
+.team-wrap { max-width: 1280px; margin: 0 auto; padding: 0 64px 120px; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 2px; }
 .team-card {
-  background: #0E0E1A; padding: 52px 48px;
-  position: relative; overflow: hidden;
-  transition: background 0.4s; cursor: pointer;
+  background: #0D0D1A; padding: 52px 48px; position: relative;
+  overflow: hidden; transition: background 0.35s;
   text-decoration: none; color: inherit; display: block;
 }
-.team-card:hover { background: #13132A; }
-.team-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 1px; background: var(--blue);
-  transform: scaleX(0); transition: transform 0.4s; transform-origin: left;
+.team-card:hover { background: #121228; }
+.team-card-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: #2B3EE8; transform: scaleX(0); transition: transform 0.35s; transform-origin: left;
 }
-.team-card:hover::before { transform: scaleX(1); }
-
-.card-photo {
-  width: 80px; height: 80px; border-radius: 50%;
-  background: #1A1A2E; border: 1px solid #2A2A4A;
-  margin-bottom: 28px; overflow: hidden;
+.team-card:hover .team-card-bar { transform: scaleX(1); }
+.card-avatar {
+  width: 76px; height: 76px; border-radius: 50%;
+  background: #1A1A30; border: 1px solid rgba(43,62,232,0.3);
   display: flex; align-items: center; justify-content: center;
+  margin-bottom: 28px; overflow: hidden;
 }
-.card-photo-placeholder {
-  font-family: var(--sans); font-size: 26px; color: #2B3EE8; font-weight: 500;
-}
-
-.card-num {
-  font-family: var(--sans); font-size: 18px; font-weight: 500;
-  letter-spacing: 0.15em; color: var(--blue); margin-bottom: 14px;
-}
-
-.card-name-row {
-  display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px;
-}
-.card-name {
-  font-family: var(--serif); font-size: 28px; font-weight: 400; color: #ffffff;
-}
-.card-name-en {
-  font-family: var(--sans); font-size: 15px; color: rgba(255,255,255,0.4);
-}
-
-.card-role {
-  font-family: var(--sans); font-size: 13px; letter-spacing: 0.1em;
-  color: var(--green); margin-bottom: 10px; text-transform: uppercase;
-}
-
-.card-species {
-  font-family: var(--sans); font-size: 14px;
-  color: rgba(255,255,255,0.35); margin-bottom: 28px; line-height: 1.8;
-}
-
-.card-story {
-  font-size: 17px; font-weight: 300; line-height: 1.95;
-  color: rgba(255,255,255,0.65);
-}
-
-.card-status {
-  display: inline-block; margin-top: 28px;
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--green);
-  padding: 6px 12px; border: 1px solid rgba(45,189,110,0.25);
-}
-
-.card-arrow {
-  position: absolute; bottom: 52px; right: 48px;
-  font-size: 20px; color: rgba(255,255,255,0.2);
-  transition: color 0.3s, transform 0.3s;
-}
-.team-card:hover .card-arrow { color: var(--blue); transform: translateX(4px); }
-
-.card-empty {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  min-height: 380px; background: #0A0A14; cursor: default;
-}
-.card-empty:hover { background: #0D0D18; }
-.card-empty::before { display: none; }
-
-.card-empty-text {
-  font-family: var(--sans); font-size: 13px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: #2A2A42; text-align: center; line-height: 2.6;
-}
-.card-empty-link {
-  color: var(--blue); text-decoration: none; margin-top: 16px; display: block;
-  transition: opacity 0.3s;
-}
+.card-avatar-letter { font-family: var(--sans); font-size: 26px; color: #2B3EE8; font-weight: 500; }
+.card-num { font-family: var(--sans); font-size: 16px; font-weight: 500; letter-spacing: 0.15em; color: #2B3EE8; margin-bottom: 12px; }
+.card-name-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+.card-name { font-size: 26px; font-weight: 400; color: #fff; }
+.card-name-en { font-family: var(--sans); font-size: 15px; color: rgba(255,255,255,0.38); }
+.card-role { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #2DBD6E; margin-bottom: 8px; }
+.card-species { font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.3); line-height: 1.75; margin-bottom: 28px; }
+.card-story { font-size: 16px; font-weight: 300; line-height: 1.95; color: rgba(255,255,255,0.62); }
+.card-status { display: inline-block; margin-top: 28px; font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2DBD6E; padding: 5px 12px; border: 1px solid rgba(45,189,110,0.25); }
+.card-arrow { position: absolute; bottom: 48px; right: 48px; font-size: 20px; color: rgba(255,255,255,0.18); transition: color 0.3s, transform 0.3s; }
+.team-card:hover .card-arrow { color: #2B3EE8; transform: translateX(4px); }
+.card-empty { display: flex; align-items: center; justify-content: center; min-height: 360px; background: #09090F; cursor: default; }
+.card-empty:hover { background: #0C0C18; }
+.card-empty .team-card-bar { display: none; }
+.card-empty-inner { text-align: center; }
+.card-empty-label { font-family: var(--sans); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.18); line-height: 2.5; }
+.card-empty-link { color: #2B3EE8; text-decoration: none; display: block; margin-top: 12px; transition: opacity 0.2s; }
 .card-empty-link:hover { opacity: 0.7; }
-
-@media (max-width: 768px) {
-  .page-hero { padding: 130px 28px 40px; }
-}
+@media(max-width:768px){ .page-hero { padding: 120px 28px 40px; } .team-wrap { padding: 0 0 80px; } }
 </style>
 </head>
 <body>
-
-<div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">EN</div>
-
-<nav id="main-nav">
-  <a href="index.html" class="nav-logo"><img src="9.png" alt="파란수박"></a>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo"><img src="9.png" alt="파란수박" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="nav-logo-fallback">파란수박</span></a>
   <ul class="nav-links">
     <li><a href="report.html" data-ko="보고서" data-en="REPORT">보고서</a></li>
     <li><a href="lab.html" data-ko="실험실" data-en="LAB">실험실</a></li>
     <li><a href="hq.html" class="active" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a></li>
     <li><a href="contact.html" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a></li>
   </ul>
+  <div class="nav-lang" id="nav-lang" onclick="toggleLang()">EN</div>
 </nav>
 
 <div class="page-hero">
   <span class="section-label reveal" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</span>
   <h1 class="section-title reveal">우리가 발견한<br>지구인들.</h1>
   <div class="section-divider"></div>
-  <p class="hq-intro reveal">
-    파란수박본부는 달 뒷면에 있습니다.<br>
-    우리가 포섭한 지구인들은 지금 이 우주선에서<br>
-    본 행성을 향해 기록을 송신하고 있습니다.
-  </p>
+  <p class="hq-intro reveal">파란수박본부는 달 뒷면에 있습니다.<br>우리가 포섭한 지구인들은 지금 이 우주선에서<br>본 행성을 향해 기록을 송신하고 있습니다.</p>
 </div>
 
-<div style="max-width:1280px; margin:0 auto; padding:0 64px 140px;">
+<div class="team-wrap">
   <div class="team-grid">
     <a href="member-001.html" class="team-card reveal">
-      <div class="card-photo">
-        <div class="card-photo-placeholder">D</div>
-      </div>
+      <div class="team-card-bar"></div>
+      <div class="card-avatar"><div class="card-avatar-letter">D</div></div>
       <div class="card-num">#001</div>
       <div class="card-name-row">
         <div class="card-name">정동훈</div>
         <div class="card-name-en">Denny</div>
       </div>
       <div class="card-role">CEO / Keroro</div>
-      <div class="card-species">
-        종: 호모 사피엔스 (라고 주장)<br>
-        서식지: 파란수박
-      </div>
-      <div class="card-story">
-        공군에서 일하던 #001은 지구인을 연구하는 외계인에게 이끌려 파란수박본부로 포섭되었다. 외계인이 별명을 붙여주려다 친근한 외계인 캐릭터인 도로로를 추천했는데, "도로로는 병장이고 나는 중사였으니 차라리 '케로로'로 해달라"며 선을 그었다.
-      </div>
+      <div class="card-species">종: 호모 사피엔스 (라고 주장)<br>서식지: 파란수박</div>
+      <div class="card-story">공군에서 일하던 #001은 지구인을 연구하는 외계인에게 이끌려 파란수박본부로 포섭되었다. 외계인이 별명을 붙여주려다 친근한 외계인 캐릭터인 도로로를 추천했는데, "도로로는 병장이고 나는 중사였으니 차라리 '케로로'로 해달라"며 선을 그었다.</div>
       <span class="card-status">● 우주선 탑승 중</span>
       <span class="card-arrow">→</span>
     </a>
-
     <div class="team-card card-empty reveal">
-      <div class="card-empty-text">
-        다음 포섭 대상<br>모집 중<br>
+      <div class="card-empty-inner">
+        <div class="card-empty-label">다음 포섭 대상<br>모집 중</div>
         <a href="contact.html" class="card-empty-link">신호를 보내세요 →</a>
       </div>
     </div>
   </div>
 </div>
 
-<footer>
-  <div class="footer-brand">© 2026 파란수박 — 지구기록보관소</div>
-  <div class="footer-coords">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON</div>
+<footer class="site-footer">
+  <div class="footer-brand-col"><img src="9.png" alt="파란수박" class="footer-logo" onerror="this.style.display='none'"><p class="footer-tagline">외계인이 설립한 지구기록보관소.<br>모든 지구인은 한 권의 책입니다.</p></div>
+  <div class="footer-links-col"><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a href="report.html">보고서</a></li><li><a href="lab.html">실험실</a></li><li><a href="hq.html">파란수박본부</a></li><li><a href="contact.html">안녕하세요?</a></li></ul></div>
+  <div class="footer-contact-col"><div class="footer-col-title">Contact</div><a href="mailto:donghoon807@gmail.com" class="footer-email">donghoon807@gmail.com</a><p class="footer-copy">수신 확인까지 1–3 지구일 소요됩니다.</p></div>
 </footer>
-
+<div class="footer-bottom"><span class="footer-bottom-text">© 2026 파란수박 — 지구기록보관소</span><span class="footer-bottom-text">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON</span></div>
 <script>
-const nav = document.getElementById('main-nav');
-nav.style.background = 'rgba(9,9,15,0.92)';
-nav.style.backdropFilter = 'blur(12px)';
-nav.style.borderBottom = '1px solid #1E1E2E';
-
+const nav = document.getElementById('site-nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+nav.classList.add('scrolled');
 const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.08 });
-reveals.forEach(el => observer.observe(el));
-
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+reveals.forEach(el => obs.observe(el));
 let isKo = true;
-function toggleLang() {
-  isKo = !isKo;
-  document.getElementById('lang-toggle').textContent = isKo ? 'EN' : 'KO';
-  document.querySelectorAll('[data-ko][data-en]').forEach(el => {
-    el.textContent = isKo ? el.dataset.ko : el.dataset.en;
-  });
-}
+function toggleLang() { isKo = !isKo; document.getElementById('nav-lang').textContent = isKo ? 'EN' : 'KO'; document.querySelectorAll('[data-ko][data-en]').forEach(el => { el.textContent = isKo ? el.dataset.ko : el.dataset.en; }); }
 </script>
 </body>
 </html>
