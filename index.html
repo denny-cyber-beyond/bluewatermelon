@@ -444,7 +444,7 @@ setInterval(()=>{if(P<.1&&!document.hidden) swapWord()},3400);
 /* ── 원고 보내기: 이 페이지 안에서 바로 접수 ──
    ENDPOINT = 구글 Apps Script 웹 앱 주소(파일은 구글 드라이브 '파란수박 원고함'에 저장 + 메일 알림).
    비어 있으면 시안 모드(실제로 보내지 않음). */
-const ENDPOINT='';
+const ENDPOINT='https://script.google.com/macros/s/AKfycbyKDs9sm8XhwgwC4Ua6Z5_sG5tfyNGIWPeIn_EHbbAZ1nrUfwN6nmyjPzOJ02sFgCBA/exec';
 const DRAFT=/^(127\.0\.0\.1|localhost)$/.test(location.hostname); // 내 컴퓨터에서 볼 때만 시안 모드
 const MAILONLY=!ENDPOINT&&!DRAFT; // 주소 넣기 전 실제 홈페이지 = 메일 창 열기
 const MAXMB=20;
