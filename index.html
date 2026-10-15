@@ -273,8 +273,8 @@ const sky=document.getElementById('sky'), sc=sky.getContext('2d');
 let base=null, twinkle=[];
 function rnd(s){return function(){s=(s*16807)%2147483647;return (s-1)/2147483646}}
 const skyImg=new Image(); skyImg.src='photos/milkyway-eso.jpg'; skyImg.onload=()=>{buildSky()};
-// 큰 화면(휴대폰 제외)·고해상도 화면이면 먼저 보통 사진을 띄운 뒤 4000px 사진으로 바꿈
-if(W>=900&&Math.max(W,H*2)*1.05*DPR>2600){const hi=new Image(); hi.onload=()=>{skyImg.src=hi.src}; hi.src='photos/milkyway-eso-4k.jpg';}
+// 큰 화면(휴대폰 제외)·고해상도 화면이면(스크롤 때 1.35배 확대까지 계산) 먼저 보통 사진을 띄운 뒤 4000px 사진으로 바꿈
+if(W>=900&&Math.max(W,H*2)*1.05*1.35*DPR>2600){const hi=new Image(); hi.onload=()=>{skyImg.src=hi.src}; hi.src='photos/milkyway-eso-4k.jpg';}
 function buildSky(){
   sky.width=W*DPR; sky.height=H*DPR;
   base=document.createElement('canvas'); base.width=sky.width; base.height=sky.height;

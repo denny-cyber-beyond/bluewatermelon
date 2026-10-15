@@ -76,7 +76,7 @@ main{position:relative;z-index:1;padding:24vh 8vw 14vh;max-width:1280px;margin:0
 /* 비어 있는 다음 칸 */
 .next-book{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:72px;align-items:center;margin-top:22vh}
 .next-slot{width:min(300px,100%);justify-self:center;aspect-ratio:480/681;border-radius:18px;border:1.5px dashed rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:64px;font-weight:800;letter-spacing:-.03em;color:rgba(255,255,255,.12)}
-.next-title{font-size:clamp(30px,3.6vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.2;margin-top:14px}
+.next-title{text-wrap:balance;font-size:clamp(30px,3.6vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.2;margin-top:14px}
 .next-desc{font-size:17px;line-height:1.8;color:var(--dim);margin-top:16px}
 .next-link{margin-top:34px}
 
@@ -126,7 +126,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
 
   <article class="book">
     <div class="book-cover rise">
-      <img src="books/veteran-beyond-480.jpg" srcset="books/veteran-beyond-480.jpg 480w, books/veteran-beyond-960.jpg 960w" sizes="(max-width: 900px) 340px, 380px" width="480" height="681" alt="베테랑 비욘드 — 세계 군인 창업 백과 표지">
+      <img src="books/veteran-beyond-480.jpg" srcset="books/veteran-beyond-480.jpg 480w, books/veteran-beyond-960.jpg 960w" sizes="(max-width: 900px) 320px, 400px" width="480" height="681" alt="베테랑 비욘드 — 세계 군인 창업 백과 표지">
     </div>
     <div class="book-info rise d2">
       <div class="book-code" data-ko="BOOK 001 · 첫 번째 책" data-en="BOOK 001 · OUR FIRST BOOK">BOOK 001 · 첫 번째 책</div>
