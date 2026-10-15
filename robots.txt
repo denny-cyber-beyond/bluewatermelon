@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bluewatermelon.co.kr/sitemap.xml
