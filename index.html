@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>파란수박 — 지구기록보관소</title>
+<title>파란수박 — 우리는 당신이 쓰는 책이 더 궁금해</title>
 <meta name="description" content="외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.">
 <link rel="canonical" href="https://bluewatermelon.co.kr/">
 <meta name="theme-color" content="#080810">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="파란수박">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="파란수박 — 지구기록보관소">
+<meta property="og:title" content="파란수박 — 우리는 당신이 쓰는 책이 더 궁금해">
 <meta property="og:description" content="외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.">
 <meta property="og:url" content="https://bluewatermelon.co.kr/">
 <meta property="og:image" content="https://bluewatermelon.co.kr/og/og-default.png">
@@ -18,7 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="우리는 노벨상 수상자보다 당신이 쓰는 책이 더 궁금해 — 파란수박">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="파란수박 — 지구기록보관소">
+<meta name="twitter:title" content="파란수박 — 우리는 당신이 쓰는 책이 더 궁금해">
 <meta name="twitter:description" content="외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.">
 <meta name="twitter:image" content="https://bluewatermelon.co.kr/og/og-default.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "파란수박", "alternateName": "Blue Watermelon", "url": "https://bluewatermelon.co.kr/", "logo": "https://bluewatermelon.co.kr/logos/1.png", "description": "외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.", "email": "donghoon807@gmail.com"}</script>
@@ -273,6 +273,8 @@ const sky=document.getElementById('sky'), sc=sky.getContext('2d');
 let base=null, twinkle=[];
 function rnd(s){return function(){s=(s*16807)%2147483647;return (s-1)/2147483646}}
 const skyImg=new Image(); skyImg.src='photos/milkyway-eso.jpg'; skyImg.onload=()=>{buildSky()};
+// 큰 화면(휴대폰 제외)·고해상도 화면이면 먼저 보통 사진을 띄운 뒤 4000px 사진으로 바꿈
+if(W>=900&&Math.max(W,H*2)*1.05*DPR>2600){const hi=new Image(); hi.onload=()=>{skyImg.src=hi.src}; hi.src='photos/milkyway-eso-4k.jpg';}
 function buildSky(){
   sky.width=W*DPR; sky.height=H*DPR;
   base=document.createElement('canvas'); base.width=sky.width; base.height=sky.height;
