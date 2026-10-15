@@ -24,498 +24,562 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "파란수박", "alternateName": "Blue Watermelon", "url": "https://bluewatermelon.co.kr/", "logo": "https://bluewatermelon.co.kr/logos/1.png", "description": "외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.", "email": "donghoon807@gmail.com"}</script>
 <link rel="icon" type="image/png" href="logos/1.png">
 <link rel="apple-touch-icon" href="logos/1.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="preload" as="image" href="earth/earth-day-2k.jpg">
 <style>
-/* ─── 랜딩 전용 (2026-10-15 개편) ─── */
-body.landing { font-family: 'Pretendard', -apple-system, system-ui, sans-serif; }
-.landing .site-nav { background: transparent; border-bottom-color: transparent; }
-.landing .site-nav.scrolled { background: rgba(5,6,12,0.82); border-bottom-color: rgba(255,255,255,0.07); }
+:root{
+  --bg:#03050c; --ink:#fff; --dim:rgba(255,255,255,.56); --faint:rgba(255,255,255,.14);
+  --blue:#8fb4ff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,p{word-break:keep-all}
+a{color:inherit;text-decoration:none}
 
-/* HERO */
-#hero { position: relative; height: 100vh; min-height: 640px; overflow: hidden; background: #03040a; }
-#globe, #stars { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-#stars { z-index: 0; }
-#globe { z-index: 1; }
-.globe-fallback {
-  position: absolute; z-index: 1; width: min(88vh, 62vw); aspect-ratio: 1;
-  right: max(-6vw, -80px); top: 50%; transform: translateY(-50%);
-  border-radius: 50%; display: none;
-  box-shadow: 0 0 120px rgba(90,140,255,0.25);
-}
-.no-webgl .globe-fallback { display: block; }
-.hero-shade {
-  position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(3,4,10,0.92) 0%, rgba(3,4,10,0.55) 38%, rgba(3,4,10,0) 62%),
-    linear-gradient(0deg, rgba(3,4,10,1) 0%, rgba(3,4,10,0) 28%);
-}
-.hero-inner {
-  position: relative; z-index: 3; height: 100%;
-  max-width: 1360px; margin: 0 auto; padding: 0 64px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 13px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.7);
-  margin-bottom: 28px;
-}
-.hero-eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); animation: blink 2.4s ease-in-out infinite; }
-.hero-title {
-  font-size: clamp(40px, 5.6vw, 84px); font-weight: 700; line-height: 1.18;
-  letter-spacing: -0.035em; color: #fff; max-width: 13em;
-}
-.hero-title .changing { color: var(--pink); display: inline-block; transition: opacity .6s ease, transform .6s ease; }
-.hero-title .nb { white-space: nowrap; }
-.hero-title .changing.out { opacity: 0; transform: translateY(-12px); }
-.hero-sub { margin-top: 28px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.7; color: rgba(255,255,255,0.72); max-width: 30em; }
-.hero-btns { margin-top: 44px; display: flex; gap: 12px; flex-wrap: wrap; }
-.btn {
-  display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 28px;
-  border-radius: 999px; font-size: 16px; font-weight: 600; text-decoration: none;
-  transition: background .2s, border-color .2s, transform .2s;
-}
-.btn:hover { transform: translateY(-2px); }
-.btn-primary { background: #fff; color: #05060c; }
-.btn-primary:hover { background: #dfe4ff; }
-.btn-ghost { color: #fff; border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.04); backdrop-filter: blur(8px); }
-.btn-ghost:hover { border-color: rgba(255,255,255,0.6); }
-.hero-meta {
-  position: absolute; z-index: 3; left: 0; right: 0; bottom: 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.hero-meta-in { max-width: 1360px; margin: 0 auto; padding: 0 64px; display: grid; grid-template-columns: repeat(3, 1fr); }
-.meta-item { padding: 22px 0; }
-.meta-num { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
-.meta-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; letter-spacing: 0.02em; }
-.hero-coord { position: absolute; z-index: 3; right: 64px; bottom: 104px; font-family: var(--sans); font-size: 12px; letter-spacing: 0.18em; color: rgba(255,255,255,0.45); text-align: right; line-height: 1.8; }
+/* 하늘(고정) */
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;transform-origin:50% 50%;will-change:transform}
 
-.hero-anim { opacity: 0; animation: up 1s cubic-bezier(.2,.7,.2,1) forwards; }
-.d1 { animation-delay: .2s } .d2 { animation-delay: .4s } .d3 { animation-delay: .6s } .d4 { animation-delay: .8s } .d5 { animation-delay: 1.1s }
-@keyframes up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-@keyframes blink { 50% { opacity: .35; } }
+/* 메뉴 */
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;transition:background .4s,backdrop-filter .4s}
+.nav.scrolled{background:rgba(3,5,12,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav-logo img{height:46px;display:block}
+.nav-r{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500}
+.nav-r a{color:rgba(255,255,255,.78);transition:color .2s}
+.nav-r a:hover{color:#fff}
+.lang{font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.55);cursor:pointer;border:1px solid var(--faint);border-radius:999px;padding:5px 11px;background:none;font-family:inherit}
 
-/* SECTIONS */
-.sec { max-width: 1360px; margin: 0 auto; padding: 160px 64px; }
-.sec + .sec { border-top: 1px solid rgba(255,255,255,0.07); }
-.sec-tag { font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: var(--blue2, #7d8bff); margin-bottom: 28px; }
-.sec-tag b { color: #fff; font-weight: 600; margin-right: 10px; }
-.sec-h { font-size: clamp(32px, 3.8vw, 56px); font-weight: 700; line-height: 1.25; letter-spacing: -0.03em; }
-.sec-p { font-size: 19px; line-height: 1.8; color: rgba(255,255,255,0.68); margin-top: 24px; max-width: 34em; }
-.mission { text-align: center; padding-top: 200px; padding-bottom: 200px; }
-.mission .sec-h { font-size: clamp(36px, 5vw, 76px); }
-.mission .sec-h em { font-style: normal; background: linear-gradient(90deg, #7d8bff, #2DBD6E 50%, #FC5C7D); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.mission .sec-p { margin-left: auto; margin-right: auto; }
+/* 1·2장면: 한 무대에서 이어짐 */
+#journey{position:relative;height:520vh;z-index:1}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#globe{position:absolute;inset:0;width:100%;height:100%}
+#earthphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;opacity:0;will-change:opacity,transform;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 34%,#000 49%);mask-image:linear-gradient(to bottom,transparent 34%,#000 49%)}
+.credit{position:absolute;right:24px;bottom:18px;font-size:11px;color:rgba(255,255,255,.38);transition:opacity .4s}
+.credit a:hover{color:#fff}
+.hero{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 6vw;will-change:opacity,filter,transform}
+.hero h1{font-size:clamp(34px,5.4vw,84px);font-weight:700;line-height:1.22;letter-spacing:-.035em}
+.nb{white-space:nowrap}
+.hero br.m{display:none}
+/* 빈칸: 폭 고정(가장 긴 직함), 가운데 정렬, 아래 별빛 밑줄 */
+.changing{display:inline-block;position:relative;color:var(--blue);white-space:nowrap;vertical-align:bottom;text-align:center;margin:0 .12em;padding:0 .1em}
+.changing::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,rgba(143,180,255,.25),rgba(143,180,255,.9) 6%,rgba(225,236,255,1) 50%,rgba(143,180,255,.9) 94%,rgba(143,180,255,.25));
+  box-shadow:0 0 14px rgba(143,180,255,.7),0 0 3px rgba(255,255,255,.6)}
+.ch{display:inline-block;white-space:pre}
+.ch.in{animation:chIn 1.1s cubic-bezier(.2,.7,.2,1) both}
+.ch.out{animation:chOut .5s cubic-bezier(.55,0,.85,.35) both}
+.ghost{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap;pointer-events:none}
+@keyframes chIn{0%{opacity:0;filter:blur(12px);transform:translateY(.18em) scale(1.3);text-shadow:0 0 0 rgba(170,205,255,0)}
+  50%{opacity:1;filter:blur(0);text-shadow:0 0 26px rgba(170,205,255,.95),0 0 6px rgba(255,255,255,.8)}
+  100%{opacity:1;filter:blur(0);transform:none;text-shadow:0 0 0 rgba(170,205,255,0)}}
+@keyframes chOut{to{opacity:0;filter:blur(10px);transform:translateY(-.3em) scale(.8)}}
+#dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hint{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);font-size:12px;letter-spacing:.24em;color:rgba(255,255,255,.4);text-align:center}
+.hint i{display:block;width:1px;height:38px;margin:10px auto 0;background:linear-gradient(rgba(255,255,255,.5),transparent);animation:drop 2.2s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.earth-text{position:absolute;left:0;right:0;top:26%;text-align:center;padding:0 24px}
+.earth-text p{font-size:clamp(34px,5.2vw,78px);font-weight:700;letter-spacing:-.035em;line-height:1.22;opacity:0;filter:blur(14px);will-change:opacity,filter}
 
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; }
-.book-visual {
-  position: relative; display: flex; justify-content: center; padding: 64px 0;
-  background: radial-gradient(closest-side, rgba(43,62,232,0.28), transparent);
+/* 3장면: 아카이브 */
+.sec{position:relative;z-index:1;padding:22vh 8vw}
+.label{font-size:13px;font-weight:600;letter-spacing:.24em;color:var(--dim);margin-bottom:22px}
+.sec h2{font-size:clamp(34px,4.6vw,68px);font-weight:700;letter-spacing:-.035em;line-height:1.2}
+.shelf{display:flex;gap:28px;margin-top:64px;flex-wrap:wrap}
+.book{width:min(300px,80vw);display:block}
+.cover{aspect-ratio:2/3;border-radius:18px;overflow:hidden;background:#0b1020;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+a.book:hover .cover{transform:translateY(-10px) rotate(-1deg);box-shadow:0 40px 80px -20px rgba(80,120,255,.35)}
+.cover.empty{background:transparent;border:1.5px dashed rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);font-size:15px;letter-spacing:.04em;box-shadow:none}
+.meta{margin-top:18px;display:flex;justify-content:space-between;align-items:baseline}
+.no{font-size:12px;letter-spacing:.2em;color:var(--dim)}
+.ttl{font-size:19px;font-weight:600;margin-top:6px}
+.ttl.empty{color:rgba(255,255,255,.35);font-weight:500}
+
+/* 4장면: 끝 */
+.end{text-align:center;padding:26vh 8vw 22vh}
+.end h2{font-size:clamp(32px,4.4vw,68px)}
+.end br.m{display:none}
+@media (max-width:720px){.end br.m{display:inline}}
+.pill{display:inline-flex;align-items:center;gap:10px;margin-top:48px;padding:17px 34px;border-radius:999px;background:#fff;color:#04060d;font-size:17px;font-weight:700;transition:transform .25s,box-shadow .25s}
+.pill:hover{transform:translateY(-2px);box-shadow:0 12px 40px -8px rgba(143,180,255,.6)}
+/* 원고 보내기 양식 */
+.send-lead{margin-top:14px;font-size:17px;color:var(--dim);line-height:1.6}
+.form{max-width:640px;margin:32px auto 0;text-align:left;display:grid;gap:12px}
+.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{display:block}
+.fld span{display:block;font-size:13px;color:var(--dim);margin:0 0 7px 4px}
+.fld input,.fld textarea{width:100%;box-sizing:border-box;font:inherit;font-size:16px;color:#fff;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 16px;outline:none;transition:border-color .2s,background .2s,box-shadow .2s}
+.fld textarea{min-height:96px;resize:vertical;line-height:1.6}
+.fld input:focus,.fld textarea:focus{border-color:rgba(143,180,255,.8);background:rgba(255,255,255,.07);box-shadow:0 0 0 4px rgba(143,180,255,.12)}
+.fld input::placeholder,.fld textarea::placeholder{color:rgba(255,255,255,.3)}
+.drop{display:flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:12px;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;color:rgba(255,255,255,.55);font-size:15px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.drop:hover,.drop.over{border-color:rgba(143,180,255,.8);background:rgba(143,180,255,.06);color:#fff}
+.drop.has{border-style:solid;border-color:rgba(143,180,255,.55);color:#fff}
+.drop small{display:block;font-size:12px;color:rgba(255,255,255,.38);margin-top:4px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--dim);line-height:1.55;margin:4px 4px 0}
+.agree input{margin-top:3px;accent-color:#8fb4ff;width:16px;height:16px;flex:none}
+.form .pill{margin:14px auto 0;border:0;cursor:pointer;font-family:inherit}
+.form .pill[disabled]{opacity:.5;cursor:wait}
+.msg{text-align:center;font-size:15px;min-height:1.5em;color:var(--dim)}
+.msg.err{color:#ffb4b4}
+/* 원고 보낸 뒤: 양식이 빛 한 점으로 접혀 하늘로 → 새 별이 됨 */
+.done{max-width:640px;margin:32px auto 0;display:flex;flex-direction:column;justify-content:center;font-size:17px;line-height:1.7}
+.newsky{position:relative;height:210px}
+.newsky i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:0;transition:opacity 1.6s}
+.done.lit .newsky i{opacity:var(--o)}
+.nstar{position:absolute;left:50%;top:44%;width:7px;height:7px;margin:-3.5px;border-radius:50%;background:#fff;opacity:0;
+  box-shadow:0 0 10px 3px rgba(190,215,255,.95),0 0 36px 10px rgba(143,180,255,.45)}
+.nstar::before,.nstar::after{content:"";position:absolute;left:50%;top:50%;width:70px;height:1.5px;margin:-.75px 0 0 -35px;
+  background:linear-gradient(90deg,transparent,rgba(220,235,255,.95),transparent);transform:scaleX(.4)}
+.nstar::after{transform:rotate(90deg) scaleX(.4)}
+.done.lit .nstar{opacity:1;animation:nflash 1.1s ease-out,ntwinkle 2.6s ease-in-out 1.3s infinite}
+.done.lit .nstar::before{animation:nglint 1.1s ease-out forwards}
+.done.lit .nstar::after{animation:nglint2 1.1s ease-out forwards}
+@keyframes nflash{0%{transform:scale(3.2);filter:brightness(2)}100%{transform:scale(1);filter:none}}
+@keyframes ntwinkle{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.75);opacity:.7}}
+@keyframes nglint{0%{transform:scaleX(2.4);opacity:1}100%{transform:scaleX(.4);opacity:.8}}
+@keyframes nglint2{0%{transform:rotate(90deg) scaleX(2.4);opacity:1}100%{transform:rotate(90deg) scaleX(.4);opacity:.8}}
+.nring{position:absolute;left:50%;top:44%;width:16px;height:16px;margin:-8px;border-radius:50%;border:1.5px solid rgba(190,215,255,.9);opacity:0}
+.done.lit .nring{animation:nring 1.2s ease-out forwards}
+@keyframes nring{0%{transform:scale(.3);opacity:1}100%{transform:scale(9);opacity:0}}
+.nlabel{position:absolute;left:0;right:0;top:calc(44% + 26px);font-size:14px;letter-spacing:.03em;color:rgba(200,220,255,.85);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 12px;opacity:0;transform:translateY(6px);transition:opacity .9s .5s,transform .9s .5s}
+.done.lit .nlabel{opacity:1;transform:none}
+.dtxt>*{opacity:0;transform:translateY(10px);filter:blur(6px);transition:opacity .9s,transform .9s,filter .9s}
+.done.lit .dtxt>*{opacity:1;transform:none;filter:none}
+.done.lit .dtxt>:nth-child(1){transition-delay:1s}.done.lit .dtxt>:nth-child(2){transition-delay:1.5s}
+.done.lit .dtxt>:nth-child(3){transition-delay:1.9s}.done.lit .dtxt>:nth-child(4){transition-delay:2.4s}
+.dtxt b{display:block;font-size:clamp(22px,2.4vw,30px);margin-bottom:10px}
+.dtxt p{margin:0;color:var(--dim)}
+.dtxt .again{margin-top:22px;font-size:13px;color:rgba(255,255,255,.4);background:none;border:0;font-family:inherit;cursor:pointer;text-decoration:underline}
+#flight{position:fixed;inset:0;width:100%;height:100%;z-index:30;pointer-events:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* 바닥 */
+footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--faint);font-size:13px;color:rgba(255,255,255,.45)}
+.foot-row img{height:40px;opacity:.9}
+.foot-row .mail{font-size:17px;font-weight:500;color:rgba(255,255,255,.75)}
+.foot-row a:hover{color:#fff}
+.giant{font-size:8.6vw;font-weight:800;letter-spacing:-.04em;line-height:.9;color:rgba(255,255,255,.05);white-space:nowrap;text-align:center;margin-top:40px;user-select:none}
+
+/* 나타나기 */
+.rise{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rise.on{opacity:1;transform:none}
+.d2{transition-delay:.12s}.d3{transition-delay:.24s}
+
+@media (max-width:720px){
+  .nav{padding:12px 20px}.nav-r{gap:16px;font-size:14px}.nav-logo img{height:36px}
+  .hero{padding:0 22px}.hero br.m{display:inline}
+  .sec{padding:16vh 22px}.end{padding:20vh 22px 16vh}
+  .shelf{gap:18px}.book{width:calc(50% - 9px)}
+  .ttl{font-size:16px}
+  .form .row2{grid-template-columns:1fr}.send-lead{font-size:15px}
+  footer{padding:0 22px 28px}
 }
-.book-visual img { width: min(360px, 80%); height: auto; box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06); transform: rotate(-3deg); transition: transform .5s; }
-.book-visual:hover img { transform: rotate(0) translateY(-6px); }
-.chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-.chip { font-size: 14px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
-.text-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 40px; color: #fff; font-size: 17px; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 6px; transition: border-color .2s, gap .2s; }
-.text-link:hover { border-color: #fff; gap: 14px; }
-
-.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 64px; }
-.card {
-  position: relative; padding: 40px; border-radius: 20px; min-height: 280px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
-  border: 1px solid rgba(255,255,255,0.08); text-decoration: none; color: #fff;
-  display: flex; flex-direction: column; transition: border-color .3s, transform .3s;
-}
-.card:hover { border-color: rgba(255,255,255,0.22); transform: translateY(-4px); }
-.card-code { font-family: var(--sans); font-size: 13px; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; }
-.card-badge { color: var(--green); }
-.card-h { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin-top: auto; }
-.card-p { font-size: 16px; color: rgba(255,255,255,0.6); margin-top: 10px; line-height: 1.6; }
-
-.crew { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 64px; }
-.crew-item { border-radius: 20px; padding: 40px 24px 28px; text-align: center; border: 1px solid rgba(255,255,255,0.08); }
-.crew-item img { width: 62%; max-width: 200px; height: auto; transition: transform .4s; }
-.crew-item:hover img { transform: translateY(-8px) rotate(-3deg); }
-.crew-blue { background: radial-gradient(circle at 50% 35%, rgba(43,62,232,0.30), transparent 70%); }
-.crew-green { background: radial-gradient(circle at 50% 35%, rgba(45,189,110,0.26), transparent 70%); }
-.crew-pink { background: radial-gradient(circle at 50% 35%, rgba(252,92,125,0.26), transparent 70%); }
-.crew-name { margin-top: 18px; font-size: 15px; letter-spacing: 0.14em; color: rgba(255,255,255,0.7); font-family: var(--sans); }
-
-.cta { text-align: center; }
-.cta-box {
-  border-radius: 28px; padding: 120px 40px; position: relative; overflow: hidden;
-  background: radial-gradient(ellipse 70% 90% at 50% 120%, rgba(43,62,232,0.55), transparent 70%), #070912;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-.cta-box .sec-p { margin: 20px auto 0; }
-.cta-box .btn { margin-top: 44px; }
-
-.reveal { opacity: 0; transform: translateY(32px); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
-.reveal.visible { opacity: 1; transform: none; }
-
-@media (max-width: 900px) {
-  .hero-inner, .hero-meta-in, .sec { padding-left: 24px; padding-right: 24px; }
-  .hero-inner { justify-content: flex-start; padding-top: 22vh; }
-  .hero-shade { background: linear-gradient(180deg, rgba(3,4,10,0.85) 0%, rgba(3,4,10,0.25) 55%, rgba(3,4,10,0.7) 100%); }
-  .hero-coord { display: none; }
-  .hero-title { font-size: clamp(34px, 9.6vw, 44px); }
-  .hero-inner { padding-top: 17vh; }
-  .hero-btns { margin-top: 32px; }
-  .btn { height: 50px; padding: 0 22px; font-size: 15px; }
-  .globe-fallback { width: 120vw; right: -10vw; top: auto; bottom: -40vw; transform: none; }
-  .meta-num { font-size: 20px; } .meta-label { font-size: 12px; }
-  .sec { padding-top: 104px; padding-bottom: 104px; }
-  .mission { padding-top: 128px; padding-bottom: 128px; }
-  .split { grid-template-columns: 1fr; gap: 48px; }
-  .cards { grid-template-columns: 1fr; }
-  .crew { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .crew-item { padding: 24px 8px 18px; border-radius: 14px; }
-  .crew-name { font-size: 12px; letter-spacing: 0.08em; }
-  .cta-box { padding: 80px 24px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-anim, .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .hero-eyebrow::before { animation: none; }
+@media (prefers-reduced-motion:reduce){
+  .rise{transition:none}.rise{opacity:1;transform:none}.hint i{animation:none}
 }
 </style>
 </head>
-<body class="landing">
+<body>
 
-<nav class="site-nav" id="site-nav">
-  <a href="index.html" class="nav-logo"><img src="logos/logo-white.png" alt="파란수박"></a>
-  <ul class="nav-links">
-    <li><a href="report.html" data-ko="보고서" data-en="REPORT">보고서</a></li>
-    <li><a href="books.html" data-ko="책장" data-en="BOOKS">책장</a></li>
-    <li><a href="lab.html" data-ko="실험실" data-en="LAB">실험실</a></li>
-    <li><a href="hq.html" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a></li>
-    <li><a href="contact.html" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a></li>
-  </ul>
-  <div class="nav-lang" id="nav-lang" onclick="toggleLang()">EN</div>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo"><img src="logos/logo-white.png" alt="파란수박"></a>
+  <div class="nav-r">
+    <a href="#archive" data-ko="아카이브" data-en="Archive">아카이브</a>
+    <a href="#send" data-ko="원고 보내기" data-en="Send a manuscript">원고 보내기</a>
+    <button class="lang" id="lang" type="button">EN</button>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <canvas id="stars"></canvas>
-  <canvas id="globe" aria-hidden="true"></canvas>
-  <img class="globe-fallback" src="earth/earth-photo-1400.jpg" alt="" aria-hidden="true">
-  <div class="hero-shade"></div>
-
-  <div class="hero-coord hero-anim d5">EARTH OBSERVATION · LIVE<br>FROM THE FAR SIDE OF THE MOON</div>
-
-  <div class="hero-inner">
-    <div class="hero-eyebrow hero-anim d1" data-ko="외계인이 설립한 출판사" data-en="A PUBLISHER FOUNDED BY ALIENS">외계인이 설립한 출판사</div>
-    <h1 class="hero-title hero-anim d2" id="hero-title">우리는 <span class="nb"><span class="changing" id="changing-text">100억 자산가</span>보다</span><br>당신이 쓰는 책이<br>더 궁금해</h1>
-    <p class="hero-sub hero-anim d3" data-ko="달 뒷면에서 지구를 지켜보던 외계인들이 출판사를 세웠습니다. 모든 지구인은 한 권의 책입니다." data-en="Aliens who watched Earth from the far side of the Moon founded a publishing house. Every earthling is a book.">달 뒷면에서 지구를 지켜보던 외계인들이 출판사를 세웠습니다. 모든 지구인은 한 권의 책입니다.</p>
-    <div class="hero-btns hero-anim d4">
-      <a href="books.html" class="btn btn-primary"><span data-ko="첫 번째 책 보기" data-en="See our first book">첫 번째 책 보기</span> →</a>
-      <a href="report.html" class="btn btn-ghost"><span data-ko="파란수박 알아보기" data-en="Discover Blue Watermelon">파란수박 알아보기</span></a>
+<!-- 1·2장면: 은하수 → 지구 -->
+<section id="journey">
+  <div class="stage">
+    <canvas id="globe" aria-hidden="true"></canvas>
+    <img id="earthphoto" src="photos/earth-limb-nasa.jpg" alt="" aria-hidden="true">
+    <div class="hero" id="hero">
+      <canvas id="dust" aria-hidden="true"></canvas>
+      <h1 id="hero-title">우리는<br class="m"> <span class="nb"><span class="changing" id="changing">100억 자산가</span>보다</span><br>당신이 쓰는 책이 <br class="m">더 궁금해</h1>
     </div>
-  </div>
-
-  <div class="hero-meta hero-anim d5">
-    <div class="hero-meta-in">
-      <div class="meta-item"><div class="meta-num">1</div><div class="meta-label" data-ko="출간한 책" data-en="Book Published">출간한 책</div></div>
-      <div class="meta-item"><div class="meta-num" data-ko="82억" data-en="8.2B">82억</div><div class="meta-label" data-ko="잠재적 지구인 저자" data-en="Potential Earthling Authors">잠재적 지구인 저자</div></div>
-      <div class="meta-item"><div class="meta-num">1</div><div class="meta-label" data-ko="달 뒷면 본부" data-en="Lunar Far-Side HQ">달 뒷면 본부</div></div>
+    <div class="hint" id="hint">SCROLL<i></i></div>
+    <div class="earth-text">
+      <p id="l1" data-ko="이 푸른 별 어딘가에" data-en="Somewhere on this blue planet">이 푸른 별 어딘가에</p>
+      <p id="l2" data-ko="우리가 찾는 작가가 있습니다." data-en="is the author we're looking for.">우리가 찾는 작가가 있습니다.</p>
     </div>
+    <div class="credit"><span id="credit-earth" style="opacity:0;transition:opacity .4s"><a href="https://www.nasa.gov/image-detail/amf-iss074e0089803/" target="_blank" rel="noopener">Earth: NASA</a> · </span><a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">Milky Way: ESO/S. Brunier</a></div>
   </div>
 </section>
 
-<!-- 01 MISSION -->
-<section class="sec mission">
-  <div class="sec-tag reveal"><b>01</b>MISSION</div>
-  <h2 class="sec-h reveal" data-ko-html="모든 지구인은<br><em>한 권의 책</em>입니다" data-en-html="Every earthling<br>is <em>a book</em>">모든 지구인은<br><em>한 권의 책</em>입니다</h2>
-  <p class="sec-p reveal" data-ko="유명하지 않아도, 처음 써 보는 글이어도 괜찮습니다. 파란수박은 아직 쓰이지 않은 당신의 이야기를 찾고 있습니다." data-en="You don't have to be famous, and it's fine if it's your first time writing. Blue Watermelon is looking for the story you haven't written yet.">유명하지 않아도, 처음 써 보는 글이어도 괜찮습니다. 파란수박은 아직 쓰이지 않은 당신의 이야기를 찾고 있습니다.</p>
-</section>
-
-<!-- 02 BOOKS -->
-<section class="sec">
-  <div class="split">
-    <div>
-      <div class="sec-tag reveal"><b>02</b>BOOKS</div>
-      <h2 class="sec-h reveal" data-ko-html="첫 번째 책,<br>베테랑 비욘드" data-en-html="Our first book,<br>Veteran Beyond">첫 번째 책,<br>베테랑 비욘드</h2>
-      <p class="sec-p reveal" data-ko="군대는 창업과 가장 먼 조직처럼 보입니다. 이 책은 정반대를 증명합니다. 대한민국 1세대 군인 창업 연구자가 10개국 25개 기업을 추적해 완성한 세계 군인 창업 백과." data-en="The military looks like the furthest thing from entrepreneurship. This book proves the opposite: an encyclopedia of military entrepreneurship, tracking 25 companies across 10 countries.">군대는 창업과 가장 먼 조직처럼 보입니다. 이 책은 정반대를 증명합니다. 대한민국 1세대 군인 창업 연구자가 10개국 25개 기업을 추적해 완성한 세계 군인 창업 백과.</p>
-      <div class="chip-row reveal">
-        <span class="chip" data-ko="정동훈 지음" data-en="by Donghoon Jung">정동훈 지음</span>
-        <span class="chip" data-ko="10개국 · 25개 기업" data-en="10 countries · 25 companies">10개국 · 25개 기업</span>
-        <span class="chip">15,900원</span>
-      </div>
-      <a href="books.html" class="text-link reveal"><span data-ko="책장에서 자세히 보기" data-en="See it on the shelf">책장에서 자세히 보기</span> →</a>
-    </div>
-    <a href="books.html" class="book-visual reveal" aria-label="베테랑 비욘드">
-      <img src="books/veteran-beyond-480.jpg" srcset="books/veteran-beyond-480.jpg 480w, books/veteran-beyond-960.jpg 960w" sizes="360px" width="480" height="681" alt="베테랑 비욘드 표지" loading="lazy">
+<!-- 3장면: 아카이브 -->
+<section class="sec" id="archive">
+  <div class="label rise">ARCHIVE</div>
+  <h2 class="rise d2" data-ko="아카이브" data-en="Archive">아카이브</h2>
+  <div class="shelf">
+    <a class="book rise d2" href="books.html">
+      <div class="cover"><img src="books/veteran-beyond-480.jpg" srcset="books/veteran-beyond-480.jpg 480w, books/veteran-beyond-960.jpg 960w" sizes="300px" alt="베테랑 비욘드 표지"></div>
+      <div class="meta"><span class="no">No.001</span><span class="no">2026</span></div>
+      <div class="ttl">베테랑 비욘드</div>
     </a>
-  </div>
-</section>
-
-<!-- 03 LAB -->
-<section class="sec">
-  <div class="sec-tag reveal"><b>03</b>LAB</div>
-  <h2 class="sec-h reveal" data-ko-html="모든 지구인이<br>글을 쓰는 실험" data-en-html="An experiment where<br>every earthling writes">모든 지구인이<br>글을 쓰는 실험</h2>
-  <div class="cards">
-    <a href="lab.html" class="card reveal">
-      <div class="card-code"><span>BW-01</span><span class="card-badge" data-ko="준비 중" data-en="COMING SOON">준비 중</span></div>
-      <div class="card-h">프로젝트 : 풍영정</div>
-      <div class="card-p" data-ko="모든 지구인이 글을 쓰는 프로젝트. #오천만권짜리시리즈" data-en="A project where every earthling writes.">모든 지구인이 글을 쓰는 프로젝트. #오천만권짜리시리즈</div>
-    </a>
-    <a href="lab.html" class="card reveal">
-      <div class="card-code"><span>BW-02</span><span class="card-badge" data-ko="준비 중" data-en="COMING SOON">준비 중</span></div>
-      <div class="card-h">프로젝트 : 쿵쿵따</div>
-      <div class="card-p" data-ko="모두가 함께 글을 쓰는 프로젝트. #철인3종팀경기" data-en="A project where everyone writes together.">모두가 함께 글을 쓰는 프로젝트. #철인3종팀경기</div>
-    </a>
-  </div>
-</section>
-
-<!-- 04 CREW -->
-<section class="sec">
-  <div class="split">
-    <div>
-      <div class="sec-tag reveal"><b>04</b>CREW</div>
-      <h2 class="sec-h reveal" data-ko-html="달 뒷면에서 온<br>세 외계인" data-en-html="Three aliens from<br>the far side of the Moon">달 뒷면에서 온<br>세 외계인</h2>
-      <p class="sec-p reveal" data-ko="우리가 왜 지구에 왔는지, 보고서에 모두 적어 두었습니다." data-en="Why we came to Earth — it's all in the report.">우리가 왜 지구에 왔는지, 보고서에 모두 적어 두었습니다.</p>
-      <a href="report.html" class="text-link reveal"><span data-ko="보고서 읽기" data-en="Read the report">보고서 읽기</span> →</a>
-    </div>
-    <div class="crew">
-      <div class="crew-item crew-blue reveal"><img src="mascot/blue.png" alt="파란 외계인" width="319" height="360" loading="lazy"><div class="crew-name">BLUE</div></div>
-      <div class="crew-item crew-green reveal"><img src="mascot/green.png" alt="초록 외계인" width="323" height="360" loading="lazy"><div class="crew-name">GREEN</div></div>
-      <div class="crew-item crew-pink reveal"><img src="mascot/pink.png" alt="분홍 외계인" width="322" height="360" loading="lazy"><div class="crew-name">PINK</div></div>
+    <div class="book rise d3">
+      <div class="cover empty" data-ko="비어 있음" data-en="Empty">비어 있음</div>
+      <div class="meta"><span class="no">No.002</span><span class="no">—</span></div>
+      <div class="ttl empty" data-ko="다음 책" data-en="Next book">다음 책</div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="sec cta">
-  <div class="cta-box reveal">
-    <div class="sec-tag"><b>05</b>CONTACT</div>
-    <h2 class="sec-h" data-ko="다음 책은 당신의 책입니다" data-en="The next book is yours">다음 책은 당신의 책입니다</h2>
-    <p class="sec-p" data-ko="출판 문의 · 원고 투고 · 협업 제안. 쓰고 싶은 이야기가 있다면 신호를 보내주세요." data-en="Publishing inquiries · manuscripts · collaborations. If you have a story, send us a signal.">출판 문의 · 원고 투고 · 협업 제안. 쓰고 싶은 이야기가 있다면 신호를 보내주세요.</p>
-    <a href="contact.html" class="btn btn-primary"><span data-ko="신호 보내기" data-en="Send a signal">신호 보내기</span> →</a>
-  </div>
+<!-- 4장면: 끝 -->
+<section class="sec end" id="send">
+  <h2 class="rise" data-ko="우리가 찾던 작가는 바로 당신입니다." data-en="The author we were looking for is you.">우리가 찾던 작가는 <br class="m">바로 당신입니다.</h2>
+  <p class="send-lead rise d2" data-ko="원고 파일과 짧은 소개를 남겨 주세요. 읽고 메일로 답장드립니다." data-en="Leave your manuscript and a short note. We'll read it and reply by email.">원고 파일과 짧은 소개를 남겨 주세요. 읽고 메일로 답장드립니다.</p>
+  <form class="form rise d3" id="sendform" novalidate>
+    <div class="row2">
+      <label class="fld"><span data-ko="이름 또는 필명" data-en="Name or pen name">이름 또는 필명</span><input name="name" required autocomplete="name"></label>
+      <label class="fld"><span data-ko="답장 받을 이메일" data-en="Your email">답장 받을 이메일</span><input name="email" type="email" required autocomplete="email"></label>
+    </div>
+    <label class="fld"><span data-ko="원고 제목" data-en="Title">원고 제목</span><input name="title" required></label>
+    <label class="fld"><span data-ko="소개·제안" data-en="About the book">소개·제안</span><textarea name="note" required data-ph-ko="어떤 책인지, 왜 쓰게 되었는지 몇 줄이면 충분합니다." data-ph-en="A few lines on what it is and why you wrote it." placeholder="어떤 책인지, 왜 쓰게 되었는지 몇 줄이면 충분합니다."></textarea></label>
+    <label class="drop" id="drop"><input type="file" name="file" id="file" accept=".doc,.docx,.hwp,.hwpx,.pdf,.txt,.md" hidden>
+      <div id="droptxt"><span data-ko="원고 파일 끌어 놓기 또는 눌러서 고르기" data-en="Drop your file here or click to choose">원고 파일 끌어 놓기 또는 눌러서 고르기</span><small>docx · hwp · pdf · txt, 20MB</small></div></label>
+    <label class="hp" aria-hidden="true">website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <label class="agree"><input type="checkbox" name="agree" required><span data-ko="답장을 위해 이름·이메일을 받고, 검토가 끝나면 지웁니다. 이에 동의합니다." data-en="We collect your name and email only to reply, and delete them after review. I agree.">답장을 위해 이름·이메일을 받고, 검토가 끝나면 지웁니다. 이에 동의합니다.</span></label>
+    <button class="pill" type="submit" id="sendbtn"><span data-ko="원고 보내기" data-en="Send manuscript">원고 보내기</span> →</button>
+    <p class="msg" id="msg" role="status"></p>
+  </form>
 </section>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-brand-col">
-    <img src="logos/logo-white.png" alt="파란수박" class="footer-logo">
-    <p class="footer-tagline">
-      외계인이 설립한 출판사<br>
-      파란 수박
-    </p>
+<footer>
+  <div class="foot-row">
+    <img src="logos/logo-white.png" alt="파란수박">
+    <a class="mail" href="mailto:donghoon807@gmail.com">donghoon807@gmail.com</a>
+    <span>© 2026 파란수박 · 사진 <a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">ESO/S. Brunier</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>) · <a href="https://www.nasa.gov/image-detail/amf-iss074e0089803/" target="_blank" rel="noopener">NASA</a></span>
   </div>
-  <div class="footer-links-col">
-    <div class="footer-col-title">Pages</div>
-    <ul class="footer-links">
-      <li><a href="report.html">보고서</a></li>
-      <li><a href="books.html">책장</a></li>
-      <li><a href="lab.html">실험실</a></li>
-      <li><a href="hq.html">파란수박본부</a></li>
-      <li><a href="contact.html">안녕하세요?</a></li>
-    </ul>
-  </div>
-  <div class="footer-contact-col">
-    <div class="footer-col-title">Contact</div>
-    <a href="mailto:donghoon807@gmail.com" class="footer-email">donghoon807@gmail.com</a>
-    <p class="footer-copy">수신 확인까지 1–3 지구일 소요됩니다.</p>
-  </div>
+  <div class="giant" aria-hidden="true">BLUE WATERMELON</div>
 </footer>
-<div class="footer-bottom">
-  <span class="footer-bottom-text">© 2026 파란수박 — 지구기록보관소</span>
-  <span class="footer-bottom-text">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON · Earth imagery: NASA</span>
-</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="land.js"></script>
 <script>
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const hero = document.getElementById('hero');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DPR = Math.min(window.devicePixelRatio || 1, 2);
+const clamp = (v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease = t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+let W=innerWidth, H=innerHeight;
 
-// ─── 별 ───
-(function () {
-  const c = document.getElementById('stars'), x = c.getContext('2d');
-  let stars = [];
-  function size() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    c.width = hero.clientWidth * dpr; c.height = hero.clientHeight * dpr;
-    x.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.floor(hero.clientWidth * hero.clientHeight / 3800);
-    stars = Array.from({ length: n }, () => ({ x: Math.random() * hero.clientWidth, y: Math.random() * hero.clientHeight, r: Math.random() * 1.1 + 0.2, p: Math.random() * 6.28, s: Math.random() * 0.0015 + 0.0004 }));
+/* ── 하늘: 은하수 사진(ESO) + 반짝이는 별 ── */
+const sky=document.getElementById('sky'), sc=sky.getContext('2d');
+let base=null, twinkle=[];
+function rnd(s){return function(){s=(s*16807)%2147483647;return (s-1)/2147483646}}
+const skyImg=new Image(); skyImg.src='photos/milkyway-eso.jpg'; skyImg.onload=()=>{buildSky()};
+function buildSky(){
+  sky.width=W*DPR; sky.height=H*DPR;
+  base=document.createElement('canvas'); base.width=sky.width; base.height=sky.height;
+  const b=base.getContext('2d'); b.scale(DPR,DPR);
+  b.fillStyle='#03050c'; b.fillRect(0,0,W,H);
+  if(skyImg.naturalWidth){ // 화면을 덮도록(가운데 기준)
+    const iw=skyImg.naturalWidth, ih=skyImg.naturalHeight;
+    const k=Math.max(W/iw,H/ih)*(W<H?1.15:1.05), dw=iw*k, dh=ih*k;
+    b.drawImage(skyImg,(W-dw)/2,(H-dh)/2,dw,dh);
   }
-  function draw(t) {
-    x.clearRect(0, 0, c.width, c.height);
-    for (const s of stars) {
-      const a = reduceMotion ? 0.6 : 0.35 + 0.45 * (Math.sin(t * s.s + s.p) + 1) / 2;
-      x.fillStyle = `rgba(220,228,255,${a})`;
-      x.beginPath(); x.arc(s.x, s.y, s.r, 0, 6.283); x.fill();
-    }
-    if (!reduceMotion) requestAnimationFrame(draw);
+  // 가장자리 어둡게(글자 읽힘)
+  const v=b.createRadialGradient(W/2,H/2,Math.min(W,H)*.2,W/2,H/2,Math.hypot(W,H)*.62);
+  v.addColorStop(0,'rgba(3,5,12,.12)'); v.addColorStop(1,'rgba(3,5,12,.6)');
+  b.fillStyle=v; b.fillRect(0,0,W,H);
+  // 반짝이는 별만 코드로
+  const r=rnd(7); twinkle=[];
+  const m=Math.round(W*H/16000);
+  for(let i=0;i<m;i++) twinkle.push({x:r()*W,y:r()*H,s:.7+r()*1.2,p:r()*6.28,v:.6+r()*1.6});
+}
+function drawSky(t){
+  sc.setTransform(1,0,0,1,0,0); sc.drawImage(base,0,0); sc.setTransform(DPR,0,0,DPR,0,0);
+  for(const s of twinkle){
+    const a=reduce?.8:.45+.55*Math.sin(t*.001*s.v+s.p);
+    sc.globalAlpha=clamp(a); sc.fillStyle='#fff';
+    sc.beginPath(); sc.arc(s.x,s.y,s.s,0,7); sc.fill();
+    if(s.s>1.6){sc.globalAlpha=clamp(a)*.35;sc.fillRect(s.x-s.s*3,s.y-.3,s.s*6,.6);sc.fillRect(s.x-.3,s.y-s.s*3,.6,s.s*6)}
   }
-  size(); requestAnimationFrame(draw);
-  window.addEventListener('resize', size);
-})();
-
-// ─── 지구 (NASA Blue Marble · Black Marble · 구름) ───
-(function () {
-  const canvas = document.getElementById('globe');
-  let renderer;
-  try {
-    if (!window.THREE) throw new Error('no three');
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  } catch (e) { hero.classList.add('no-webgl'); canvas.style.display = 'none'; return; }
-
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-  camera.position.set(0, 0, 4.2);
-
-  const loader = new THREE.TextureLoader();
-  const big = window.innerWidth > 1000;
-  const aniso = renderer.capabilities.getMaxAnisotropy();
-  function tex(url) { const t = loader.load(url); t.anisotropy = aniso; return t; }
-  const dayTex = tex(big ? 'earth/earth-day-4k.jpg' : 'earth/earth-day-2k.jpg');
-  const nightTex = tex('earth/earth-night-2k.jpg');
-  const cloudTex = tex('earth/earth-clouds-2k.jpg');
-
-  const sunDir = new THREE.Vector3(-0.35, 0.28, 0.9).normalize();
-
-  const earthMat = new THREE.ShaderMaterial({
-    uniforms: { dayTex: { value: dayTex }, nightTex: { value: nightTex }, sunDir: { value: sunDir } },
-    vertexShader: `
-      varying vec2 vUv; varying vec3 vN; varying vec3 vW;
-      void main() {
-        vUv = uv;
-        vN = normalize(mat3(modelMatrix) * normal);
-        vec4 w = modelMatrix * vec4(position, 1.0); vW = w.xyz;
-        gl_Position = projectionMatrix * viewMatrix * w;
-      }`,
-    fragmentShader: `
-      uniform sampler2D dayTex; uniform sampler2D nightTex; uniform vec3 sunDir;
-      varying vec2 vUv; varying vec3 vN; varying vec3 vW;
-      void main() {
-        vec3 n = normalize(vN);
-        float d = dot(n, sunDir);
-        float dayMix = smoothstep(-0.12, 0.22, d);
-        vec3 day = texture2D(dayTex, vUv).rgb;
-        day = pow(day, vec3(0.92)) * (0.08 + 1.05 * max(d, 0.0));
-        vec3 night = texture2D(nightTex, vUv).rgb;
-        night = pow(night, vec3(1.6)) * vec3(1.25, 1.0, 0.75) * 1.4;
-        vec3 col = mix(night, day, dayMix);
-        vec3 v = normalize(cameraPosition - vW);
-        float rim = pow(1.0 - max(dot(n, v), 0.0), 3.0);
-        col += vec3(0.35, 0.55, 1.0) * rim * (0.15 + 0.85 * dayMix) * 0.9;
-        gl_FragColor = vec4(col, 1.0);
-      }`
-  });
-
-  const cloudMat = new THREE.ShaderMaterial({
-    uniforms: { cloudTex: { value: cloudTex }, sunDir: { value: sunDir } },
-    transparent: true, depthWrite: false,
-    vertexShader: `
-      varying vec2 vUv; varying vec3 vN;
-      void main() { vUv = uv; vN = normalize(mat3(modelMatrix) * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-    fragmentShader: `
-      uniform sampler2D cloudTex; uniform vec3 sunDir;
-      varying vec2 vUv; varying vec3 vN;
-      void main() {
-        float a = texture2D(cloudTex, vUv).r;
-        a = smoothstep(0.12, 0.9, a);
-        float l = max(dot(normalize(vN), sunDir), 0.0);
-        gl_FragColor = vec4(vec3(1.0) * (0.05 + 1.0 * l), a * 0.85 * (0.1 + 0.9 * smoothstep(-0.1, 0.3, l)));
-      }`
-  });
-
-  const atmoMat = new THREE.ShaderMaterial({
-    uniforms: { sunDir: { value: sunDir } },
-    side: THREE.BackSide, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false,
-    vertexShader: `
-      varying vec3 vN; varying vec3 vWN;
-      void main() { vN = normalize(normalMatrix * normal); vWN = normalize(mat3(modelMatrix) * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-    fragmentShader: `
-      uniform vec3 sunDir; varying vec3 vN; varying vec3 vWN;
-      void main() {
-        float i = pow(clamp(-vN.z / 0.36, 0.0, 1.0), 3.0);
-        float lit = 0.3 + 0.7 * smoothstep(-0.4, 0.5, dot(vWN, sunDir));
-        gl_FragColor = vec4(vec3(0.35, 0.58, 1.0) * i * 1.25 * lit, 1.0);
-      }`
-  });
-
-  const geo = new THREE.SphereGeometry(1, 128, 128);
-  const tilt = new THREE.Group();
-  tilt.rotation.z = 23.4 * Math.PI / 180;
-  const earth = new THREE.Mesh(geo, earthMat);
-  const clouds = new THREE.Mesh(geo, cloudMat); clouds.scale.setScalar(1.008);
-  tilt.add(earth); tilt.add(clouds);
-  const atmo = new THREE.Mesh(geo, atmoMat); atmo.scale.setScalar(1.07);
-  const holder = new THREE.Group();
-  holder.add(tilt); holder.add(atmo);
-  scene.add(holder);
-
-  // 시작 위치: 한반도(동경 127°)가 화면 가운데쯤 오도록
-  const startRot = Math.PI / 2 - ((127 + 180) / 360) * Math.PI * 2 - 0.5;
-  earth.rotation.y = startRot; clouds.rotation.y = startRot;
-
-  function layout() {
-    const w = hero.clientWidth, h = hero.clientHeight;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h; camera.updateProjectionMatrix();
-    const halfH = Math.tan(15 * Math.PI / 180) * 4.2, halfW = halfH * camera.aspect;
-    if (w > 900) { holder.position.set(Math.max(halfW - 0.82, 0.55), 0.02, 0); holder.scale.setScalar(0.82); }
-    else { holder.position.set(0, -halfH + 0.05, 0); holder.scale.setScalar(Math.min(1.25, halfW * 1.15)); }
-  }
-  layout(); window.addEventListener('resize', layout);
-
-  let mx = 0, my = 0;
-  window.addEventListener('pointermove', e => { mx = (e.clientX / window.innerWidth - 0.5); my = (e.clientY / window.innerHeight - 0.5); }, { passive: true });
-
-  let last = performance.now(), visible = true;
-  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(hero);
-  function frame(now) {
-    const dt = Math.min((now - last) / 1000, 0.05); last = now;
-    if (visible) {
-      if (!reduceMotion) {
-        earth.rotation.y += dt * 0.035;
-        clouds.rotation.y += dt * 0.042;
-        holder.rotation.y += ((mx * 0.12) - holder.rotation.y) * 0.04;
-        holder.rotation.x += ((my * 0.08) - holder.rotation.x) * 0.04;
-      }
-      renderer.render(scene, camera);
-    }
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
-
-// ─── 문구 전환 ───
-const koList = ['100억 자산가','5선 국회의원','대기업 대표','1천만 인플루언서','유명 연예인','노벨상 수상자'];
-const enList = ['billionaires','5-term politicians','CEOs','10M influencers','celebrities','Nobel laureates'];
-let idx = 0, isKo = true;
-setInterval(() => {
-  const el = document.getElementById('changing-text');
-  el.classList.add('out');
-  setTimeout(() => {
-    idx = (idx + 1) % koList.length;
-    el.textContent = isKo ? koList[idx] : enList[idx];
-    el.classList.remove('out');
-  }, 600);
-}, 3600);
-
-// ─── 한/영 ───
-function toggleLang() {
-  isKo = !isKo;
-  document.getElementById('nav-lang').textContent = isKo ? 'EN' : 'KO';
-  document.querySelectorAll('[data-ko][data-en]').forEach(el => { el.textContent = isKo ? el.dataset.ko : el.dataset.en; });
-  document.querySelectorAll('[data-ko-html]').forEach(el => { el.innerHTML = isKo ? el.dataset.koHtml : el.dataset.enHtml; });
-  document.getElementById('hero-title').innerHTML = isKo
-    ? `우리는 <span class="nb"><span class="changing" id="changing-text">${koList[idx]}</span>보다</span><br>당신이 쓰는 책이<br>더 궁금해`
-    : `We're more curious<br>about your book than<br><span class="changing" id="changing-text">${enList[idx]}</span>'s`;
+  sc.globalAlpha=1;
 }
 
-// ─── 나타나기 · nav ───
-const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-const nav = document.getElementById('site-nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+/* ── 지구: 점으로 그린 대륙 + 경위선 ── */
+const gl=document.getElementById('globe'), gc=gl.getContext('2d');
+const L3=[]; for(let i=0;i<LAND.length;i+=2){const la=LAND[i]*Math.PI/180, lo=LAND[i+1]*Math.PI/180; L3.push([Math.cos(la)*Math.sin(lo),Math.sin(la),Math.cos(la)*Math.cos(lo)])}
+const TILT=0.38;
+function photoHorizon(){ // 지구 사진(D)의 지평선 위치·휘어짐을 화면 좌표로
+  const iw=2560, ih=1438, k=Math.max(W/iw,H/ih), dw=iw*k, dh=ih*k;
+  const ox=(W-dw)*.5, oy=(H-dh)*.55;
+  return {cx:ox+.541*dw, top:oy+.532*dh, R:5.07*dw};
+}
+function proj(v,rot){ // y축 회전 → x축 기울임
+  const c=Math.cos(rot), s=Math.sin(rot);
+  const x=v[0]*c+v[2]*s, z0=-v[0]*s+v[2]*c;
+  const ct=Math.cos(TILT), st=Math.sin(TILT);
+  return [x, v[1]*ct-z0*st, v[1]*st+z0*ct];
+}
+function drawGlobe(p,t){
+  gc.setTransform(DPR,0,0,DPR,0,0); gc.clearRect(0,0,W,H);
+  const e=ease(clamp((p-.12)/.6));
+  if(p<.08) return;
+  const ph=photoHorizon();
+  const r0=3, R=r0*Math.pow(ph.R/r0,e);
+  const top=(H*.5-r0)+(ph.top-(H*.5-r0))*e;
+  const cx=W/2+(ph.cx-W/2)*e, cy=top+R;
+  const appear=clamp((p-.08)/.05);
+  gc.globalAlpha=appear;
+  // 대기 빛
+  const glow=gc.createRadialGradient(cx,cy,R*.9,cx,cy,R*1.18+18);
+  glow.addColorStop(0,'rgba(70,120,255,0)'); glow.addColorStop(.42,'rgba(90,140,255,.38)'); glow.addColorStop(1,'rgba(90,140,255,0)');
+  gc.fillStyle=glow; gc.beginPath(); gc.arc(cx,cy,R*1.18+18,0,7); gc.fill();
+  // 몸통(뒤 별 가림)
+  const body=gc.createRadialGradient(cx-R*.3,cy-R*.4,R*.1,cx,cy,R);
+  body.addColorStop(0,'#0e1d46'); body.addColorStop(1,'#050a1c');
+  gc.fillStyle=body; gc.beginPath(); gc.arc(cx,cy,R,0,7); gc.fill();
+  if(R<7){ gc.fillStyle='#bcd2ff'; gc.beginPath(); gc.arc(cx,cy,R*.8,0,7); gc.fill(); gc.globalAlpha=1; return; }
+  const rot=(reduce?0:t*.00005)+p*1.4-1.2;
+  // 경위선
+  gc.lineWidth=Math.max(.5,R/900); gc.strokeStyle='rgba(150,180,255,.13)';
+  const seg=(pts)=>{let on=false;gc.beginPath();for(const q of pts){const v=proj(q,rot);if(v[2]>0){const X=cx+v[0]*R,Y=cy-v[1]*R;on?gc.lineTo(X,Y):gc.moveTo(X,Y);on=true}else on=false}gc.stroke()};
+  for(let la=-60;la<=60;la+=30){const a=la*Math.PI/180,pts=[];for(let lo=0;lo<=360;lo+=4){const o=lo*Math.PI/180;pts.push([Math.cos(a)*Math.sin(o),Math.sin(a),Math.cos(a)*Math.cos(o)])}seg(pts)}
+  for(let lo=0;lo<180;lo+=30){const o=lo*Math.PI/180,pts=[];for(let la=0;la<=360;la+=4){const a=la*Math.PI/180;pts.push([Math.cos(a)*Math.sin(o),Math.sin(a),Math.cos(a)*Math.cos(o)])}seg(pts)}
+  // 대륙 점
+  const ds=Math.max(.9,Math.min(R/240,6));
+  for(const q of L3){
+    const v=proj(q,rot); if(v[2]<=0.02) continue;
+    const X=cx+v[0]*R, Y=cy-v[1]*R;
+    if(X<-10||X>W+10||Y<-10||Y>H+10) continue;
+    gc.fillStyle=`rgba(200,220,255,${.25+.7*v[2]})`;
+    const s=ds*(.55+.45*v[2]); gc.fillRect(X-s/2,Y-s/2,s,s);
+  }
+  // 가장자리 빛
+  gc.strokeStyle='rgba(150,190,255,.55)'; gc.lineWidth=Math.max(1,R/400);
+  gc.beginPath(); gc.arc(cx,cy,R,0,7); gc.stroke();
+  gc.globalAlpha=1;
+}
+
+/* ── 스크롤 → 장면 ── */
+const journey=document.getElementById('journey'), hero=document.getElementById('hero'), hint=document.getElementById('hint');
+const l1=document.getElementById('l1'), l2=document.getElementById('l2'), nav=document.getElementById('nav');
+let P=0;
+const ephoto=document.getElementById('earthphoto'), cEarth=document.getElementById('credit-earth');
+function onScroll(){
+  const r=journey.getBoundingClientRect();
+  P=clamp(-r.top/(r.height-H));
+  const h=clamp(P/.1);
+  hero.style.opacity=1-h; hero.style.filter=`blur(${h*10}px)`; hero.style.transform=`translateY(${-h*60}px) scale(${1-h*.04})`;
+  hint.style.opacity=1-clamp(P/.03);
+  const lineIn=(el,a,b)=>{const k=clamp((P-a)/(b-a));el.style.opacity=k;el.style.filter=`blur(${(1-k)*14}px)`};
+  lineIn(l1,.5,.62); lineIn(l2,.6,.72);
+  const z=1+ease(clamp((P-.1)/.65))*.35; sky.style.transform=`scale(${z})`;
+  const k=ease(clamp((P-.5)/.14));
+  ephoto.style.opacity=k; ephoto.style.filter=`blur(${(1-k)*10}px)`; gl.style.opacity=1-k;
+  cEarth.style.opacity=k>.5?1:0;
+  nav.classList.toggle('scrolled',scrollY>40);
+}
+addEventListener('scroll',onScroll,{passive:true});
+
+function frame(t){drawSky(t);drawGlobe(P,t);drawDust();requestAnimationFrame(frame)}
+function resize(){W=innerWidth;H=innerHeight;gl.width=W*DPR;gl.height=H*DPR;buildSky();onScroll()}
+addEventListener('resize',resize); resize(); requestAnimationFrame(frame);
+
+/* ── 직함 바꾸기: 글자가 별가루로 흩어지고, 새 글자가 별빛처럼 켜짐 ── */
+const koList=['100억 자산가','5선 국회의원','대기업 대표','1천만 인플루언서','유명 연예인','노벨상 수상자'];
+const enList=['billionaires','5-term politicians','CEOs','10M influencers','celebrities','Nobel laureates'];
+let idx=0, isKo=true;
+const chars=(w,cls,d0)=>[...w].map((c,i)=>`<span class="ch ${cls}" style="animation-delay:${d0+i*55}ms">${c===' '?'&nbsp;':c}</span>`).join('');
+function renderTitle(){
+  document.getElementById('hero-title').innerHTML=isKo
+    ?`우리는<br class="m"> <span class="nb"><span class="changing" id="changing">${chars(koList[idx],'',0)}</span>보다</span><br>당신이 쓰는 책이 <br class="m">더 궁금해`
+    :`We're more curious<br>about your book than<br><span class="changing" id="changing">${chars(enList[idx],'',0)}</span>'s`;
+  fitSlot();
+}
+/* 빈칸 폭 = 가장 긴 직함 폭으로 고정 → '보다'가 움직이지 않음 */
+function fitSlot(){
+  const el=document.getElementById('changing'); if(!el) return;
+  const m=document.createElement('span'); m.style.cssText='position:absolute;visibility:hidden;white-space:nowrap';
+  el.parentNode.appendChild(m); let w=0;
+  for(const t of (isKo?koList:enList)){m.textContent=t; w=Math.max(w,m.getBoundingClientRect().width)}
+  m.remove(); el.style.width=Math.ceil(w+getComputedStyle(el).fontSize.replace('px','')*.3)+'px';
+}
+renderTitle(); addEventListener('resize',fitSlot); document.fonts&&document.fonts.ready.then(fitSlot);
+const dust=document.getElementById('dust'), dc=dust.getContext('2d'); let motes=[];
+function emit(rect,n,mode){
+  const hr=hero.getBoundingClientRect();
+  for(let i=0;i<n;i++){
+    const x=rect.left-hr.left+Math.random()*rect.width, y=rect.top-hr.top+rect.height*(.2+Math.random()*.65);
+    motes.push(mode==='out'
+      ?{x,y,vx:(Math.random()-.3)*.5,vy:-.15-Math.random()*.55,life:0,max:60+Math.random()*60,s:.5+Math.random()*1.3}
+      :{x,y,vx:0,vy:0,life:0,max:30+Math.random()*30,s:1+Math.random()*1.6,spark:1,delay:Math.random()*30});
+  }
+}
+function drawDust(){
+  dust.width!==W*DPR&&(dust.width=W*DPR,dust.height=H*DPR);
+  dc.setTransform(DPR,0,0,DPR,0,0); dc.clearRect(0,0,W,H);
+  motes=motes.filter(m=>m.life<m.max+(m.delay||0));
+  for(const m of motes){
+    m.life++; if(m.delay&&m.life<m.delay) continue;
+    const t=(m.life-(m.delay||0))/m.max;
+    m.x+=m.vx; m.y+=m.vy; m.vx*=.985; m.vy*=.985;
+    const a=m.spark?Math.sin(Math.PI*t):(1-t)*(.6+.4*Math.sin(m.life*.4));
+    dc.globalAlpha=clamp(a); dc.fillStyle=m.spark?'#fff':'#bcd4ff';
+    dc.beginPath(); dc.arc(m.x,m.y,m.s*(m.spark?(1-t*.5):1),0,7); dc.fill();
+    if(m.spark&&m.s>2){dc.globalAlpha=clamp(a)*.5;dc.fillRect(m.x-m.s*4,m.y-.35,m.s*8,.7);dc.fillRect(m.x-.35,m.y-m.s*4,.7,m.s*8)}
+  }
+  dc.globalAlpha=1;
+}
+function swapWord(){
+  const el=document.getElementById('changing'); if(!el) return;
+  const next=isKo?koList[(idx+1)%koList.length]:enList[(idx+1)%enList.length];
+  idx=(idx+1)%koList.length;
+  el.querySelectorAll('.ch').forEach(c=>emit(c.getBoundingClientRect(),14,'out'));
+  const ghost=document.createElement('span'); ghost.className='ghost';
+  ghost.innerHTML=[...el.querySelectorAll('.ch')].map((c,i)=>`<span class="ch out" style="animation-delay:${i*25}ms">${c.innerHTML}</span>`).join('');
+  el.innerHTML=chars(next,'in',560); el.appendChild(ghost);
+  setTimeout(()=>{el.querySelectorAll('.ch.in').forEach((c,i)=>setTimeout(()=>emit(c.getBoundingClientRect(),3,'in'),i*55))},600);
+  setTimeout(()=>{ghost.remove()},1500);
+}
+setInterval(()=>{if(P<.1&&!document.hidden) swapWord()},3400);
+
+/* ── 원고 보내기: 이 페이지 안에서 바로 접수 ──
+   ENDPOINT = 구글 Apps Script 웹 앱 주소(파일은 구글 드라이브 '파란수박 원고함'에 저장 + 메일 알림).
+   비어 있으면 시안 모드(실제로 보내지 않음). */
+const ENDPOINT='';
+const DRAFT=/^(127\.0\.0\.1|localhost)$/.test(location.hostname); // 내 컴퓨터에서 볼 때만 시안 모드
+const MAILONLY=!ENDPOINT&&!DRAFT; // 주소 넣기 전 실제 홈페이지 = 메일 창 열기
+const MAXMB=20;
+(function(){
+  const f=document.getElementById('sendform'), drop=document.getElementById('drop'), fi=document.getElementById('file'),
+        dt=document.getElementById('droptxt'), msg=document.getElementById('msg'), btn=document.getElementById('sendbtn');
+  const T=(ko,en)=>isKo?ko:en;
+  const esc=t=>String(t).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+  const show=file=>{ if(!file) return; drop.classList.add('has');
+    dt.innerHTML=`📄 ${esc(file.name)}<small>${(file.size/1048576).toFixed(1)}MB · ${T('바꾸려면 다시 누르세요','click to change')}</small>`; };
+  const err=t=>{msg.className='msg err';msg.textContent=t};
+  fi.onchange=()=>show(fi.files[0]);
+  ['dragenter','dragover'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('over')}));
+  ['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('over')}));
+  drop.addEventListener('drop',ev=>{ if(ev.dataTransfer.files[0]){ fi.files=ev.dataTransfer.files; show(fi.files[0]); } });
+  const b64=file=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(String(r.result).split(',')[1]);r.onerror=no;r.readAsDataURL(file)});
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  /* 양식이 버튼 쪽으로 접혀 빛 한 점 → 꼬리를 그리며 솟아 → 작은 밤하늘에 새 별로 박힘 */
+  async function launchStar(name,title){
+    const r=f.getBoundingClientRect(), b=btn.getBoundingClientRect();
+    const sx=b.left+b.width/2, sy=b.top+b.height/2;
+    const done=document.createElement('div'); done.className='done'; done.style.minHeight=r.height+'px';
+    let dots=''; for(let i=0;i<26;i++) dots+=`<i style="left:${(Math.random()*96+2).toFixed(1)}%;top:${(Math.random()*92+4).toFixed(1)}%;--o:${(Math.random()*.45+.12).toFixed(2)}"></i>`;
+    done.innerHTML=`<div class="newsky">${dots}<span class="nring"></span><span class="nstar"></span>
+      <span class="nlabel">✦ ${esc(name)} · ${isKo?'《'+esc(title)+'》':'“'+esc(title)+'”'}</span></div>
+      <div class="dtxt"><b>${T('원고가 잘 보내졌습니다.','Your manuscript has been sent.')}</b>
+      <p>${T('오늘 밤하늘에 별 하나가 늘었어요.',"There is one more star in the sky tonight.")}</p>
+      <p>${T('꼼꼼히 읽고 남겨 주신 메일로 답장드릴게요.','We will read it carefully and reply by email.')}</p>
+      ${!DRAFT||ENDPOINT?'':`<div><small style="color:var(--dim)">${T('(시안 모드: 실제로 보내지지 않았습니다)','(Draft mode: nothing was actually sent)')}</small><br><button class="again" type="button">${T('시안: 다시 해 보기','Draft: try again')}</button></div>`}</div>`;
+    // 1) 양식 접기 + 빛 모으기
+    const cv=document.createElement('canvas'); cv.id='flight'; document.body.appendChild(cv);
+    const dpr=Math.min(devicePixelRatio||1,2), W=innerWidth, H=innerHeight;
+    cv.width=W*dpr; cv.height=H*dpr; const g=cv.getContext('2d'); g.scale(dpr,dpr);
+    f.style.transition='transform .75s cubic-bezier(.7,0,.3,1),opacity .6s .15s,filter .75s';
+    f.style.transformOrigin=`${sx-r.left}px ${sy-r.top}px`;
+    requestAnimationFrame(()=>{f.style.transform='scale(.02)';f.style.opacity='0';f.style.filter='blur(8px)'});
+    const glow=(x,y,rad,a)=>{const gr=g.createRadialGradient(x,y,0,x,y,rad);
+      gr.addColorStop(0,`rgba(255,255,255,${a})`);gr.addColorStop(.25,`rgba(200,222,255,${a*.8})`);gr.addColorStop(1,'rgba(143,180,255,0)');
+      g.fillStyle=gr;g.beginPath();g.arc(x,y,rad,0,7);g.fill();};
+    const parts=[]; let tx=0,ty=0,landed=false;
+    const t0=performance.now(), CH=750, FL=1300, END=CH+FL+900;
+    const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+    setTimeout(()=>{ f.replaceWith(done); const st=done.querySelector('.nstar').getBoundingClientRect();
+      tx=st.left+st.width/2; ty=st.top+st.height/2; },CH);
+    await new Promise(res=>{ (function frame(now){
+      const t=now-t0; g.clearRect(0,0,W,H);
+      let hx=sx,hy=sy,hr=4+Math.min(t/CH,1)*10,ha=Math.min(t/CH,1);
+      if(t>CH){ const k=Math.min((t-CH)/FL,1), e=ease(k);
+        const cx=sx+(tx-sx)*.5+(sx<W/2?-1:1)*Math.min(W*.22,220), cy=Math.min(sy,ty)-120;   // 휘어 오르는 길
+        hx=(1-e)*(1-e)*sx+2*(1-e)*e*cx+e*e*tx; hy=(1-e)*(1-e)*sy+2*(1-e)*e*cy+e*e*ty;
+        hr=14-e*6; ha=1;
+        if(k<1) for(let i=0;i<3;i++) parts.push({x:hx+(Math.random()-.5)*4,y:hy+(Math.random()-.5)*4,
+          vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5+.15,l:1,s:Math.random()*1.8+.6});
+        if(k>=1&&!landed){ landed=true; done.classList.add('lit'); }
+      }
+      for(const q of parts){ q.x+=q.vx; q.y+=q.vy; q.l-=.018;
+        if(q.l>0){ g.fillStyle=`rgba(${200+Math.random()*55|0},${220+Math.random()*35|0},255,${q.l*.9})`; g.fillRect(q.x,q.y,q.s,q.s); } }
+      if(!landed) glow(hx,hy,hr,ha);
+      if(t<END) requestAnimationFrame(frame); else { cv.remove(); res(); }
+    })(t0); });
+    const ag=done.querySelector('.again');
+    if(ag) ag.onclick=()=>{ f.removeAttribute('style'); f.reset(); drop.classList.remove('has');
+      dt.innerHTML=`<span>${T('원고 파일 끌어 놓기 또는 눌러서 고르기','Drop your file here or click to choose')}</span><small>docx · hwp · pdf · txt, 20MB</small>`;
+      btn.disabled=false; done.replaceWith(f); };
+  }
+  /* 시안 모드 전용: 빈칸 안 채워도 별 장면 바로 보기 */
+  if(DRAFT&&!ENDPOINT){ const pv=document.createElement('button'); pv.type='button'; pv.className='again'; pv.style.cssText='display:block;margin:6px auto 0;font-size:14px;color:rgba(190,215,255,.75);background:none;border:0;font-family:inherit;cursor:pointer;text-decoration:underline';
+    pv.textContent='✦ 시안: 보낸 뒤 장면 바로 보기'; f.appendChild(pv);
+    pv.onclick=async()=>{ btn.disabled=true; await launchStar(f.name.value.trim()||T('홍길동','Jane Doe'),f.title.value.trim()||T('달 뒷면의 편지','Letters from the Far Side')); }; }
+  f.addEventListener('submit',async ev=>{
+    ev.preventDefault(); msg.className='msg'; msg.textContent='';
+    const d=new FormData(f), file=fi.files[0];
+    if(d.get('website')) return;
+    for(const k of ['name','email','title','note']) if(!String(d.get(k)||'').trim()) return err(T('빈칸을 모두 채워 주세요.','Please fill in all the fields.'));
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(d.get('email')).trim())) return err(T('이메일 주소 형식이 맞지 않아요. 예) name@gmail.com','That email address does not look right (e.g. name@gmail.com).'));
+    if(!file&&!MAILONLY) return err(T('원고 파일을 첨부해 주세요.','Please attach your manuscript file.'));
+    if(file&&file.size>MAXMB*1048576) return err(T(`파일은 ${MAXMB}MB까지 보낼 수 있어요.`,`Max ${MAXMB}MB.`));
+    if(!d.get('agree')) return err(T('개인정보 동의에 표시해 주세요.','Please tick the consent box.'));
+    if(MAILONLY){
+      const sub=`[원고] ${String(d.get('title')).trim()} — ${String(d.get('name')).trim()}`;
+      const body=`이름: ${d.get('name')}
+이메일: ${String(d.get('email')).trim()}
+제목: ${d.get('title')}
+
+소개·제안:
+${d.get('note')}
+
+(원고 파일을 이 메일에 첨부해 주세요)`;
+      location.href='mailto:donghoon807@gmail.com?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
+      msg.className='msg'; msg.textContent=T('메일 창이 열렸어요. 원고 파일을 첨부해서 보내 주세요.','Your mail app has opened. Please attach your manuscript and send.');
+      return;
+    }
+    btn.disabled=true; msg.textContent=T('보내는 중…','Sending…');
+    try{
+      if(ENDPOINT){
+        const body=JSON.stringify({name:d.get('name'),email:String(d.get('email')).trim(),title:d.get('title'),note:d.get('note'),
+          fileName:file.name,mimeType:file.type||'application/octet-stream',data:await b64(file)});
+        const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body});
+        const j=await r.json(); if(!j.ok) throw new Error(j.error||'fail');
+      } else { await new Promise(r=>setTimeout(r,900)); }
+      msg.textContent=''; await launchStar(String(d.get('name')).trim(),String(d.get('title')).trim());
+    }catch(e){
+      btn.disabled=false; msg.className='msg err';
+      msg.innerHTML=T('보내지 못했어요. 잠시 뒤 다시 하시거나 <a href="mailto:donghoon807@gmail.com" style="text-decoration:underline">메일</a>로 보내 주세요.','Could not send. Try again or <a href="mailto:donghoon807@gmail.com" style="text-decoration:underline">email us</a>.');
+    }
+  });
+})();
+
+/* ── 바닥 큰 글씨: 화면 폭에 맞춰 잘리지 않게 ── */
+function fitGiant(){const g=document.querySelector('.giant'); if(!g) return; g.style.fontSize='100px';
+  const room=g.parentNode.clientWidth-parseFloat(getComputedStyle(g.parentNode).paddingLeft)*2;
+  g.style.fontSize=Math.min(100*room*.96/g.scrollWidth, innerWidth*.086)+'px'}
+fitGiant(); addEventListener('resize',fitGiant); document.fonts&&document.fonts.ready.then(fitGiant);
+
+/* ── 메뉴 이동:각 장면 제목이 메뉴 바로 아래 오도록 ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',ev=>{
+  const id=a.getAttribute('href').slice(1);
+  if(!id){ev.preventDefault();scrollTo({top:0,behavior:'smooth'});return}
+  const sec=document.getElementById(id); if(!sec) return; ev.preventDefault();
+  const t=sec.querySelector('.label,h2')||sec, navH=document.getElementById('nav').offsetHeight;
+  scrollTo({top:t.getBoundingClientRect().top+scrollY-navH-(innerHeight<760?16:40),behavior:'smooth'});
+  history.replaceState(null,'','#'+id);
+}));
+
+/* ── 한/영 ── */
+document.getElementById('lang').onclick=function(){
+  isKo=!isKo; this.textContent=isKo?'EN':'KO'; document.documentElement.lang=isKo?'ko':'en';
+  document.querySelectorAll('[data-ko][data-en]').forEach(el=>{el.innerHTML=isKo?el.dataset.ko.replace('작가는 ','작가는 <br class="m">'):el.dataset.en});
+  document.querySelectorAll('[data-ph-ko]').forEach(el=>el.placeholder=isKo?el.dataset.phKo:el.dataset.phEn);
+  renderTitle();
+};
+
+/* ── 나타나기 ── */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rise').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
