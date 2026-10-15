@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>책장 — 파란수박</title>
+<meta name="description" content="파란수박이 만든 책. 첫 번째 책 《베테랑 비욘드 — 세계 군인 창업 백과》, 정동훈 지음.">
+<link rel="canonical" href="https://bluewatermelon.co.kr/books.html">
+<meta name="theme-color" content="#080810">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="파란수박">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="책장 — 파란수박">
+<meta property="og:description" content="파란수박이 만든 책. 첫 번째 책 《베테랑 비욘드 — 세계 군인 창업 백과》, 정동훈 지음.">
+<meta property="og:url" content="https://bluewatermelon.co.kr/books.html">
+<meta property="og:image" content="https://bluewatermelon.co.kr/og/og-books.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="파란수박 책장 — 첫 번째 책 베테랑 비욘드">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="책장 — 파란수박">
+<meta name="twitter:description" content="파란수박이 만든 책. 첫 번째 책 《베테랑 비욘드 — 세계 군인 창업 백과》, 정동훈 지음.">
+<meta name="twitter:image" content="https://bluewatermelon.co.kr/og/og-books.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "베테랑 비욘드 — 세계 군인 창업 백과", "alternateName": "Veteran Beyond", "author": {"@type": "Person", "name": "정동훈"}, "publisher": {"@type": "Organization", "name": "파란수박", "url": "https://bluewatermelon.co.kr/"}, "inLanguage": "ko", "image": "https://bluewatermelon.co.kr/books/veteran-beyond-960.jpg", "url": "https://bluewatermelon.co.kr/books.html", "offers": {"@type": "Offer", "price": "15900", "priceCurrency": "KRW", "url": "https://product.kyobobook.co.kr/detail/S000220695815"}}</script>
+<link rel="icon" type="image/png" href="logos/1.png">
+<link rel="apple-touch-icon" href="logos/1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { padding: 148px 64px 56px; max-width: 1280px; margin: 0 auto; }
+.shelf { max-width: 1280px; margin: 0 auto; padding: 0 64px 120px; }
+.book {
+  display: grid; grid-template-columns: minmax(240px, 380px) 1fr;
+  gap: 80px; padding: 72px 0; border-top: 1px solid #16162A; align-items: start;
+}
+.book-cover { position: sticky; top: 120px; }
+.book-cover img {
+  display: block; width: 100%; height: auto;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+}
+.book-code {
+  font-family: var(--sans); font-size: 15px; font-weight: 500;
+  letter-spacing: 0.18em; color: #2B3EE8; margin-bottom: 20px;
+}
+.book-title {
+  font-size: clamp(34px, 5vw, 60px); font-weight: 600; color: #fff;
+  line-height: 1.15; letter-spacing: -0.015em; margin: 0 0 12px;
+}
+.book-sub { font-size: 22px; font-weight: 300; color: #fff; margin: 0 0 8px; }
+.book-meta {
+  font-family: var(--sans); font-size: 16px; color: rgba(255,255,255,0.55);
+  letter-spacing: 0.02em; margin: 0 0 36px;
+}
+.book-blurbs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+.book-blurb {
+  font-size: 16px; color: #fff; padding: 8px 14px;
+  border: 1px solid rgba(252,92,125,0.45); background: rgba(252,92,125,0.07);
+}
+.book-desc p { font-size: 18px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.78); margin: 0 0 18px; }
+.book-quote {
+  margin: 40px 0; padding: 4px 0 4px 24px; border-left: 2px solid #2DBD6E;
+  font-size: 21px; line-height: 1.7; color: #fff;
+}
+.book-quote cite { display: block; margin-top: 10px; font-style: normal; font-size: 15px; color: rgba(255,255,255,0.5); }
+.book-h { font-family: var(--sans); font-size: 16px; letter-spacing: 0.14em; color: rgba(255,255,255,0.6); margin: 48px 0 16px; text-transform: uppercase; }
+.book-toc { list-style: none; padding: 0; margin: 0; }
+.book-toc li { font-size: 18px; color: rgba(255,255,255,0.82); padding: 12px 0; border-bottom: 1px solid #16162A; }
+.book-buy {
+  display: inline-flex; align-items: center; gap: 12px; margin-top: 48px;
+  padding: 18px 30px; background: #2B3EE8; color: #fff; text-decoration: none;
+  font-size: 18px; font-weight: 600; transition: background .2s;
+}
+.book-buy:hover { background: #4152ff; }
+.book-price { display: inline-block; margin: 48px 0 0 20px; font-family: var(--sans); font-size: 18px; color: rgba(255,255,255,0.75); }
+.next-book {
+  display: grid; grid-template-columns: minmax(240px, 380px) 1fr; gap: 80px;
+  padding: 72px 0; border-top: 1px solid #16162A; align-items: center;
+}
+.next-slot {
+  aspect-ratio: 1748 / 2480; border: 1px dashed rgba(255,255,255,0.22);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: 64px; color: rgba(255,255,255,0.18);
+}
+.next-title { font-size: clamp(28px, 4vw, 48px); font-weight: 300; color: #fff; margin: 0 0 20px; line-height: 1.25; }
+.next-desc { font-size: 18px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.7); margin: 0 0 32px; }
+.next-link { color: #fff; font-size: 18px; text-decoration: none; border-bottom: 1px solid #FC5C7D; padding-bottom: 4px; }
+@media(max-width:900px){
+  .book, .next-book { grid-template-columns: 1fr; gap: 40px; }
+  .book-cover { position: static; max-width: 340px; }
+  .next-slot { max-width: 340px; }
+}
+@media(max-width:768px){
+  .page-hero { padding: 120px 28px 40px; }
+  .shelf { padding: 0 28px 80px; }
+  .book, .next-book { padding: 48px 0; }
+  .book-price { display: block; margin: 20px 0 0; }
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo"><img src="logos/11.png" alt="파란수박"></a>
+  <ul class="nav-links">
+    <li><a href="report.html" data-ko="보고서" data-en="REPORT">보고서</a></li>
+    <li><a href="books.html" class="active" data-ko="책장" data-en="BOOKS">책장</a></li>
+    <li><a href="lab.html" data-ko="실험실" data-en="LAB">실험실</a></li>
+    <li><a href="hq.html" data-ko="파란수박본부" data-en="B.W.H.Q">파란수박본부</a></li>
+    <li><a href="contact.html" data-ko="안녕하세요?" data-en="HELLO?">안녕하세요?</a></li>
+  </ul>
+  <div class="nav-lang" id="nav-lang" onclick="toggleLang()">EN</div>
+</nav>
+
+<div class="page-hero">
+  <span class="section-label reveal" data-ko="책장" data-en="BOOKS">책장</span>
+  <h1 class="section-title reveal" data-ko="파란수박이 만든 책" data-en="Books from Blue Watermelon">파란수박이 만든 책</h1>
+  <div class="section-divider"></div>
+</div>
+
+<div class="shelf">
+  <article class="book reveal">
+    <div class="book-cover">
+      <img src="books/veteran-beyond-480.jpg" srcset="books/veteran-beyond-480.jpg 480w, books/veteran-beyond-960.jpg 960w" sizes="(max-width: 900px) 340px, 380px" width="480" height="681" alt="베테랑 비욘드 — 세계 군인 창업 백과 표지">
+    </div>
+    <div class="book-info">
+      <div class="book-code" data-ko="BOOK 001 · 첫 번째 책" data-en="BOOK 001 · OUR FIRST BOOK">BOOK 001 · 첫 번째 책</div>
+      <h2 class="book-title">베테랑 비욘드</h2>
+      <p class="book-sub" data-ko="세계 군인 창업 백과" data-en="An Encyclopedia of Military Entrepreneurship Worldwide">세계 군인 창업 백과</p>
+      <p class="book-meta" data-ko="정동훈 지음 · 파란수박" data-en="by Donghoon Jung · Blue Watermelon">정동훈 지음 · 파란수박</p>
+
+      <div class="book-blurbs">
+        <span class="book-blurb" data-ko="대한민국 1세대 군인 창업 연구자 독보적 분석!" data-en="A singular analysis by Korea's first-generation military entrepreneurship researcher">대한민국 1세대 군인 창업 연구자 독보적 분석!</span>
+        <span class="book-blurb" data-ko="글로벌 10개국 25개 기업으로 꿰뚫는 군인 창업 집중 탐구!" data-en="25 companies in 10 countries">글로벌 10개국 25개 기업으로 꿰뚫는 군인 창업 집중 탐구!</span>
+        <span class="book-blurb" data-ko="공군항공과학고등학교 총동창회장 추천!" data-en="Recommended by the Korea Air Force Aeronautical Science High School Alumni Association">공군항공과학고등학교 총동창회장 추천!</span>
+      </div>
+
+      <div class="book-desc">
+        <p data-ko="군대는 창업과 가장 거리가 먼 조직처럼 보인다. 명령과 복종, 위계와 규율, 그리고 무엇보다 “실패해서는 안 된다”는 압박으로 이루어진 세계." data-en="The military looks like the organization furthest from entrepreneurship: a world of orders and obedience, hierarchy and discipline, and above all the pressure that failure is not an option.">군대는 창업과 가장 거리가 먼 조직처럼 보인다. 명령과 복종, 위계와 규율, 그리고 무엇보다 “실패해서는 안 된다”는 압박으로 이루어진 세계.</p>
+        <p data-ko="그러나 이 책은 정반대를 증명한다. 전장에서 발견한 문제, 군에서 단련된 역량, 생사를 함께한 전우 네트워크가 어떻게 세상을 바꾸는 창업으로 이어졌는가." data-en="This book proves the opposite: how problems found on the battlefield, capabilities forged in service, and networks of comrades became ventures that change the world.">그러나 이 책은 정반대를 증명한다. 전장에서 발견한 문제, 군에서 단련된 역량, 생사를 함께한 전우 네트워크가 어떻게 세상을 바꾸는 창업으로 이어졌는가.</p>
+        <p data-ko="『베테랑 비욘드』는 대한민국 1세대 군인 창업 연구자가 글로벌 10개국 25개 기업을 추적해 완성한 ‘세계 군인 창업 백과’다." data-en="Veteran Beyond is an encyclopedia of military entrepreneurship, built by tracking 25 companies across 10 countries.">『베테랑 비욘드』는 대한민국 1세대 군인 창업 연구자가 글로벌 10개국 25개 기업을 추적해 완성한 ‘세계 군인 창업 백과’다.</p>
+        <p data-ko="창업을 꿈꾸는 이, 군복을 벗고 새 길을 모색하는 예비 창업가, 국방·안보 정책 입안자, 그리고 군인정신의 진짜 쓸모가 궁금한 모든 독자에게 권한다." data-en="For aspiring founders, service members seeking a new path after the uniform, defense and security policymakers, and every reader curious about what the military spirit is really good for.">창업을 꿈꾸는 이, 군복을 벗고 새 길을 모색하는 예비 창업가, 국방·안보 정책 입안자, 그리고 군인정신의 진짜 쓸모가 궁금한 모든 독자에게 권한다.</p>
+      </div>
+
+      <blockquote class="book-quote">
+        <span data-ko="오랫동안 군인은 창업과 무관한 집단으로 여겨져 왔다. 이 책은 그 인식에 대한 이의 제기다." data-en="For a long time, soldiers were seen as a group with nothing to do with entrepreneurship. This book is an objection to that view.">오랫동안 군인은 창업과 무관한 집단으로 여겨져 왔다. 이 책은 그 인식에 대한 이의 제기다.</span>
+        <cite data-ko="— ‘들어서는 말’ 중에서" data-en="— from the Introduction">— ‘들어서는 말’ 중에서</cite>
+      </blockquote>
+
+      <div class="book-h" data-ko="차례" data-en="Contents">차례</div>
+      <ul class="book-toc">
+        <li>Part 1. 프롤로그: 전장(戰場)에서 시장(市場)으로</li>
+        <li>Part 2. 기술 최전선으로 진격하는 베테랑들</li>
+        <li>Part 3. 향토창업군(鄕土創業軍): 내 고향을 위한 스타트업 전술</li>
+        <li>Part 4. 멈추지 않는 미션: 사회적 문제를 해결하는 영웅들</li>
+        <li>Part 5. 밀리터리 스탠다드: 일상에 침투한 강력한 표준</li>
+        <li>Part 6. 에필로그: 창업군(創業軍)</li>
+      </ul>
+
+      <a class="book-buy" href="https://product.kyobobook.co.kr/detail/S000220695815" target="_blank" rel="noopener"><span data-ko="교보문고에서 보기" data-en="View at Kyobo Book Centre">교보문고에서 보기</span> →</a>
+      <span class="book-price">15,900원</span>
+    </div>
+  </article>
+
+  <section class="next-book reveal">
+    <div class="next-slot">002</div>
+    <div>
+      <div class="book-code" data-ko="BOOK 002 · 비어 있는 칸" data-en="BOOK 002 · AN EMPTY SLOT">BOOK 002 · 비어 있는 칸</div>
+      <h2 class="next-title" data-ko="다음 칸은 당신의 책입니다" data-en="The next slot is for your book">다음 칸은 당신의 책입니다</h2>
+      <p class="next-desc" data-ko="모든 지구인은 한 권의 책입니다. 쓰고 싶은 이야기가 있다면 신호를 보내주세요." data-en="Every earthling is a book. If you have a story to write, send us a signal.">모든 지구인은 한 권의 책입니다. 쓰고 싶은 이야기가 있다면 신호를 보내주세요.</p>
+      <a class="next-link" href="contact.html" data-ko="신호 보내기 →" data-en="Send a signal →">신호 보내기 →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand-col"><img src="logos/11.png" alt="파란수박" class="footer-logo"><p class="footer-tagline">외계인이 설립한 출판사<br>파란 수박</p></div>
+  <div class="footer-links-col"><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a href="report.html">보고서</a></li><li><a href="books.html">책장</a></li><li><a href="lab.html">실험실</a></li><li><a href="hq.html">파란수박본부</a></li><li><a href="contact.html">안녕하세요?</a></li></ul></div>
+  <div class="footer-contact-col"><div class="footer-col-title">Contact</div><a href="mailto:donghoon807@gmail.com" class="footer-email">donghoon807@gmail.com</a><p class="footer-copy">수신 확인까지 1–3 지구일 소요됩니다.</p></div>
+</footer>
+<div class="footer-bottom"><span class="footer-bottom-text">© 2026 파란수박 — 지구기록보관소</span><span class="footer-bottom-text">본부좌표 — 달 뒷면 / FAR SIDE OF THE MOON</span></div>
+<script>
+const nav = document.getElementById('site-nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+nav.classList.add('scrolled');
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+reveals.forEach(el => obs.observe(el));
+let isKo = true;
+function toggleLang() { isKo = !isKo; document.getElementById('nav-lang').textContent = isKo ? 'EN' : 'KO'; document.querySelectorAll('[data-ko][data-en]').forEach(el => { el.textContent = isKo ? el.dataset.ko : el.dataset.en; }); }
+</script>
+</body>
+</html>
