@@ -1,0 +1,21 @@
+{
+  "name": "파란수박",
+  "short_name": "파란수박",
+  "description": "외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#03050c",
+  "theme_color": "#03050c",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
