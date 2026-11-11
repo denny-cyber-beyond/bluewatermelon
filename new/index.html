@@ -687,12 +687,11 @@ function fall(name,r){ return new Promise(res=>{
   })(t0);
 });}
 
-/* 시작: 처음 온 사람 = 이름 묻기 / 다시 온 사람 = 마지막 문구에서 / 메뉴 주소로 온 사람 = 그대로 */
+/* 시작: 누구나 처음부터(다시 온 사람은 이름이 미리 채워진 채 묻기) / 메뉴 주소로 온 사람 = 그대로 */
 if('scrollRestoration' in history) history.scrollRestoration='manual';
 addEventListener('resize',resize); resize(); requestAnimationFrame(frame);
 if(location.hash&&location.hash.length>1){ landed=true; }
-else if(saved!==null){ NAME=saved; setName(saved); landed=true; requestAnimationFrame(()=>scrollTo(0,yOf(.93))); }
-else openGate();
+else { if(saved!==null){ NAME=saved; setName(saved); } openGate(); }
 
 /* ── 원고 보내기: 이 페이지 안에서 바로 접수 ──
    ENDPOINT = 구글 Apps Script 웹 앱 주소(파일은 구글 드라이브 '파란수박 원고함'에 저장 + 메일 알림).
