@@ -68,14 +68,14 @@ a{color:inherit;text-decoration:none}
 .nb{white-space:nowrap}
 /* 여섯 사람: 위 문장 + 인물 카드 */
 .tour{position:absolute;left:0;right:0;top:11vh;text-align:center;padding:0 22px;opacity:0;will-change:opacity,filter}
-.tour p{font-size:clamp(28px,4.4vw,64px);font-weight:700;letter-spacing:-.035em;line-height:1.22}
+.tour p{font-size:clamp(26px,3.5vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.25;min-height:2.5em}
+.tour .l2{color:rgba(255,255,255,.92)}.tour .changing{margin:0}
 .pcard{position:absolute;left:0;top:0;width:min(220px,27vh,40vw);margin:0;opacity:0;will-change:opacity,transform,filter;pointer-events:none}
 /* 인물: 테두리 없이 가장자리가 어둠에 스며듦 */
 .pcard .ph{position:relative;aspect-ratio:3/4;overflow:hidden;-webkit-mask-image:radial-gradient(ellipse 50% 52% at 50% 44%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 52% at 50% 44%,#000 58%,transparent 100%)}
-.pcard .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1)}
+.pcard .ph img,.pcard .ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .pcard .ph .sil{position:absolute;left:50%;bottom:-6%;width:78%;transform:translateX(-50%);fill:rgba(255,255,255,.13)}
-.pcard .ph img{opacity:0;transition:opacity .5s}.pcard .ph.has img{opacity:1}.pcard .ph.has .sil{display:none}
-.pcard .bar{position:absolute;left:var(--bl,14%);right:var(--bl,14%);top:var(--bt,33%);height:9%;background:#000;transform:rotate(-2deg);box-shadow:0 2px 6px rgba(0,0,0,.6)}
+.pcard .ph img,.pcard .ph video{opacity:0;transition:opacity .5s}.pcard .ph.has img,.pcard .ph.has video{opacity:1}.pcard .ph.has .sil{display:none}
 .pcard figcaption{margin:12px auto 0;width:max-content;padding:3px 10px;border-radius:99px;background:rgba(3,6,16,.72);text-align:center;font-size:12px;letter-spacing:.2em;color:rgba(210,226,255,.9);white-space:nowrap}
 .pcard.side .stem{display:none}.pcard.side figcaption{margin-top:-6px}
 .pcard .stem{position:absolute;left:50%;top:100%;width:1px;background:linear-gradient(rgba(190,215,255,.7),rgba(190,215,255,0));transform:translateX(-.5px)}
@@ -218,7 +218,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
   .nav{padding:12px 20px}.nav-r{gap:16px;font-size:14px}.nav-logo img{height:36px}
   .finale{padding:0 22px}.player{right:14px;bottom:40px}.pcard figcaption{font-size:10px;letter-spacing:.14em}
   /* 휴대폰: 문장 한 줄 맞춤 · 출처 줄은 재생 버튼을 피해 왼쪽 */
-  .tour{padding:0 16px}.tour p{font-size:clamp(22px,6.9vw,28px)}
+  .tour{padding:0 16px}.tour p{font-size:clamp(20px,6.2vw,26px)}
   .finale h1{font-size:clamp(26px,8.3vw,34px)}
   .earth-text p{font-size:clamp(28px,8.6vw,34px)}
   .credit{left:16px;right:70px;bottom:14px;font-size:10px;line-height:1.5;text-align:left}
@@ -257,14 +257,14 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
     </div>
     <div class="tour" id="tour"><p id="tourt"></p></div>
     <figure class="pcard" id="pcard" aria-hidden="true">
-      <div class="ph" id="pph"><img id="pimg" alt="" decoding="async"><svg class="sil" viewBox="0 0 100 110"><circle cx="50" cy="34" r="22"/><path d="M6 110c0-30 20-48 44-48s44 18 44 48z"/></svg><i class="bar"></i></div>
+      <div class="ph" id="pph"><svg class="sil" viewBox="0 0 100 110"><circle cx="50" cy="34" r="22"/><path d="M6 110c0-30 20-48 44-48s44 18 44 48z"/></svg></div>
       <figcaption id="pcity"></figcaption><i class="stem" id="pstem"></i>
     </figure>
     <div class="finale" id="finale">
       <h1 id="ftitle">우리는<br>당신이 쓰는 책이 더 궁금해</h1>
       <div class="again2" id="again2" hidden><button type="button" id="replay" data-ko="↺ 처음부터 다시 보기" data-en="↺ Watch again">↺ 처음부터 다시 보기</button><button type="button" id="rename" data-ko="이름 바꾸기" data-en="Change name">이름 바꾸기</button></div>
     </div>
-    <div class="credit"><span id="credit-earth" style="opacity:0;transition:opacity .4s"><a href="https://www.pexels.com/" target="_blank" rel="noopener">Cities: Kelly, Sourabh Narwade, Fernando Paleta, Jueon Kim, Florian Delée / Pexels</a> · </span><a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">Milky Way: ESO/S. Brunier</a></div>
+    <div class="credit"><span id="credit-earth" style="opacity:0;transition:opacity .4s"><a href="https://www.pexels.com/" target="_blank" rel="noopener">Scenes &amp; Cities: JD MONTORO, Kelly, Sourabh Narwade, Fernando Paleta, Jueon Kim, Florian Delée 외 / Pexels</a> · </span><a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">Milky Way: ESO/S. Brunier</a></div>
   </div>
 </section>
 
@@ -487,24 +487,16 @@ function star(g,X,Y,r,a){
 }
 
 /* ── 글자 ── */
-const koList=['100억 자산가','5선 국회의원','대기업 대표','1천만 인플루언서','유명 연예인','노벨상 수상자'];
-const enList=['billionaires’','5-term politicians’','CEOs’','10M influencers’','celebrities’','Nobel laureates’'];
+// [누가, 어떤 이야기] — 두 줄로 보여 줌
+const koList=[['100억 자산가가','아침마다 하는 습관보다'],['5선 국회의원이','살아온 정치 인생보다'],['대기업 대표가','들려주는 영업 전략보다'],['1천만 인플루언서가','매일 올리는 일상보다'],['유명 연예인이','털어놓는 무대 뒤 이야기보다'],['노벨상 수상자가','걸어온 연구의 길보다']];
+const enList=[['a billionaire’s','morning routine'],['a five-term MP’s','life in politics'],['a CEO’s','sales strategy'],['an influencer’s','posts to 10M followers'],['a celebrity’s','backstage stories'],['a Nobel laureate’s','road through research']];
 let isKo=true, NAME='', wordIdx=-1, finaleOn=false;
-const chars=(w,cls,d0)=>[...w].map((c,i)=>`<span class="ch ${cls}" style="animation-delay:${d0+i*55}ms">${c===' '?'&nbsp;':escH(c)}</span>`).join('');
+const chars=(w,cls,d0,st=55)=>[...w].map((c,i)=>`<span class="ch ${cls}" style="animation-delay:${d0+i*st}ms">${c===' '?'&nbsp;':escH(c)}</span>`).join('');
 const tourt=document.getElementById('tourt'), ftitle=document.getElementById('ftitle');
 function setWord(i,anim){
-  const w=isKo?koList[i]:enList[i];
-  tourt.innerHTML=isKo?`우리는 <span class="nb"><span class="changing" id="changing">${chars(w,anim?'in':'',0)}</span>보다</span>`
-    :`More than <span class="nb"><span class="changing" id="changing">${chars(w,anim?'in':'',0)}</span> books</span>`;
-  fitSlot();
-}
-/* 빈칸 폭 = 가장 긴 직함 폭으로 고정 → '보다'가 움직이지 않음 */
-function fitSlot(){
-  const el=document.getElementById('changing'); if(!el) return;
-  const m=document.createElement('span'); m.style.cssText='position:absolute;visibility:hidden;white-space:nowrap';
-  el.parentNode.appendChild(m); let w=0;
-  for(const t of (isKo?koList:enList)){m.textContent=t; w=Math.max(w,m.getBoundingClientRect().width)}
-  m.remove(); el.style.width=Math.ceil(w+getComputedStyle(el).fontSize.replace('px','')*.3)+'px';
+  const [w,x]=isKo?koList[i]:enList[i], d=35, n=[...w].length;
+  tourt.innerHTML=isKo?`<span class="changing" id="changing">${chars(w,anim?'in':'',0,d)}</span><br><span class="l2">${chars(x,anim?'in':'',n*d+120,d)}</span>`
+    :`More than <span class="changing" id="changing">${chars(w,anim?'in':'',0,d)}</span><br><span class="l2">${chars(x,anim?'in':'',n*d+120,d)}</span>`;
 }
 function renderFinale(anim){
   const n=anim?chars(NAME,'in',200):escH(NAME);
@@ -513,7 +505,7 @@ function renderFinale(anim){
     :(isKo?'우리는<br>당신이 쓰는 책이 더 궁금해.':'We’re more curious<br>about the book you write.');
 }
 function renderTitle(){ setWord(Math.max(0,wordIdx),false); renderFinale(false); }
-renderTitle(); addEventListener('resize',fitSlot); document.fonts&&document.fonts.ready.then(fitSlot);
+renderTitle();
 
 /* ── 스크롤 → 장면 ── */
 const journey=document.getElementById('journey'), nav=document.getElementById('nav');
@@ -522,15 +514,6 @@ const pcard=document.getElementById('pcard'), pcity=document.getElementById('pci
 const city=document.getElementById('city'), cEarth=document.getElementById('credit-earth');
 const player=document.getElementById('player'), prog=document.getElementById('prog'), progbar=document.getElementById('progbar');
 let P=0, cardIdx=-1;
-// 인물 사진(가상 인물) — eye = 눈 높이(위에서 %), bl = 띠 좌우 여백(%)
-const PEOPLE=[{src:'../people/p1.jpg',eye:20.3,bl:27},{src:'../people/p2.jpg',eye:21.8,bl:33},{src:'../people/p3.jpg',eye:27.6,bl:26},{src:'../people/p4.jpg',eye:26.4,bl:31},{src:'../people/p5.jpg',eye:34.2,bl:28},{src:'../people/p6.jpg',eye:28.6,bl:28}];
-const pph=document.getElementById('pph'), pimg=document.getElementById('pimg');
-function setPerson(i){ const q=PEOPLE[i]; pph.classList.remove('has');
-  if(!q){ pimg.removeAttribute('src'); pph.style.removeProperty('--bt'); pph.style.removeProperty('--bl'); return; }
-  pph.style.setProperty('--bt',(q.eye-4.5)+'%'); pph.style.setProperty('--bl',q.bl+'%');
-  pimg.onload=()=>pph.classList.add('has'); pimg.src=q.src; if(pimg.complete&&pimg.naturalWidth) pph.classList.add('has'); }
-// 첫 장 미리 불러오기
-PEOPLE.forEach(q=>{ if(q){ const im=new Image(); im.src=q.src; } });
 // 도시 영상 6편(Pexels, 푸른 흑백으로 맞춤) — 하늘 → 도시 → 거리 → 사람 순
 // 휴대폰·느린 회선·움직임 줄이기 = 영상 대신 정지 사진(천천히 다가가기)
 const CLIPS=['c1','c2','c3','c4','c5','c6'], C0=.835, CSEG=(1-C0)/CLIPS.length, CF=CSEG*.28;
@@ -541,6 +524,17 @@ const clipEls=CLIPS.map(n=>{ const e=document.createElement(STILL?'img':'video')
   if(STILL){ e.alt=''; e.decoding='async'; } else { e.muted=true; e.loop=true; e.playsInline=true; e.preload='none'; e.setAttribute('muted',''); e.setAttribute('playsinline',''); }
   city.appendChild(e); return e; });
 let clipsLoaded=false;
+// 장면 영상 6편(Pexels, 푸른 흑백) — 그 장면에서만 재생 / 휴대폰·느린 회선·움직임 줄이기 = 정지 사진
+const SCENES=['p1','p2','p3','p4','p5','p6'], SSTILL=STILL||reduce, pph=document.getElementById('pph');
+let pmed=null, scenesWarm=false;
+function warmScenes(){ if(scenesWarm) return; scenesWarm=true; SCENES.forEach(n=>{ const im=new Image(); im.src=`../scene/${n}.jpg`; }); }
+function setPerson(i){ pph.classList.remove('has'); if(pmed){ pmed.remove(); pmed=null; }
+  const n=SCENES[i]; if(!n) return;
+  const e=document.createElement(SSTILL?'img':'video'); e.setAttribute('aria-hidden','true');
+  if(SSTILL){ e.alt=''; e.decoding='async'; e.onload=()=>pph.classList.add('has'); e.src=`../scene/${n}.jpg`; }
+  else { e.muted=true; e.loop=true; e.playsInline=true; e.setAttribute('muted',''); e.setAttribute('playsinline',''); e.preload='auto'; e.poster=`../scene/${n}.jpg`; e.src=`../scene/${n}.mp4`; pph.classList.add('has'); }
+  pph.insertBefore(e,pph.firstChild); pmed=e; }
+function playScene(on){ if(!pmed||pmed.tagName!=='VIDEO') return; if(on&&pmed.paused) pmed.play().catch(()=>{}); else if(!on&&!pmed.paused) pmed.pause(); }
 function loadClips(){ if(clipsLoaded) return; clipsLoaded=true;
   clipEls.forEach(e=>{ if(e.tagName==='VIDEO'){ e.poster=e.dataset.poster; e.preload='auto'; } e.src=e.dataset.src; }); }
 function drawClips(ck){
@@ -576,7 +570,7 @@ function onScroll(){
     pstem.style.height=stem+'px';
     pcard.style.transform=`translate(${c.px-cw/2}px,${Math.max(minTop,c.py-ch-stem)+(1-c.cardK)*16}px)`;
   }
-  blurIn(pcard,c.cardK,8);
+  blurIn(pcard,c.cardK,8); playScene(c.cardK>0); if(P>.08) warmScenes();
   // 마지막
   const ck=clamp((P-.83)/.05); city.style.opacity=ck; cEarth.style.opacity=ck>.5?1:0;
   if(P>.7) loadClips();
