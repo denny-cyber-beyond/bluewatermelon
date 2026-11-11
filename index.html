@@ -37,6 +37,7 @@
 html{background:var(--bg)}
 body{background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,p{word-break:keep-all}
+html[lang=en] .earth-text p,html[lang=en] .finale h1,html[lang=en] .end h2,html[lang=en] .gate .note,html[lang=en] .send-lead{text-wrap:balance}
 a{color:inherit;text-decoration:none}
 
 /* 하늘(고정) */
@@ -52,17 +53,62 @@ a{color:inherit;text-decoration:none}
 .lang{font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.55);cursor:pointer;border:1px solid var(--faint);border-radius:999px;padding:5px 11px;background:none;font-family:inherit}
 
 /* 1·2장면: 한 무대에서 이어짐 */
-#journey{position:relative;height:520vh;z-index:1}
+#journey{position:relative;height:1100vh;z-index:1}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 #globe{position:absolute;inset:0;width:100%;height:100%}
-#earthphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;opacity:0;will-change:opacity,transform;
-  -webkit-mask-image:linear-gradient(to bottom,transparent 34%,#000 49%);mask-image:linear-gradient(to bottom,transparent 34%,#000 49%)}
+/* 마지막 장면 배경(도시 영상 자리) */
+#city{position:absolute;inset:0;opacity:0;will-change:opacity}
+#city img,#city video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#city .cl{opacity:0;will-change:opacity,transform}
+#city::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(3,5,12,.38),rgba(3,5,12,.7))}
+#city .draft{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);z-index:1;font-size:12px;letter-spacing:.12em;color:rgba(255,255,255,.5);border:1px dashed rgba(255,255,255,.3);border-radius:999px;padding:5px 12px}
 .credit{position:absolute;right:24px;bottom:18px;font-size:11px;color:rgba(255,255,255,.38);transition:opacity .4s}
 .credit a:hover{color:#fff}
-.hero{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 6vw;will-change:opacity,filter,transform}
-.hero h1{font-size:clamp(34px,5.4vw,84px);font-weight:700;line-height:1.22;letter-spacing:-.035em}
 .nb{white-space:nowrap}
-.hero br.m{display:none}
+/* 여섯 사람: 위 문장 + 인물 카드 */
+.tour{position:absolute;left:0;right:0;top:11vh;text-align:center;padding:0 22px;opacity:0;will-change:opacity,filter}
+.tour p{font-size:clamp(26px,3.5vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.25;min-height:2.5em}
+.tour .l2{color:rgba(255,255,255,.92)}.tour .changing{margin:0}
+.pcard{position:absolute;left:0;top:0;width:min(240px,28vh,56vw);margin:0;opacity:0;will-change:opacity,transform,filter;pointer-events:none}
+/* 인물: 테두리 없이 가장자리가 어둠에 스며듦 */
+.pcard .ph{position:relative;aspect-ratio:1/1;overflow:hidden;-webkit-mask-image:radial-gradient(ellipse 52% 52% at 50% 48%,#000 64%,transparent 100%);mask-image:radial-gradient(ellipse 52% 52% at 50% 48%,#000 64%,transparent 100%)}
+.pcard .ph img,.pcard .ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcard .ph .sil{position:absolute;left:50%;bottom:-6%;width:78%;transform:translateX(-50%);fill:rgba(255,255,255,.13)}
+.pcard .ph img,.pcard .ph video{opacity:0;transition:opacity .5s}.pcard .ph.has img,.pcard .ph.has video{opacity:1}.pcard .ph.has .sil{display:none}
+.pcard figcaption{margin:12px auto 0;width:max-content;padding:3px 10px;border-radius:99px;background:rgba(3,6,16,.72);text-align:center;font-size:12px;letter-spacing:.2em;color:rgba(210,226,255,.9);white-space:nowrap}
+.pcard.side .stem{display:none}.pcard.side figcaption{margin-top:-6px}
+.pcard .stem{position:absolute;left:50%;top:100%;width:1px;background:linear-gradient(rgba(190,215,255,.7),rgba(190,215,255,0));transform:translateX(-.5px)}
+/* 마지막 문구 */
+.finale{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 6vw;opacity:0;will-change:opacity,filter}
+.finale h1{font-size:clamp(34px,5.4vw,84px);font-weight:700;line-height:1.22;letter-spacing:-.035em}
+.finale .fname{display:inline-block;color:var(--blue);text-shadow:0 0 30px rgba(143,180,255,.55)}
+.finale .again2{margin-top:34px;display:flex;gap:18px;font-size:13px;color:rgba(255,255,255,.45)}
+.finale .again2 button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.finale .again2 button:hover{color:#fff}
+/* 문: 이름 묻기 */
+.gate{position:fixed;inset:0;z-index:15;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 22px 22vh;transition:opacity .9s,filter .9s}
+.gate.gone{opacity:0;filter:blur(10px);pointer-events:none}
+.gate h2{font-size:clamp(26px,3.6vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.25}
+.gate form{margin-top:34px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.gate input{width:min(320px,70vw);font:inherit;font-size:20px;text-align:center;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:14px 22px;outline:none;transition:border-color .2s,box-shadow .2s}
+.gate input:focus{border-color:rgba(143,180,255,.85);box-shadow:0 0 0 5px rgba(143,180,255,.14)}
+.gate input::placeholder{color:rgba(255,255,255,.3)}
+.gate .pill{margin:0;border:0;cursor:pointer;font-family:inherit}
+.gate .note{margin-top:20px;font-size:13px;color:rgba(255,255,255,.6);text-shadow:0 0 8px #03050c,0 0 3px #03050c}
+.gate .skip{text-shadow:0 0 8px #03050c,0 0 3px #03050c}
+.gate .skip{margin-top:10px;background:none;border:0;font:inherit;font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.gate .skip:hover{color:#fff}
+body.gated{overflow:hidden}
+#meteor{position:fixed;inset:0;width:100%;height:100%;z-index:16;pointer-events:none}
+/* 재생 버튼 + 진행 줄 */
+.player{position:fixed;right:22px;bottom:46px;z-index:18;display:flex;align-items:center;gap:10px;transition:opacity .4s}
+.player button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(3,5,12,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.player button:hover{border-color:rgba(143,180,255,.9)}
+.player.hint{right:50%;bottom:12vh;transform:translateX(50%)}
+.player.hint button{width:auto;height:48px;padding:0 24px;border-radius:99px;font-size:16px;font-family:inherit;font-weight:600;border-color:rgba(190,215,255,.6);background:rgba(10,20,45,.6);box-shadow:0 0 24px rgba(143,180,255,.35)}
+.prog{position:fixed;left:0;right:0;bottom:0;height:2px;z-index:18;background:rgba(255,255,255,.08);transition:opacity .4s}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,rgba(143,180,255,.5),#cfe0ff);box-shadow:0 0 8px rgba(143,180,255,.8)}
+.off{opacity:0;pointer-events:none}
 /* 빈칸: 폭 고정(가장 긴 직함), 가운데 정렬, 아래 별빛 밑줄 */
 .changing{display:inline-block;position:relative;color:var(--blue);white-space:nowrap;vertical-align:bottom;text-align:center;margin:0 .12em;padding:0 .1em}
 .changing::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:3px;border-radius:3px;
@@ -76,11 +122,7 @@ a{color:inherit;text-decoration:none}
   50%{opacity:1;filter:blur(0);text-shadow:0 0 26px rgba(170,205,255,.95),0 0 6px rgba(255,255,255,.8)}
   100%{opacity:1;filter:blur(0);transform:none;text-shadow:0 0 0 rgba(170,205,255,0)}}
 @keyframes chOut{to{opacity:0;filter:blur(10px);transform:translateY(-.3em) scale(.8)}}
-#dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.hint{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);font-size:12px;letter-spacing:.24em;color:rgba(255,255,255,.4);text-align:center}
-.hint i{display:block;width:1px;height:38px;margin:10px auto 0;background:linear-gradient(rgba(255,255,255,.5),transparent);animation:drop 2.2s ease-in-out infinite}
-@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.earth-text{position:absolute;left:0;right:0;top:26%;text-align:center;padding:0 24px}
+.earth-text{position:absolute;left:0;right:0;top:12vh;text-align:center;padding:0 24px}
 .earth-text p{font-size:clamp(34px,5.2vw,78px);font-weight:700;letter-spacing:-.035em;line-height:1.22;opacity:0;filter:blur(14px);will-change:opacity,filter}
 
 /* 3장면: 아카이브 */
@@ -173,7 +215,12 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
 
 @media (max-width:720px){
   .nav{padding:12px 20px}.nav-r{gap:16px;font-size:14px}.nav-logo img{height:36px}
-  .hero{padding:0 22px}.hero br.m{display:inline}
+  .finale{padding:0 22px}.player{right:14px;bottom:40px}.pcard figcaption{font-size:10px;letter-spacing:.14em}
+  /* 휴대폰: 문장 한 줄 맞춤 · 출처 줄은 재생 버튼을 피해 왼쪽 */
+  .tour{padding:0 16px}.tour p{font-size:clamp(20px,6.2vw,26px)}
+  .finale h1{font-size:clamp(26px,8.3vw,34px)}
+  .earth-text p{font-size:clamp(28px,8.6vw,34px)}
+  .credit{left:16px;right:70px;bottom:14px;font-size:10px;line-height:1.5;text-align:left}
   .sec{padding:16vh 22px}.end{padding:20vh 22px 16vh}
   .shelf{gap:18px}.book{width:calc(50% - 9px)}
   .ttl{font-size:16px}
@@ -181,7 +228,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
   footer{padding:0 22px 28px}
 }
 @media (prefers-reduced-motion:reduce){
-  .rise{transition:none}.rise{opacity:1;transform:none}.hint i{animation:none}
+  .rise{transition:none}.rise{opacity:1;transform:none}.ch.in{animation:none}
 }
 </style>
 </head>
@@ -202,19 +249,37 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
 <section id="journey">
   <div class="stage">
     <canvas id="globe" aria-hidden="true"></canvas>
-    <img id="earthphoto" src="photos/earth-limb-nasa.jpg" alt="" aria-hidden="true">
-    <div class="hero" id="hero">
-      <canvas id="dust" aria-hidden="true"></canvas>
-      <h1 id="hero-title">우리는<br class="m"> <span class="nb"><span class="changing" id="changing">100억 자산가</span>보다</span><br>당신이 쓰는 책이 <br class="m">더 궁금해</h1>
-    </div>
-    <div class="hint" id="hint">SCROLL<i></i></div>
+    <div id="city" aria-hidden="true"></div>
     <div class="earth-text">
       <p id="l1" data-ko="이 푸른 별 어딘가에" data-en="Somewhere on this blue planet">이 푸른 별 어딘가에</p>
       <p id="l2" data-ko="우리가 찾는 작가가 있습니다." data-en="is the author we're looking for.">우리가 찾는 작가가 있습니다.</p>
     </div>
-    <div class="credit"><span id="credit-earth" style="opacity:0;transition:opacity .4s"><a href="https://www.nasa.gov/image-detail/amf-iss074e0089803/" target="_blank" rel="noopener">Earth: NASA</a> · </span><a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">Milky Way: ESO/S. Brunier</a></div>
+    <div class="tour" id="tour"><p id="tourt"></p></div>
+    <figure class="pcard" id="pcard" aria-hidden="true">
+      <div class="ph" id="pph"><svg class="sil" viewBox="0 0 100 110"><circle cx="50" cy="34" r="22"/><path d="M6 110c0-30 20-48 44-48s44 18 44 48z"/></svg></div>
+      <figcaption id="pcity"></figcaption><i class="stem" id="pstem"></i>
+    </figure>
+    <div class="finale" id="finale">
+      <h1 id="ftitle">우리는<br>당신이 쓰는 책이 더 궁금해</h1>
+      <div class="again2" id="again2" hidden><button type="button" id="replay" data-ko="↺ 처음부터 다시 보기" data-en="↺ Watch again">↺ 처음부터 다시 보기</button><button type="button" id="rename" data-ko="이름 바꾸기" data-en="Change name">이름 바꾸기</button></div>
+    </div>
+    <div class="credit"><span id="credit-earth" style="opacity:0;transition:opacity .4s"><a href="https://www.pexels.com/" target="_blank" rel="noopener">Video: Pexels · Sourabh Narwade 외</a> · </span><a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">Milky Way: ESO/S. Brunier</a></div>
   </div>
 </section>
+
+<!-- 0장면: 이름 묻기 -->
+<div class="gate gone" id="gate" role="dialog" aria-labelledby="gate-q">
+  <h2 id="gate-q" data-ko="당신의 이름을 알려 주세요" data-en="What's your name?">당신의 이름을 알려 주세요</h2>
+  <form id="gateform" autocomplete="off">
+    <input id="gname" maxlength="20" data-ph-ko="이름 또는 필명" data-ph-en="Name or pen name" placeholder="이름 또는 필명" aria-label="이름">
+    <button class="pill" type="submit"><span data-ko="시작" data-en="Start">시작</span> →</button>
+  </form>
+  <p class="note" data-ko="이름은 이 화면에만 쓰고, 어디에도 보내지 않습니다." data-en="Your name stays on this screen. We never send it anywhere.">이름은 이 화면에만 쓰고, 어디에도 보내지 않습니다.</p>
+  <button class="skip" type="button" id="gskip" data-ko="이름 없이 둘러보기" data-en="Look around without a name">이름 없이 둘러보기</button>
+</div>
+<canvas id="meteor" aria-hidden="true"></canvas>
+<div class="player off" id="player"><button type="button" id="play" aria-label="일시 정지">❚❚</button></div>
+<div class="prog off" id="prog"><i id="progbar"></i></div>
 
 <!-- 3장면: 아카이브 -->
 <section class="sec" id="archive">
@@ -258,7 +323,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
   <div class="foot-row">
     <img src="logos/logo-white.png" alt="파란수박">
     <a class="mail" href="mailto:donghoon807@gmail.com">donghoon807@gmail.com</a>
-    <span>© 2026 파란수박 · 사진 <a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">ESO/S. Brunier</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>) · <a href="https://www.nasa.gov/image-detail/amf-iss074e0089803/" target="_blank" rel="noopener">NASA</a></span>
+    <span>© 2026 파란수박 · 사진 <a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">ESO/S. Brunier</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>) · 도시 영상 <a href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels</a></span>
   </div>
   <div class="giant" aria-hidden="true">BLUE WATERMELON</div>
 </footer>
@@ -310,29 +375,65 @@ function drawSky(t){
 
 /* ── 지구: 점으로 그린 대륙 + 경위선 ── */
 const gl=document.getElementById('globe'), gc=gl.getContext('2d');
-const L3=[]; for(let i=0;i<LAND.length;i+=2){const la=LAND[i]*Math.PI/180, lo=LAND[i+1]*Math.PI/180; L3.push([Math.cos(la)*Math.sin(lo),Math.sin(la),Math.cos(la)*Math.cos(lo)])}
-const TILT=0.38;
-function photoHorizon(){ // 지구 사진(D)의 지평선 위치·휘어짐을 화면 좌표로
-  const iw=2560, ih=1438, k=Math.max(W/iw,H/ih), dw=iw*k, dh=ih*k;
-  const ox=(W-dw)*.5, oy=(H-dh)*.55;
-  return {cx:ox+.541*dw, top:oy+.532*dh, R:5.07*dw};
-}
-function proj(v,rot){ // y축 회전 → x축 기울임
+const D2R=Math.PI/180;
+const vec=(la,lo)=>{la*=D2R;lo*=D2R;return [Math.cos(la)*Math.sin(lo),Math.sin(la),Math.cos(la)*Math.cos(lo)]};
+const L3=[]; for(let i=0;i<LAND.length;i+=2) L3.push(vec(LAND[i],LAND[i+1]));
+function proj(v,rot,tilt){ // y축 회전 → x축 기울임
   const c=Math.cos(rot), s=Math.sin(rot);
   const x=v[0]*c+v[2]*s, z0=-v[0]*s+v[2]*c;
-  const ct=Math.cos(TILT), st=Math.sin(TILT);
+  const ct=Math.cos(tilt), st=Math.sin(tilt);
   return [x, v[1]*ct-z0*st, v[1]*st+z0*ct];
 }
-function drawGlobe(p,t){
+const escH=t=>String(t).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+
+/* 여섯 도시(직함 순서와 같음) — 서쪽으로 한 바퀴 */
+const CITIES=[
+  {en:'DUBAI',la:25.2,lo:55.3},{en:'LONDON',la:51.5,lo:-0.1},{en:'NEW YORK',la:40.7,lo:-74},
+  {en:'LOS ANGELES',la:34.05,lo:-118.2},{en:'TOKYO',la:35.7,lo:139.7},{en:'STOCKHOLM',la:59.3,lo:18.1}];
+/* 별이 떨어질 곳 = 방문자 기기 시간대의 대도시(위치 허락 창 없음) */
+const TZ={'Asia/Seoul':[37.57,126.98,'SEOUL'],'Asia/Tokyo':[35.7,139.7,'TOKYO'],'Asia/Shanghai':[31.2,121.5,'SHANGHAI'],'Asia/Hong_Kong':[22.3,114.2,'HONG KONG'],
+  'Asia/Taipei':[25.03,121.56,'TAIPEI'],'Asia/Singapore':[1.35,103.8,'SINGAPORE'],'Asia/Bangkok':[13.75,100.5,'BANGKOK'],'Asia/Ho_Chi_Minh':[10.8,106.7,'HO CHI MINH'],
+  'Asia/Kolkata':[19.07,72.88,'MUMBAI'],'Asia/Dubai':[25.2,55.3,'DUBAI'],'Europe/London':[51.5,-0.1,'LONDON'],'Europe/Paris':[48.86,2.35,'PARIS'],
+  'Europe/Berlin':[52.52,13.4,'BERLIN'],'Europe/Madrid':[40.4,-3.7,'MADRID'],'Europe/Rome':[41.9,12.5,'ROME'],'America/New_York':[40.7,-74,'NEW YORK'],
+  'America/Chicago':[41.88,-87.63,'CHICAGO'],'America/Denver':[39.74,-104.99,'DENVER'],'America/Los_Angeles':[34.05,-118.2,'LOS ANGELES'],
+  'America/Toronto':[43.65,-79.38,'TORONTO'],'America/Vancouver':[49.28,-123.12,'VANCOUVER'],'America/Mexico_City':[19.43,-99.13,'MEXICO CITY'],
+  'America/Sao_Paulo':[-23.55,-46.63,'SÃO PAULO'],'Australia/Sydney':[-33.87,151.2,'SYDNEY'],'Pacific/Auckland':[-36.85,174.76,'AUCKLAND']};
+const HOME=(()=>{try{const z=Intl.DateTimeFormat().resolvedOptions().timeZone||''; if(TZ[z]) return TZ[z];
+  const off=-new Date().getTimezoneOffset()/60; if(z) return [/^America/.test(z)?35:/^(Australia|Pacific)/.test(z)?-30:/^Africa/.test(z)?6:42,off*15,''];}catch(e){}
+  return TZ['Asia/Seoul']})();
+const HV=vec(HOME[0],HOME[1]);
+const fmtLL=(la,lo)=>`${Math.abs(la).toFixed(1)}°${la>=0?'N':'S'} ${Math.abs(lo).toFixed(1)}°${lo>=0?'E':'W'}`;
+
+/* 카메라: 진행값 P → 화면 가운데 도시(la,lo), 지구 크기 R, 그 도시가 놓일 화면 위치(px,py) */
+const OFF=.3;
+const Rs=()=>Math.min(W,H)*.085, Rb=()=>Math.min(W*.6,H*.55);
+const lerpLo=(a,b,e)=>a+((((b-a)%360)+540)%360-180)*e;
+const SIDE=()=>W>=820&&W>=H*1.1;
+let PC=null; // 인물 자리(넓은 화면) — 지구 핀에서 빛줄을 잇는 데 씀
+function cam(P){
+  const rb=Rb(), rs=Rs(), pyB=H*.5+rb*.55-Math.sin(OFF)*rb, pyS=H*.66;
+  let la=HOME[0], lo=HOME[1], off=OFF, R=rb, px=W/2, py=pyB, card=-1, cardK=0, zoom=0;
+  if(P<.10){ const e=ease(P/.10); R=rs*Math.pow(rb/rs,e); off=OFF*e; py=pyS+(pyB-pyS)*e; }
+  else if(P>=.15&&P<.75){
+    const i=Math.min(5,Math.floor((P-.15)/.1)), u=(P-.15-i*.1)/.1;
+    const a=i?CITIES[i-1]:{la:HOME[0],lo:HOME[1]}, b=CITIES[i], e=ease(clamp(u/.35));
+    la=a.la+(b.la-a.la)*e; lo=lerpLo(a.lo,b.lo,e); R=rb*(1-.2*Math.sin(Math.PI*e));
+    card=i; cardK=clamp((u-.33)/.1)*(1-clamp((u-.9)/.1));
+  }
+  else if(P>=.75&&P<.82){ const a=CITIES[5], e=ease((P-.75)/.07);
+    la=a.la+(HOME[0]-a.la)*e; lo=lerpLo(a.lo,HOME[1],e); R=rb*(1-.2*Math.sin(Math.PI*e)); }
+  else if(P>=.82){ zoom=ease(clamp((P-.82)/.1)); R=rb*Math.pow(12,zoom); py=pyB+(H/2-pyB)*zoom; off=OFF*(1-zoom); }
+  // 넓은 화면: 여섯 사람 동안 지구는 왼쪽, 인물은 오른쪽
+  const sk=SIDE()?ease(clamp((P-.14)/.05))*(1-ease(clamp((P-.745)/.05))):0;
+  if(sk>0){ const k=Math.min(W*.25,H*.4)/rb; px+=(W*.3-px)*sk; py+=(H*.56-py)*sk; R*=1+(k-1)*sk; }
+  return {la,lo,off,R,px,py,card,cardK,zoom,sk};
+}
+let landed=false;
+function drawGlobe(P,t){
   gc.setTransform(DPR,0,0,DPR,0,0); gc.clearRect(0,0,W,H);
-  const e=ease(clamp((p-.12)/.6));
-  if(p<.08) return;
-  const ph=photoHorizon();
-  const r0=3, R=r0*Math.pow(ph.R/r0,e);
-  const top=(H*.5-r0)+(ph.top-(H*.5-r0))*e;
-  const cx=W/2+(ph.cx-W/2)*e, cy=top+R;
-  const appear=clamp((p-.08)/.05);
-  gc.globalAlpha=appear;
+  const c=cam(P), fade=1-clamp((P-.84)/.035); if(fade<=0) return;
+  const rot=-c.lo*D2R, tilt=c.la*D2R-c.off, R=c.R, cx=c.px, cy=c.py+Math.sin(c.off)*R;
+  gc.globalAlpha=fade;
   // 대기 빛
   const glow=gc.createRadialGradient(cx,cy,R*.9,cx,cy,R*1.18+18);
   glow.addColorStop(0,'rgba(70,120,255,0)'); glow.addColorStop(.42,'rgba(90,140,255,.38)'); glow.addColorStop(1,'rgba(90,140,255,0)');
@@ -341,110 +442,250 @@ function drawGlobe(p,t){
   const body=gc.createRadialGradient(cx-R*.3,cy-R*.4,R*.1,cx,cy,R);
   body.addColorStop(0,'#0e1d46'); body.addColorStop(1,'#050a1c');
   gc.fillStyle=body; gc.beginPath(); gc.arc(cx,cy,R,0,7); gc.fill();
-  if(R<7){ gc.fillStyle='#bcd2ff'; gc.beginPath(); gc.arc(cx,cy,R*.8,0,7); gc.fill(); gc.globalAlpha=1; return; }
-  const rot=(reduce?0:t*.00005)+p*1.4-1.2;
   // 경위선
-  gc.lineWidth=Math.max(.5,R/900); gc.strokeStyle='rgba(150,180,255,.13)';
-  const seg=(pts)=>{let on=false;gc.beginPath();for(const q of pts){const v=proj(q,rot);if(v[2]>0){const X=cx+v[0]*R,Y=cy-v[1]*R;on?gc.lineTo(X,Y):gc.moveTo(X,Y);on=true}else on=false}gc.stroke()};
-  for(let la=-60;la<=60;la+=30){const a=la*Math.PI/180,pts=[];for(let lo=0;lo<=360;lo+=4){const o=lo*Math.PI/180;pts.push([Math.cos(a)*Math.sin(o),Math.sin(a),Math.cos(a)*Math.cos(o)])}seg(pts)}
-  for(let lo=0;lo<180;lo+=30){const o=lo*Math.PI/180,pts=[];for(let la=0;la<=360;la+=4){const a=la*Math.PI/180;pts.push([Math.cos(a)*Math.sin(o),Math.sin(a),Math.cos(a)*Math.cos(o)])}seg(pts)}
+  gc.lineWidth=Math.max(.5,Math.min(R/900,2)); gc.strokeStyle='rgba(150,180,255,.13)';
+  const seg=(pts)=>{let on=false;gc.beginPath();for(const q of pts){const v=proj(q,rot,tilt);if(v[2]>0){const X=cx+v[0]*R,Y=cy-v[1]*R;on?gc.lineTo(X,Y):gc.moveTo(X,Y);on=true}else on=false}gc.stroke()};
+  for(let la=-60;la<=60;la+=30){const pts=[];for(let lo=0;lo<=360;lo+=3)pts.push(vec(la,lo));seg(pts)}
+  for(let lo=0;lo<180;lo+=30){const pts=[];for(let la=0;la<=360;la+=3)pts.push(vec(la,lo));seg(pts)}
   // 대륙 점
   const ds=Math.max(.9,Math.min(R/240,6));
   for(const q of L3){
-    const v=proj(q,rot); if(v[2]<=0.02) continue;
+    const v=proj(q,rot,tilt); if(v[2]<=0.02) continue;
     const X=cx+v[0]*R, Y=cy-v[1]*R;
     if(X<-10||X>W+10||Y<-10||Y>H+10) continue;
     gc.fillStyle=`rgba(200,220,255,${.25+.7*v[2]})`;
     const s=ds*(.55+.45*v[2]); gc.fillRect(X-s/2,Y-s/2,s,s);
   }
   // 가장자리 빛
-  gc.strokeStyle='rgba(150,190,255,.55)'; gc.lineWidth=Math.max(1,R/400);
+  gc.strokeStyle='rgba(150,190,255,.55)'; gc.lineWidth=Math.max(1,Math.min(R/400,3));
   gc.beginPath(); gc.arc(cx,cy,R,0,7); gc.stroke();
+  // 지금 도시 핀
+  if(c.card>=0&&c.cardK>0){
+    const v=proj(vec(CITIES[c.card].la,CITIES[c.card].lo),rot,tilt), X=cx+v[0]*R, Y=cy-v[1]*R, k=c.cardK;
+    const ph=(t*.0012)%1;
+    if(PC&&c.sk>.5){ // 핀 → 인물 빛줄
+      const ex=PC.x+PC.w*.12, ey=PC.y+PC.h*.5, lg=gc.createLinearGradient(X,Y,ex,ey);
+      lg.addColorStop(0,`rgba(200,222,255,${.75*k})`); lg.addColorStop(1,'rgba(200,222,255,0)');
+      gc.strokeStyle=lg; gc.lineWidth=1; gc.beginPath(); gc.moveTo(X,Y); gc.lineTo(X+(ex-X)*k,Y+(ey-Y)*k); gc.stroke(); }
+    gc.strokeStyle=`rgba(190,215,255,${(1-ph)*.7*k})`; gc.lineWidth=1.2; gc.beginPath(); gc.arc(X,Y,4+ph*22,0,7); gc.stroke();
+    star(gc,X,Y,4,k);
+  }
+  // 떨어진 별(내 이름) — 늘 그 자리에서 반짝임
+  if(landed){
+    const v=proj(HV,rot,tilt);
+    if(v[2]>.05){ const X=cx+v[0]*R, Y=cy-v[1]*R, tw=reduce?1:.75+.25*Math.sin(t*.004);
+      star(gc,X,Y,(3+c.zoom*30)*tw,clamp(v[2]*3)); }
+  }
   gc.globalAlpha=1;
 }
+function star(g,X,Y,r,a){
+  const gr=g.createRadialGradient(X,Y,0,X,Y,r*5);
+  gr.addColorStop(0,`rgba(255,255,255,${a})`); gr.addColorStop(.2,`rgba(200,222,255,${a*.8})`); gr.addColorStop(1,'rgba(143,180,255,0)');
+  g.fillStyle=gr; g.beginPath(); g.arc(X,Y,r*5,0,7); g.fill();
+  g.globalAlpha*=a*.6; g.fillStyle='#fff'; g.fillRect(X-r*3.2,Y-.6,r*6.4,1.2); g.fillRect(X-.6,Y-r*3.2,1.2,r*6.4); g.globalAlpha=1;
+}
+
+/* ── 글자 ── */
+// [누가, 어떤 이야기] — 두 줄로 보여 줌
+const koList=[['100억 자산가가','아침마다 하는 습관보다'],['5선 국회의원이','살아온 정치 인생보다'],['대기업 대표가','들려주는 영업 전략보다'],['1천만 인플루언서가','매일 올리는 일상보다'],['유명 연예인이','털어놓는 무대 뒤 이야기보다'],['노벨상 수상자가','걸어온 연구의 길보다']];
+const enList=[['a billionaire’s','morning routine'],['a five-term MP’s','life in politics'],['a CEO’s','sales strategy'],['an influencer’s','posts to 10M followers'],['a celebrity’s','backstage stories'],['a Nobel laureate’s','road through research']];
+let isKo=true, NAME='', wordIdx=-1, finaleOn=false;
+const chars=(w,cls,d0,st=55)=>[...w].map((c,i)=>`<span class="ch ${cls}" style="animation-delay:${d0+i*st}ms">${c===' '?'&nbsp;':escH(c)}</span>`).join('');
+const tourt=document.getElementById('tourt'), ftitle=document.getElementById('ftitle');
+function setWord(i,anim){
+  const [w,x]=isKo?koList[i]:enList[i], d=35, n=[...w].length;
+  tourt.innerHTML=isKo?`<span class="changing" id="changing">${chars(w,anim?'in':'',0,d)}</span><br><span class="l2">${chars(x,anim?'in':'',n*d+120,d)}</span>`
+    :`More than <span class="changing" id="changing">${chars(w,anim?'in':'',0,d)}</span><br><span class="l2">${chars(x,anim?'in':'',n*d+120,d)}</span>`;
+}
+function renderFinale(anim){
+  const n=anim?chars(NAME,'in',200):escH(NAME);
+  ftitle.innerHTML=NAME
+    ?(isKo?`<span class="fname">${n}</span>,<br>당신이 쓰는 책이 더 궁금해.`:`<span class="fname">${n}</span>,<br>we’re more curious <span class="nb">about the book</span> <span class="nb">you write.</span>`)
+    :(isKo?'우리는<br>당신이 쓰는 책이 더 궁금해.':'We’re more curious<br>about the book you write.');
+}
+function renderTitle(){ setWord(Math.max(0,wordIdx),false); renderFinale(false); }
+renderTitle();
 
 /* ── 스크롤 → 장면 ── */
-const journey=document.getElementById('journey'), hero=document.getElementById('hero'), hint=document.getElementById('hint');
-const l1=document.getElementById('l1'), l2=document.getElementById('l2'), nav=document.getElementById('nav');
-let P=0;
-const ephoto=document.getElementById('earthphoto'), cEarth=document.getElementById('credit-earth');
+const journey=document.getElementById('journey'), nav=document.getElementById('nav');
+const l1=document.getElementById('l1'), l2=document.getElementById('l2'), tour=document.getElementById('tour'), fin=document.getElementById('finale');
+const pcard=document.getElementById('pcard'), pcity=document.getElementById('pcity'), pstem=document.getElementById('pstem');
+const city=document.getElementById('city'), cEarth=document.getElementById('credit-earth');
+const player=document.getElementById('player'), prog=document.getElementById('prog'), progbar=document.getElementById('progbar');
+let P=0, cardIdx=-1;
+// 마지막 야경 1편(Pexels, 푸른 흑백, 앞뒤로 이어 6초 반복) — 문구에 집중하도록 한 화면만
+// 휴대폰·느린 회선 = 영상 대신 정지 사진(천천히 다가가기)
+const CLIPS=['night'], C0=.835, CSEG=(1-C0)/CLIPS.length, CF=CSEG*.28;
+const conn=navigator.connection||{};
+const STILL=!!conn.saveData||/(^|-)2g|3g/.test(conn.effectiveType||'')||matchMedia('(max-width:720px)').matches;
+const clipEls=CLIPS.map(n=>{ const e=document.createElement(STILL?'img':'video'); e.className='cl';
+  e.dataset.src=`city/${n}.${STILL?'jpg':'mp4'}`; e.dataset.poster=`city/${n}.jpg`;
+  if(STILL){ e.alt=''; e.decoding='async'; } else { e.muted=true; e.loop=true; e.playsInline=true; e.preload='none'; e.setAttribute('muted',''); e.setAttribute('playsinline',''); }
+  city.appendChild(e); return e; });
+let clipsLoaded=false;
+// 장면 영상 6편(Pexels, 푸른 흑백, 정사각 720, 각 약 0.1~0.4MB) — 모든 기기에서 그 장면에서만 재생 / 움직임 줄이기 = ▶ 재생 중일 때만
+const SCENES=['p1','p2','p3','p4','p5','p6'], pph=document.getElementById('pph');
+let pmed=null, scenesWarm=false;
+function warmScenes(){ if(scenesWarm) return; scenesWarm=true; SCENES.forEach(n=>{ const im=new Image(); im.src=`scene/${n}.jpg`; }); }
+function setPerson(i){ pph.classList.remove('has'); if(pmed){ pmed.remove(); pmed=null; }
+  const n=SCENES[i]; if(!n) return;
+  const e=document.createElement('video'); e.setAttribute('aria-hidden','true');
+  e.muted=true; e.loop=true; e.playsInline=true; e.setAttribute('muted',''); e.setAttribute('playsinline',''); e.preload='auto'; e.poster=`scene/${n}.jpg`; e.src=`scene/${n}.mp4`; pph.classList.add('has');
+  pph.insertBefore(e,pph.firstChild); pmed=e; }
+function playScene(on){ if(!pmed) return; if(reduce&&!playing) on=false; if(on&&pmed.paused) pmed.play().catch(()=>{}); else if(!on&&!pmed.paused) pmed.pause(); }
+function loadClips(){ if(clipsLoaded) return; clipsLoaded=true;
+  clipEls.forEach(e=>{ if(e.tagName==='VIDEO'){ e.poster=e.dataset.poster; e.preload='auto'; } e.src=e.dataset.src; }); }
+function drawClips(ck){
+  let top=0; const op=clipEls.map((e,i)=>{ const o=i?clamp((P-(C0+i*CSEG-CF))/CF):1; if(o>0) top=i; return o; });
+  clipEls.forEach((e,i)=>{ e.style.opacity=op[i];
+    if(STILL){ if(op[i]>0) e.style.transform=`scale(${1.1-.08*clamp((P-(C0+i*CSEG-CF))/(CSEG+CF))})`; return; }
+    const want=clipsLoaded&&ck>0&&(i===top||(i===top-1&&op[top]<1));
+    if(want&&e.paused){ if(e.currentTime>0&&i===top&&op[i]<.05) e.currentTime=0; e.play().catch(()=>{}); }
+    else if(!want&&!e.paused) e.pause(); }); }
+const range=()=>journey.offsetHeight-H, yOf=p=>journey.offsetTop+p*range();
+const blurIn=(el,k,b=14)=>{el.style.opacity=k;el.style.filter=k>=1?'none':`blur(${(1-k)*b}px)`};
 function onScroll(){
-  const r=journey.getBoundingClientRect();
-  P=clamp(-r.top/(r.height-H));
-  const h=clamp(P/.1);
-  hero.style.opacity=1-h; hero.style.filter=`blur(${h*10}px)`; hero.style.transform=`translateY(${-h*60}px) scale(${1-h*.04})`;
-  hint.style.opacity=1-clamp(P/.03);
-  const lineIn=(el,a,b)=>{const k=clamp((P-a)/(b-a));el.style.opacity=k;el.style.filter=`blur(${(1-k)*14}px)`};
-  lineIn(l1,.5,.62); lineIn(l2,.6,.72);
-  const z=1+ease(clamp((P-.1)/.65))*.35; sky.style.transform=`scale(${z})`;
-  const k=ease(clamp((P-.5)/.14));
-  ephoto.style.opacity=k; ephoto.style.filter=`blur(${(1-k)*10}px)`; gl.style.opacity=1-k;
-  cEarth.style.opacity=k>.5?1:0;
+  P=clamp((scrollY-journey.offsetTop)/range());
+  const io=(a,b,c,d)=>clamp((P-a)/(b-a))*(1-clamp((P-c)/(d-c)));
+  blurIn(l1,io(.02,.05,.11,.135)); blurIn(l2,io(.04,.07,.115,.14));
+  // 여섯 사람
+  blurIn(tour,io(.135,.16,.745,.77),10);
+  const wi=clamp(Math.floor((P-.15)/.1),0,5);
+  if(wi!==wordIdx){ wordIdx=wi; setWord(wi,P>.13&&P<.77); }
+  const c=cam(P);
+  if(c.card>=0&&c.card!==cardIdx){ cardIdx=c.card; const q=CITIES[cardIdx]; pcity.textContent=`${q.en} · ${fmtLL(q.la,q.lo)}`; setPerson(cardIdx); }
+  const side=c.sk>.5; pcard.classList.toggle('side',side);
+  if(side){ // 넓은 화면: 오른쪽에 크게
+    // 지구 오른쪽 끝(빛 테두리 포함)부터 화면 오른쪽까지, 위 문장 아래부터 바닥까지 — 지구는 덮지 않음
+    const top=tourt.getBoundingClientRect().bottom+12, bot=H-44, L=W*.3+Math.min(W*.25,H*.4)*1.06+16, Rt=W-Math.max(24,W*.03);
+    const w=Math.max(160,Math.min(Rt-L,bot-top)), x=L+(Rt-L-w)/2, y=Math.max(top,Math.min(bot-w,H*.56-w/2));
+    pcard.style.width=w+'px'; PC={x,y,w,h:w};
+    pcard.style.transform=`translate(${x}px,${y+(1-c.cardK)*16}px)`;
+  } else { PC=null; pcard.style.width=''; }
+  if(c.cardK>0&&!side){
+    const cw=pcard.offsetWidth, ch=pcard.offsetHeight; let stem=Math.max(24,Math.min(60,H*.05));
+    // 작은 화면: 카드가 위 문장을 덮지 않게 줄기를 줄이고, 그래도 모자라면 문장 아래에 둠
+    const minTop=tourt.getBoundingClientRect().bottom+10;
+    if(c.py-ch-stem<minTop) stem=Math.max(8,c.py-ch-minTop);
+    pstem.style.height=stem+'px';
+    pcard.style.transform=`translate(${c.px-cw/2}px,${Math.max(minTop,c.py-ch-stem)+(1-c.cardK)*16}px)`;
+  }
+  blurIn(pcard,c.cardK,8); playScene(c.cardK>0); if(P>.08) warmScenes();
+  // 마지막
+  const ck=clamp((P-.83)/.05); city.style.opacity=ck; cEarth.style.opacity=ck>.5?1:0;
+  if(P>.7) loadClips();
+  drawClips(ck);
+  const fk=clamp((P-.89)/.04); blurIn(fin,fk,12);
+  if(P>.9&&!finaleOn){ finaleOn=true; renderFinale(!reduce); } else if(P<.88&&finaleOn){ finaleOn=false; }
+  const z=1+.12*clamp(P/.8)+.25*ease(clamp((P-.82)/.1)); sky.style.transform=`scale(${z})`;
   nav.classList.toggle('scrolled',scrollY>40);
+  // 재생 버튼·진행 줄은 여정 안에서만
+  const inJ=!document.body.classList.contains('gated')&&scrollY<yOf(1)+H*.5;
+  player.classList.toggle('off',!inJ); prog.classList.toggle('off',!inJ);
+  progbar.style.width=(P*100)+'%';
 }
 addEventListener('scroll',onScroll,{passive:true});
 
-function frame(t){drawSky(t);drawGlobe(P,t);drawDust();requestAnimationFrame(frame)}
-function resize(){W=innerWidth;H=innerHeight;gl.width=W*DPR;gl.height=H*DPR;buildSky();onScroll()}
-addEventListener('resize',resize); resize(); requestAnimationFrame(frame);
+/* ── 자동 재생: 스크롤을 코드가 천천히 내림(멈춤·이어가기 가능) ── */
+// [진행값, 그 지점까지 걸리는 누적 초]
+const KEYS=[[0,0],[.10,4.5],[.15,8],[.25,13],[.35,18],[.45,23],[.55,28],[.65,33],[.75,38],[.82,41],[.92,48.5],[1,56]];
+const TO_ARCHIVE=2.6;
+const archiveY=()=>{const t=document.querySelector('#archive .label'), navH=nav.offsetHeight;return t.getBoundingClientRect().top+scrollY-navH-(innerHeight<760?16:40)};
+const TOTAL=KEYS[KEYS.length-1][1]+TO_ARCHIVE;
+function yAt(s){
+  const L=KEYS[KEYS.length-1];
+  if(s>=L[1]){const e=ease(clamp((s-L[1])/TO_ARCHIVE));return yOf(1)+(archiveY()-yOf(1))*e}
+  for(let i=1;i<KEYS.length;i++) if(s<=KEYS[i][1]){const a=KEYS[i-1],b=KEYS[i];return yOf(a[0]+(b[0]-a[0])*(s-a[1])/(b[1]-a[1]))}
+}
+function timeAtY(y){
+  if(y>=yOf(1)) return KEYS[KEYS.length-1][1];
+  const p=clamp((y-journey.offsetTop)/range());
+  for(let i=1;i<KEYS.length;i++) if(p<=KEYS[i][0]){const a=KEYS[i-1],b=KEYS[i];return a[1]+(b[1]-a[1])*(p-a[0])/(b[0]-a[0])}
+  return 0;
+}
+const playBtn=document.getElementById('play');
+let playing=false, ptime=0, last=0;
+function play(){ player.classList.remove('hint'); if(scrollY>=yOf(1)-2) scrollTo(0,journey.offsetTop);
+  playing=true; ptime=timeAtY(scrollY); last=performance.now(); playBtn.textContent='❚❚'; playBtn.setAttribute('aria-label',isKo?'일시 정지':'Pause'); onScroll(); }
+function pause(){ playing=false; if(reduce) playScene(false); playBtn.textContent='▶'; playBtn.setAttribute('aria-label',isKo?'재생':'Play'); }
+playBtn.onclick=()=>playing?pause():play();
+function tick(now){
+  if(!playing) return;
+  ptime+=Math.min(.1,(now-last)/1000); last=now;
+  scrollTo(0,yAt(Math.min(ptime,TOTAL)));
+  if(ptime>=TOTAL) pause();
+}
+// 사람이 직접 움직이면 바로 멈춤
+addEventListener('wheel',()=>playing&&pause(),{passive:true});
+addEventListener('touchstart',()=>playing&&pause(),{passive:true});
+addEventListener('keydown',e=>{ if(playing&&['ArrowDown','ArrowUp','PageDown','PageUp',' ','Home','End'].includes(e.key)&&e.target.tagName!=='INPUT') pause(); });
 
-/* ── 직함 바꾸기: 글자가 별가루로 흩어지고, 새 글자가 별빛처럼 켜짐 ── */
-const koList=['100억 자산가','5선 국회의원','대기업 대표','1천만 인플루언서','유명 연예인','노벨상 수상자'];
-const enList=['billionaires’','5-term politicians’','CEOs’','10M influencers’','celebrities’','Nobel laureates’'];
-let idx=0, isKo=true;
-const chars=(w,cls,d0)=>[...w].map((c,i)=>`<span class="ch ${cls}" style="animation-delay:${d0+i*55}ms">${c===' '?'&nbsp;':c}</span>`).join('');
-function renderTitle(){
-  document.getElementById('hero-title').innerHTML=isKo
-    ?`우리는<br class="m"> <span class="nb"><span class="changing" id="changing">${chars(koList[idx],'',0)}</span>보다</span><br>당신이 쓰는 책이 <br class="m">더 궁금해`
-    :`We're more curious<br>about your book than<br><span class="changing" id="changing">${chars(enList[idx],'',0)}</span>`;
-  fitSlot();
+function frame(t){tick(t);drawSky(t);drawGlobe(P,t);requestAnimationFrame(frame)}
+function resize(){W=innerWidth;H=innerHeight;gl.width=W*DPR;gl.height=H*DPR;met.width=W*DPR;met.height=H*DPR;buildSky();onScroll()}
+
+/* ── 0·1장면: 이름 → 별똥별 ── */
+const gate=document.getElementById('gate'), gform=document.getElementById('gateform'), gname=document.getElementById('gname');
+const met=document.getElementById('meteor'), mc=met.getContext('2d');
+const KEY='bw_name';
+const saved=(()=>{try{return localStorage.getItem(KEY)}catch(e){return null}})();
+function openGate(){ pause(); scrollTo(0,0); landed=false; gname.value=NAME; gate.classList.remove('gone'); document.body.classList.add('gated'); onScroll(); setTimeout(()=>gname.focus({preventScroll:true}),400); }
+function closeGate(){ gate.classList.add('gone'); document.body.classList.remove('gated'); onScroll(); }
+function setName(n){ NAME=n; try{localStorage.setItem(KEY,n)}catch(e){}
+  renderFinale(false); const fi=document.querySelector('#sendform [name=name]'); if(fi&&!fi.value) fi.value=n;
+  document.getElementById('again2').hidden=false; }
+async function enter(n){
+  const r=gname.getBoundingClientRect(); setName(n); closeGate();
+  await fall(n,r);
+  landed=true;
+  // 기기에서 '애니메이션 효과'를 끈 사람: 자동으로 흐르지 않고 큰 재생 버튼을 보여 줌
+  if(reduce){ pause(); player.classList.add('hint'); playBtn.textContent=isKo?'▶ 재생':'▶ Play'; return; }
+  setTimeout(()=>{ if(!document.body.classList.contains('gated')) play(); },700);
 }
-/* 빈칸 폭 = 가장 긴 직함 폭으로 고정 → '보다'가 움직이지 않음 */
-function fitSlot(){
-  const el=document.getElementById('changing'); if(!el) return;
-  const m=document.createElement('span'); m.style.cssText='position:absolute;visibility:hidden;white-space:nowrap';
-  el.parentNode.appendChild(m); let w=0;
-  for(const t of (isKo?koList:enList)){m.textContent=t; w=Math.max(w,m.getBoundingClientRect().width)}
-  m.remove(); el.style.width=Math.ceil(w+getComputedStyle(el).fontSize.replace('px','')*.3)+'px';
-}
-renderTitle(); addEventListener('resize',fitSlot); document.fonts&&document.fonts.ready.then(fitSlot);
-const dust=document.getElementById('dust'), dc=dust.getContext('2d'); let motes=[];
-function emit(rect,n,mode){
-  const hr=hero.getBoundingClientRect();
-  for(let i=0;i<n;i++){
-    const x=rect.left-hr.left+Math.random()*rect.width, y=rect.top-hr.top+rect.height*(.2+Math.random()*.65);
-    motes.push(mode==='out'
-      ?{x,y,vx:(Math.random()-.3)*.5,vy:-.15-Math.random()*.55,life:0,max:60+Math.random()*60,s:.5+Math.random()*1.3}
-      :{x,y,vx:0,vy:0,life:0,max:30+Math.random()*30,s:1+Math.random()*1.6,spark:1,delay:Math.random()*30});
-  }
-}
-function drawDust(){
-  dust.width!==W*DPR&&(dust.width=W*DPR,dust.height=H*DPR);
-  dc.setTransform(DPR,0,0,DPR,0,0); dc.clearRect(0,0,W,H);
-  motes=motes.filter(m=>m.life<m.max+(m.delay||0));
-  for(const m of motes){
-    m.life++; if(m.delay&&m.life<m.delay) continue;
-    const t=(m.life-(m.delay||0))/m.max;
-    m.x+=m.vx; m.y+=m.vy; m.vx*=.985; m.vy*=.985;
-    const a=m.spark?Math.sin(Math.PI*t):(1-t)*(.6+.4*Math.sin(m.life*.4));
-    dc.globalAlpha=clamp(a); dc.fillStyle=m.spark?'#fff':'#bcd4ff';
-    dc.beginPath(); dc.arc(m.x,m.y,m.s*(m.spark?(1-t*.5):1),0,7); dc.fill();
-    if(m.spark&&m.s>2){dc.globalAlpha=clamp(a)*.5;dc.fillRect(m.x-m.s*4,m.y-.35,m.s*8,.7);dc.fillRect(m.x-.35,m.y-m.s*4,.7,m.s*8)}
-  }
-  dc.globalAlpha=1;
-}
-function swapWord(){
-  const el=document.getElementById('changing'); if(!el) return;
-  const next=isKo?koList[(idx+1)%koList.length]:enList[(idx+1)%enList.length];
-  idx=(idx+1)%koList.length;
-  el.querySelectorAll('.ch').forEach(c=>emit(c.getBoundingClientRect(),14,'out'));
-  const ghost=document.createElement('span'); ghost.className='ghost';
-  ghost.innerHTML=[...el.querySelectorAll('.ch')].map((c,i)=>`<span class="ch out" style="animation-delay:${i*25}ms">${c.innerHTML}</span>`).join('');
-  el.innerHTML=chars(next,'in',560); el.appendChild(ghost);
-  setTimeout(()=>{el.querySelectorAll('.ch.in').forEach((c,i)=>setTimeout(()=>emit(c.getBoundingClientRect(),3,'in'),i*55))},600);
-  setTimeout(()=>{ghost.remove()},1500);
-}
-setInterval(()=>{if(P<.1&&!document.hidden) swapWord()},3400);
+gform.addEventListener('submit',e=>{e.preventDefault(); enter(gname.value.trim());});
+document.getElementById('gskip').onclick=()=>enter('');
+document.getElementById('replay').onclick=()=>{ scrollTo(0,journey.offsetTop); landed=true; play(); };
+document.getElementById('rename').onclick=openGate;
+
+/* 이름이 별가루로 모여 한 점 → 위로 솟았다가 지구의 한 곳으로 떨어짐 */
+function fall(name,r){ return new Promise(res=>{
+  const g=mc, sx=r.left+r.width/2, sy=r.top+r.height/2;
+  const c0=cam(0), hx=c0.px, hy=c0.py;
+  const cx1=W*(sx<W*.6?.84:.16), cy1=Math.max(30,H*.06);
+  const motes=[]; const n=Math.max(24,Math.min(90,(name.length||4)*14));
+  for(let i=0;i<n;i++) motes.push({x:sx+(Math.random()-.5)*Math.min(r.width,40+name.length*22),y:sy+(Math.random()-.5)*r.height*.6,s:.6+Math.random()*1.6,d:Math.random()*250});
+  const trail=[], sparks=[]; const t0=performance.now(), A=900, B=1700, C=1200;
+  const q=(e)=>[(1-e)*(1-e)*sx+2*(1-e)*e*cx1+e*e*hx,(1-e)*(1-e)*sy+2*(1-e)*e*cy1+e*e*hy];
+  (function f(now){
+    const t=now-t0; g.setTransform(DPR,0,0,DPR,0,0); g.clearRect(0,0,W,H);
+    if(t<A){ // 모이기
+      const k=ease(clamp(t/A));
+      for(const m of motes){ const kk=clamp((t-m.d)/(A-m.d)), e=ease(kk); const x=m.x+(sx-m.x)*e, y=m.y+(sy-m.y)*e;
+        g.globalAlpha=.4+.6*Math.sin(Math.PI*Math.min(1,kk+.2)); g.fillStyle='#cfe0ff'; g.beginPath(); g.arc(x,y,m.s*(1-e*.5),0,7); g.fill(); }
+      g.globalAlpha=1; star(g,sx,sy,1+k*4,k);
+    } else if(t<A+B){ // 날기
+      const k=(t-A)/B, e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2; const [x,y]=q(e);
+      trail.push([x,y]); if(trail.length>34) trail.shift();
+      for(let i=1;i<trail.length;i++){ const a=i/trail.length; g.strokeStyle=`rgba(200,222,255,${a*.85})`; g.lineWidth=a*4.2;
+        g.beginPath(); g.moveTo(trail[i-1][0],trail[i-1][1]); g.lineTo(trail[i][0],trail[i][1]); g.stroke(); }
+      for(let i=0;i<2;i++) sparks.push({x,y,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6+.2,l:1,s:Math.random()*1.6+.5});
+      star(g,x,y,5-k*2,1);
+    } else { // 닿기: 빛 번짐 + 고리
+      const k=clamp((t-A-B)/C);
+      g.strokeStyle=`rgba(190,215,255,${(1-k)*.9})`; g.lineWidth=1.5; g.beginPath(); g.arc(hx,hy,6+k*Rs()*2.2,0,7); g.stroke();
+      star(g,hx,hy,3+(1-k)*9,1-k*.7);
+    }
+    for(const p of sparks){ p.x+=p.vx; p.y+=p.vy; p.l-=.02; if(p.l>0){ g.globalAlpha=p.l*.9; g.fillStyle='#dbe8ff'; g.fillRect(p.x,p.y,p.s,p.s);} }
+    g.globalAlpha=1;
+    if(t>=A+B&&!landed) landed=true;
+    if(t<A+B+C) requestAnimationFrame(f); else { g.clearRect(0,0,W,H); res(); }
+  })(t0);
+});}
+
+/* 시작: 누구나 처음부터(다시 온 사람은 이름이 미리 채워진 채 묻기) / 메뉴 주소로 온 사람 = 그대로 */
+if('scrollRestoration' in history) history.scrollRestoration='manual';
+addEventListener('resize',resize); resize(); requestAnimationFrame(frame);
+if(location.hash&&location.hash.length>1){ landed=true; }
+else { if(saved!==null){ NAME=saved; setName(saved); } openGate(); }
 
 /* ── 원고 보내기: 이 페이지 안에서 바로 접수 ──
    ENDPOINT = 구글 Apps Script 웹 앱 주소(파일은 구글 드라이브 '파란수박 원고함'에 저장 + 메일 알림).
@@ -572,19 +813,25 @@ fitGiant(); addEventListener('resize',fitGiant); document.fonts&&document.fonts.
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',ev=>{
   const id=a.getAttribute('href').slice(1);
   if(!id){ev.preventDefault();scrollTo({top:0,behavior:'smooth'});return}
-  const sec=document.getElementById(id); if(!sec) return; ev.preventDefault();
+  const sec=document.getElementById(id); if(!sec) return; ev.preventDefault(); pause();
+  if(document.body.classList.contains('gated')){ landed=true; closeGate(); }
   const t=sec.querySelector('.label,h2')||sec, navH=document.getElementById('nav').offsetHeight;
   scrollTo({top:t.getBoundingClientRect().top+scrollY-navH-(innerHeight<760?16:40),behavior:'smooth'});
   history.replaceState(null,'','#'+id);
 }));
 
 /* ── 한/영 ── */
-document.getElementById('lang').onclick=function(){
-  isKo=!isKo; this.textContent=isKo?'EN':'KO'; document.documentElement.lang=isKo?'ko':'en';
+/* 한/영: 고른 언어는 기억 · 처음 온 사람은 브라우저 언어가 한국어가 아니면 영어로 */
+function setLang(ko){
+  isKo=ko; const b=document.getElementById('lang'); b.textContent=isKo?'EN':'KO'; document.documentElement.lang=isKo?'ko':'en';
   document.querySelectorAll('[data-ko][data-en]').forEach(el=>{el.innerHTML=isKo?el.dataset.ko.replace('작가는 ','작가는 <br class="m">'):el.dataset.en});
   document.querySelectorAll('[data-ph-ko]').forEach(el=>el.placeholder=isKo?el.dataset.phKo:el.dataset.phEn);
-  renderTitle();
-};
+  gname.setAttribute('aria-label',isKo?'이름':'Name'); if(player.classList.contains('hint')) playBtn.textContent=isKo?'▶ 재생':'▶ Play'; playBtn.setAttribute('aria-label',playing?(isKo?'일시 정지':'Pause'):(isKo?'재생':'Play'));
+  renderTitle(); if(cardIdx>=0) setWord(Math.max(0,wordIdx),false);
+}
+document.getElementById('lang').onclick=()=>{ setLang(!isKo); try{localStorage.setItem('bw_lang',isKo?'ko':'en')}catch(e){} };
+{ let L=null; try{L=localStorage.getItem('bw_lang')}catch(e){}
+  if(L==='en'||(!L&&!/^ko\b/i.test(navigator.language||'ko'))) setLang(false); }
 
 /* ── 나타나기 ── */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
