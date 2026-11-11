@@ -524,17 +524,16 @@ const clipEls=CLIPS.map(n=>{ const e=document.createElement(STILL?'img':'video')
   if(STILL){ e.alt=''; e.decoding='async'; } else { e.muted=true; e.loop=true; e.playsInline=true; e.preload='none'; e.setAttribute('muted',''); e.setAttribute('playsinline',''); }
   city.appendChild(e); return e; });
 let clipsLoaded=false;
-// 장면 영상 6편(Pexels, 푸른 흑백) — 그 장면에서만 재생 / 휴대폰·느린 회선·움직임 줄이기 = 정지 사진
-const SCENES=['p1','p2','p3','p4','p5','p6'], SSTILL=STILL||reduce, pph=document.getElementById('pph');
+// 장면 영상 6편(Pexels, 푸른 흑백, 각 약 0.1MB) — 모든 기기에서 그 장면에서만 재생 / 움직임 줄이기 = ▶ 재생 중일 때만
+const SCENES=['p1','p2','p3','p4','p5','p6'], pph=document.getElementById('pph');
 let pmed=null, scenesWarm=false;
 function warmScenes(){ if(scenesWarm) return; scenesWarm=true; SCENES.forEach(n=>{ const im=new Image(); im.src=`../scene/${n}.jpg`; }); }
 function setPerson(i){ pph.classList.remove('has'); if(pmed){ pmed.remove(); pmed=null; }
   const n=SCENES[i]; if(!n) return;
-  const e=document.createElement(SSTILL?'img':'video'); e.setAttribute('aria-hidden','true');
-  if(SSTILL){ e.alt=''; e.decoding='async'; e.onload=()=>pph.classList.add('has'); e.src=`../scene/${n}.jpg`; }
-  else { e.muted=true; e.loop=true; e.playsInline=true; e.setAttribute('muted',''); e.setAttribute('playsinline',''); e.preload='auto'; e.poster=`../scene/${n}.jpg`; e.src=`../scene/${n}.mp4`; pph.classList.add('has'); }
+  const e=document.createElement('video'); e.setAttribute('aria-hidden','true');
+  e.muted=true; e.loop=true; e.playsInline=true; e.setAttribute('muted',''); e.setAttribute('playsinline',''); e.preload='auto'; e.poster=`../scene/${n}.jpg`; e.src=`../scene/${n}.mp4`; pph.classList.add('has');
   pph.insertBefore(e,pph.firstChild); pmed=e; }
-function playScene(on){ if(!pmed||pmed.tagName!=='VIDEO') return; if(on&&pmed.paused) pmed.play().catch(()=>{}); else if(!on&&!pmed.paused) pmed.pause(); }
+function playScene(on){ if(!pmed) return; if(reduce&&!playing) on=false; if(on&&pmed.paused) pmed.play().catch(()=>{}); else if(!on&&!pmed.paused) pmed.pause(); }
 function loadClips(){ if(clipsLoaded) return; clipsLoaded=true;
   clipEls.forEach(e=>{ if(e.tagName==='VIDEO'){ e.poster=e.dataset.poster; e.preload='auto'; } e.src=e.dataset.src; }); }
 function drawClips(ck){
@@ -606,8 +605,8 @@ function timeAtY(y){
 const playBtn=document.getElementById('play');
 let playing=false, ptime=0, last=0;
 function play(){ player.classList.remove('hint'); if(scrollY>=yOf(1)-2) scrollTo(0,journey.offsetTop);
-  playing=true; ptime=timeAtY(scrollY); last=performance.now(); playBtn.textContent='❚❚'; playBtn.setAttribute('aria-label',isKo?'일시 정지':'Pause'); }
-function pause(){ playing=false; playBtn.textContent='▶'; playBtn.setAttribute('aria-label',isKo?'재생':'Play'); }
+  playing=true; ptime=timeAtY(scrollY); last=performance.now(); playBtn.textContent='❚❚'; playBtn.setAttribute('aria-label',isKo?'일시 정지':'Pause'); onScroll(); }
+function pause(){ playing=false; if(reduce) playScene(false); playBtn.textContent='▶'; playBtn.setAttribute('aria-label',isKo?'재생':'Play'); }
 playBtn.onclick=()=>playing?pause():play();
 function tick(now){
   if(!playing) return;
