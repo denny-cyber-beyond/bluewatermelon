@@ -70,12 +70,14 @@ a{color:inherit;text-decoration:none}
 .tour{position:absolute;left:0;right:0;top:11vh;text-align:center;padding:0 22px;opacity:0;will-change:opacity,filter}
 .tour p{font-size:clamp(28px,4.4vw,64px);font-weight:700;letter-spacing:-.035em;line-height:1.22}
 .pcard{position:absolute;left:0;top:0;width:min(220px,27vh,40vw);margin:0;opacity:0;will-change:opacity,transform,filter;pointer-events:none}
-.pcard .ph{position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#1d2333,#0b0f1a);border:1px solid rgba(255,255,255,.16);box-shadow:0 30px 60px -20px rgba(0,0,0,.9),0 0 40px -10px rgba(143,180,255,.35)}
+/* 인물: 테두리 없이 가장자리가 어둠에 스며듦 */
+.pcard .ph{position:relative;aspect-ratio:3/4;overflow:hidden;-webkit-mask-image:radial-gradient(ellipse 50% 52% at 50% 44%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 52% at 50% 44%,#000 58%,transparent 100%)}
 .pcard .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1)}
 .pcard .ph .sil{position:absolute;left:50%;bottom:-6%;width:78%;transform:translateX(-50%);fill:rgba(255,255,255,.13)}
 .pcard .ph img{opacity:0;transition:opacity .5s}.pcard .ph.has img{opacity:1}.pcard .ph.has .sil{display:none}
 .pcard .bar{position:absolute;left:var(--bl,14%);right:var(--bl,14%);top:var(--bt,33%);height:9%;background:#000;transform:rotate(-2deg);box-shadow:0 2px 6px rgba(0,0,0,.6)}
 .pcard figcaption{margin:12px auto 0;width:max-content;padding:3px 10px;border-radius:99px;background:rgba(3,6,16,.72);text-align:center;font-size:12px;letter-spacing:.2em;color:rgba(210,226,255,.9);white-space:nowrap}
+.pcard.side .stem{display:none}.pcard.side figcaption{margin-top:-6px}
 .pcard .stem{position:absolute;left:50%;top:100%;width:1px;background:linear-gradient(rgba(190,215,255,.7),rgba(190,215,255,0));transform:translateX(-.5px)}
 /* 마지막 문구 */
 .finale{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 6vw;opacity:0;will-change:opacity,filter}
@@ -103,6 +105,8 @@ body.gated{overflow:hidden}
 .player{position:fixed;right:22px;bottom:46px;z-index:18;display:flex;align-items:center;gap:10px;transition:opacity .4s}
 .player button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(3,5,12,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .player button:hover{border-color:rgba(143,180,255,.9)}
+.player.hint{right:50%;bottom:12vh;transform:translateX(50%)}
+.player.hint button{width:auto;height:48px;padding:0 24px;border-radius:99px;font-size:16px;font-family:inherit;font-weight:600;border-color:rgba(190,215,255,.6);background:rgba(10,20,45,.6);box-shadow:0 0 24px rgba(143,180,255,.35)}
 .prog{position:fixed;left:0;right:0;bottom:0;height:2px;z-index:18;background:rgba(255,255,255,.08);transition:opacity .4s}
 .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,rgba(143,180,255,.5),#cfe0ff);box-shadow:0 0 8px rgba(143,180,255,.8)}
 .off{opacity:0;pointer-events:none}
@@ -405,6 +409,8 @@ const fmtLL=(la,lo)=>`${Math.abs(la).toFixed(1)}°${la>=0?'N':'S'} ${Math.abs(lo
 const OFF=.3;
 const Rs=()=>Math.min(W,H)*.085, Rb=()=>Math.min(W*.6,H*.55);
 const lerpLo=(a,b,e)=>a+((((b-a)%360)+540)%360-180)*e;
+const SIDE=()=>W>=820&&W>=H*1.1;
+let PC=null; // 인물 자리(넓은 화면) — 지구 핀에서 빛줄을 잇는 데 씀
 function cam(P){
   const rb=Rb(), rs=Rs(), pyB=H*.5+rb*.55-Math.sin(OFF)*rb, pyS=H*.66;
   let la=HOME[0], lo=HOME[1], off=OFF, R=rb, px=W/2, py=pyB, card=-1, cardK=0, zoom=0;
@@ -418,7 +424,10 @@ function cam(P){
   else if(P>=.75&&P<.82){ const a=CITIES[5], e=ease((P-.75)/.07);
     la=a.la+(HOME[0]-a.la)*e; lo=lerpLo(a.lo,HOME[1],e); R=rb*(1-.2*Math.sin(Math.PI*e)); }
   else if(P>=.82){ zoom=ease(clamp((P-.82)/.1)); R=rb*Math.pow(12,zoom); py=pyB+(H/2-pyB)*zoom; off=OFF*(1-zoom); }
-  return {la,lo,off,R,px,py,card,cardK,zoom};
+  // 넓은 화면: 여섯 사람 동안 지구는 왼쪽, 인물은 오른쪽
+  const sk=SIDE()?ease(clamp((P-.14)/.05))*(1-ease(clamp((P-.745)/.05))):0;
+  if(sk>0){ const k=Math.min(W*.25,H*.4)/rb; px+=(W*.3-px)*sk; py+=(H*.56-py)*sk; R*=1+(k-1)*sk; }
+  return {la,lo,off,R,px,py,card,cardK,zoom,sk};
 }
 let landed=false;
 function drawGlobe(P,t){
@@ -455,6 +464,10 @@ function drawGlobe(P,t){
   if(c.card>=0&&c.cardK>0){
     const v=proj(vec(CITIES[c.card].la,CITIES[c.card].lo),rot,tilt), X=cx+v[0]*R, Y=cy-v[1]*R, k=c.cardK;
     const ph=(t*.0012)%1;
+    if(PC&&c.sk>.5){ // 핀 → 인물 빛줄
+      const ex=PC.x+PC.w*.12, ey=PC.y+PC.h*.5, lg=gc.createLinearGradient(X,Y,ex,ey);
+      lg.addColorStop(0,`rgba(200,222,255,${.75*k})`); lg.addColorStop(1,'rgba(200,222,255,0)');
+      gc.strokeStyle=lg; gc.lineWidth=1; gc.beginPath(); gc.moveTo(X,Y); gc.lineTo(X+(ex-X)*k,Y+(ey-Y)*k); gc.stroke(); }
     gc.strokeStyle=`rgba(190,215,255,${(1-ph)*.7*k})`; gc.lineWidth=1.2; gc.beginPath(); gc.arc(X,Y,4+ph*22,0,7); gc.stroke();
     star(gc,X,Y,4,k);
   }
@@ -510,7 +523,7 @@ const city=document.getElementById('city'), cEarth=document.getElementById('cred
 const player=document.getElementById('player'), prog=document.getElementById('prog'), progbar=document.getElementById('progbar');
 let P=0, cardIdx=-1;
 // 인물 사진(가상 인물) — eye = 눈 높이(위에서 %), bl = 띠 좌우 여백(%)
-const PEOPLE=[{src:'../people/p1.jpg',eye:19.8,bl:27},{src:'../people/p2.jpg',eye:24,bl:33},{src:'../people/p3.jpg',eye:27.5,bl:26},{src:'../people/p4.jpg',eye:26.5,bl:31},{src:'../people/p5.jpg',eye:26.5,bl:27},{src:'../people/p6.jpg',eye:27.5,bl:28}];
+const PEOPLE=[{src:'../people/p1.jpg',eye:20.3,bl:27},{src:'../people/p2.jpg',eye:21.8,bl:33},{src:'../people/p3.jpg',eye:27.6,bl:26},{src:'../people/p4.jpg',eye:26.4,bl:31},{src:'../people/p5.jpg',eye:34.2,bl:28},{src:'../people/p6.jpg',eye:28.6,bl:28}];
 const pph=document.getElementById('pph'), pimg=document.getElementById('pimg');
 function setPerson(i){ const q=PEOPLE[i]; pph.classList.remove('has');
   if(!q){ pimg.removeAttribute('src'); pph.style.removeProperty('--bt'); pph.style.removeProperty('--bl'); return; }
@@ -522,7 +535,7 @@ PEOPLE.forEach(q=>{ if(q){ const im=new Image(); im.src=q.src; } });
 // 휴대폰·느린 회선·움직임 줄이기 = 영상 대신 정지 사진(천천히 다가가기)
 const CLIPS=['c1','c2','c3','c4','c5','c6'], C0=.835, CSEG=(1-C0)/CLIPS.length, CF=CSEG*.28;
 const conn=navigator.connection||{};
-const STILL=reduce||!!conn.saveData||/(^|-)2g|3g/.test(conn.effectiveType||'')||matchMedia('(max-width:720px)').matches;
+const STILL=!!conn.saveData||/(^|-)2g|3g/.test(conn.effectiveType||'')||matchMedia('(max-width:720px)').matches;
 const clipEls=CLIPS.map(n=>{ const e=document.createElement(STILL?'img':'video'); e.className='cl';
   e.dataset.src=`../city/${n}.${STILL?'jpg':'mp4'}`; e.dataset.poster=`../city/${n}.jpg`;
   if(STILL){ e.alt=''; e.decoding='async'; } else { e.muted=true; e.loop=true; e.playsInline=true; e.preload='none'; e.setAttribute('muted',''); e.setAttribute('playsinline',''); }
@@ -549,7 +562,13 @@ function onScroll(){
   if(wi!==wordIdx){ wordIdx=wi; setWord(wi,P>.13&&P<.77); }
   const c=cam(P);
   if(c.card>=0&&c.card!==cardIdx){ cardIdx=c.card; const q=CITIES[cardIdx]; pcity.textContent=`${q.en} · ${fmtLL(q.la,q.lo)}`; setPerson(cardIdx); }
-  if(c.cardK>0){
+  const side=c.sk>.5; pcard.classList.toggle('side',side);
+  if(side){ // 넓은 화면: 오른쪽에 크게
+    const minTop=tourt.getBoundingClientRect().bottom+8, w=Math.min(H*.5,W*.3), h=w*4/3+30, y=Math.max(minTop,H*.6-h/2);
+    pcard.style.width=w+'px'; PC={x:W*.7-w/2,y,w,h:w*4/3};
+    pcard.style.transform=`translate(${PC.x}px,${y+(1-c.cardK)*16}px)`;
+  } else { PC=null; pcard.style.width=''; }
+  if(c.cardK>0&&!side){
     const cw=pcard.offsetWidth, ch=pcard.offsetHeight; let stem=Math.max(24,Math.min(60,H*.05));
     // 작은 화면: 카드가 위 문장을 덮지 않게 줄기를 줄이고, 그래도 모자라면 문장 아래에 둠
     const minTop=tourt.getBoundingClientRect().bottom+10;
@@ -568,7 +587,7 @@ function onScroll(){
   nav.classList.toggle('scrolled',scrollY>40);
   // 재생 버튼·진행 줄은 여정 안에서만
   const inJ=!document.body.classList.contains('gated')&&scrollY<yOf(1)+H*.5;
-  player.classList.toggle('off',!inJ||reduce); prog.classList.toggle('off',!inJ||reduce);
+  player.classList.toggle('off',!inJ); prog.classList.toggle('off',!inJ);
   progbar.style.width=(P*100)+'%';
 }
 addEventListener('scroll',onScroll,{passive:true});
@@ -592,7 +611,7 @@ function timeAtY(y){
 }
 const playBtn=document.getElementById('play');
 let playing=false, ptime=0, last=0;
-function play(){ if(reduce) return; if(scrollY>=yOf(1)-2) scrollTo(0,journey.offsetTop);
+function play(){ player.classList.remove('hint'); if(scrollY>=yOf(1)-2) scrollTo(0,journey.offsetTop);
   playing=true; ptime=timeAtY(scrollY); last=performance.now(); playBtn.textContent='❚❚'; playBtn.setAttribute('aria-label',isKo?'일시 정지':'Pause'); }
 function pause(){ playing=false; playBtn.textContent='▶'; playBtn.setAttribute('aria-label',isKo?'재생':'Play'); }
 playBtn.onclick=()=>playing?pause():play();
@@ -622,9 +641,11 @@ function setName(n){ NAME=n; try{localStorage.setItem(KEY,n)}catch(e){}
   document.getElementById('again2').hidden=false; }
 async function enter(n){
   const r=gname.getBoundingClientRect(); setName(n); closeGate();
-  if(reduce){ landed=true; scrollTo(0,yOf(.93)); return; }
   await fall(n,r);
-  landed=true; setTimeout(()=>{ if(!document.body.classList.contains('gated')) play(); },700);
+  landed=true;
+  // 기기에서 '애니메이션 효과'를 끈 사람: 자동으로 흐르지 않고 큰 재생 버튼을 보여 줌
+  if(reduce){ pause(); player.classList.add('hint'); playBtn.textContent=isKo?'▶ 재생':'▶ Play'; return; }
+  setTimeout(()=>{ if(!document.body.classList.contains('gated')) play(); },700);
 }
 gform.addEventListener('submit',e=>{e.preventDefault(); enter(gname.value.trim());});
 document.getElementById('gskip').onclick=()=>enter('');
@@ -812,7 +833,7 @@ function setLang(ko){
   isKo=ko; const b=document.getElementById('lang'); b.textContent=isKo?'EN':'KO'; document.documentElement.lang=isKo?'ko':'en';
   document.querySelectorAll('[data-ko][data-en]').forEach(el=>{el.innerHTML=isKo?el.dataset.ko.replace('작가는 ','작가는 <br class="m">'):el.dataset.en});
   document.querySelectorAll('[data-ph-ko]').forEach(el=>el.placeholder=isKo?el.dataset.phKo:el.dataset.phEn);
-  gname.setAttribute('aria-label',isKo?'이름':'Name'); playBtn.setAttribute('aria-label',playing?(isKo?'일시 정지':'Pause'):(isKo?'재생':'Play'));
+  gname.setAttribute('aria-label',isKo?'이름':'Name'); if(player.classList.contains('hint')) playBtn.textContent=isKo?'▶ 재생':'▶ Play'; playBtn.setAttribute('aria-label',playing?(isKo?'일시 정지':'Pause'):(isKo?'재생':'Play'));
   renderTitle(); if(cardIdx>=0) setWord(Math.max(0,wordIdx),false);
 }
 document.getElementById('lang').onclick=()=>{ setLang(!isKo); try{localStorage.setItem('bw_lang',isKo?'ko':'en')}catch(e){} };
