@@ -523,7 +523,7 @@ const pcard=document.getElementById('pcard'), pcity=document.getElementById('pci
 const city=document.getElementById('city'), cEarth=document.getElementById('credit-earth');
 const player=document.getElementById('player'), prog=document.getElementById('prog'), progbar=document.getElementById('progbar');
 let P=0, cardIdx=-1;
-// 마지막 야경 1편(Pexels, 푸른 흑백, 0.5배 느리게·앞으로만, 끝을 처음에 녹여 4.8초 이음매 없는 반복) — 문구에 집중하도록 한 화면만
+// 마지막 야경 1편(Pexels, 푸른 흑백, 원본 24초 중 20초를 그대로 앞으로만, 끝을 처음에 녹여 18.5초 이음매 없는 반복) — 문구에 집중하도록 한 화면만
 // 휴대폰·느린 회선 = 영상 대신 정지 사진(천천히 다가가기)
 const CLIPS=['night'], C0=.835, CSEG=(1-C0)/CLIPS.length, CF=CSEG*.28;
 const conn=navigator.connection||{};
