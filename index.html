@@ -710,6 +710,10 @@ const MAXMB=20;
   const f=document.getElementById('sendform'), drop=document.getElementById('drop'), fi=document.getElementById('file'),
         dt=document.getElementById('droptxt'), msg=document.getElementById('msg'), btn=document.getElementById('sendbtn');
   const T=(ko,en)=>isKo?ko:en;
+  // 휴대폰(손가락·좁은 화면)은 끌어 놓기가 없으니 '눌러서 고르기'만
+  const TAP=matchMedia('(pointer:coarse)').matches&&innerWidth<=720,
+        DK=TAP?'눌러서 원고 파일 고르기':'원고 파일 끌어 놓기 또는 눌러서 고르기', DE=TAP?'Tap to choose your file':'Drop your file here or click to choose';
+  { const s0=dt.querySelector('span'); s0.dataset.ko=DK; s0.dataset.en=DE; s0.textContent=T(DK,DE); }
   const esc=t=>String(t).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
   const show=file=>{ if(!file) return; drop.classList.add('has');
     dt.innerHTML=`📄 ${esc(file.name)}<small>${(file.size/1048576).toFixed(1)}MB · ${T('바꾸려면 다시 누르세요','click to change')}</small>`; };
@@ -769,7 +773,7 @@ const MAXMB=20;
     })(t0); });
     const ag=done.querySelector('.again');
     if(ag) ag.onclick=()=>{ f.removeAttribute('style'); f.reset(); drop.classList.remove('has');
-      dt.innerHTML=`<span>${T('원고 파일 끌어 놓기 또는 눌러서 고르기','Drop your file here or click to choose')}</span><small>docx · hwp · pdf · txt, 20MB</small>`;
+      dt.innerHTML=`<span data-ko="${DK}" data-en="${DE}">${T(DK,DE)}</span><small>docx · hwp · pdf · txt, 20MB</small>`;
       btn.disabled=false; done.replaceWith(f); };
   }
   /* 시안 모드 전용: 빈칸 안 채워도 별 장면 바로 보기 */
