@@ -141,6 +141,9 @@ a.book:hover .cover{transform:translateY(-10px) rotate(-1deg);box-shadow:0 40px 
 .no{font-size:12px;letter-spacing:.2em;color:var(--dim)}
 .ttl{font-size:19px;font-weight:600;margin-top:6px}
 .ttl.empty{color:rgba(255,255,255,.35);font-weight:500}
+a.book.next .cover.empty,a.book.next .ttl.empty{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,border-color .3s,color .3s}
+a.book.next:hover .cover.empty,a.book.next:focus-visible .cover.empty{border-color:rgba(150,180,255,.6);color:rgba(255,255,255,.8)}
+a.book.next:hover .ttl.empty,a.book.next:focus-visible .ttl.empty{color:rgba(255,255,255,.75)}
 
 /* 4장면: 끝 */
 .end{text-align:center;padding:26vh 8vw 22vh}
@@ -293,11 +296,11 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
       <div class="meta"><span class="no">No.001</span><span class="no">2026</span></div>
       <div class="ttl">베테랑 비욘드</div>
     </a>
-    <div class="book rise d3">
+    <a class="book next rise d3" href="#send" aria-label="다음 책 — 원고 보내기">
       <div class="cover empty" data-ko="비어 있음" data-en="Empty">비어 있음</div>
       <div class="meta"><span class="no">No.002</span><span class="no">—</span></div>
       <div class="ttl empty" data-ko="다음 책" data-en="Next book">다음 책</div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -829,7 +832,7 @@ function setLang(ko){
   isKo=ko; const b=document.getElementById('lang'); b.textContent=isKo?'EN':'KO'; document.documentElement.lang=isKo?'ko':'en';
   document.querySelectorAll('[data-ko][data-en]').forEach(el=>{el.innerHTML=isKo?el.dataset.ko.replace('작가는 ','작가는 <br class="m">'):el.dataset.en});
   document.querySelectorAll('[data-ph-ko]').forEach(el=>el.placeholder=isKo?el.dataset.phKo:el.dataset.phEn);
-  gname.setAttribute('aria-label',isKo?'이름':'Name'); if(player.classList.contains('hint')) playBtn.textContent=isKo?'▶ 재생':'▶ Play'; playBtn.setAttribute('aria-label',playing?(isKo?'일시 정지':'Pause'):(isKo?'재생':'Play'));
+  gname.setAttribute('aria-label',isKo?'이름':'Name'); document.querySelector('a.book.next').setAttribute('aria-label',isKo?'다음 책 — 원고 보내기':'Next book — send your manuscript'); if(player.classList.contains('hint')) playBtn.textContent=isKo?'▶ 재생':'▶ Play'; playBtn.setAttribute('aria-label',playing?(isKo?'일시 정지':'Pause'):(isKo?'재생':'Play'));
   renderTitle(); if(cardIdx>=0) setWord(Math.max(0,wordIdx),false);
 }
 document.getElementById('lang').onclick=()=>{ setLang(!isKo); try{localStorage.setItem('bw_lang',isKo?'ko':'en')}catch(e){} };
