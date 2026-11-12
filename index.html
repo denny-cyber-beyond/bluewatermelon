@@ -36,7 +36,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{background:var(--bg)}
 body{background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,p{word-break:keep-all}
+h1,h2,p,label,textarea{word-break:keep-all}.earth-text p{text-wrap:balance}
 html[lang=en] .earth-text p,html[lang=en] .finale h1,html[lang=en] .end h2,html[lang=en] .gate .note,html[lang=en] .send-lead{text-wrap:balance}
 a{color:inherit;text-decoration:none}
 
@@ -510,7 +510,7 @@ function setWord(i,anim){
 function renderFinale(anim){
   const n=anim?chars(NAME,'in',200):escH(NAME);
   ftitle.innerHTML=NAME
-    ?(isKo?`<span class="fname">${n}</span>,<br>당신이 쓰는 책이 더 궁금해.`:`<span class="fname">${n}</span>,<br>we’re more curious <span class="nb">about the book</span> <span class="nb">you write.</span>`)
+    ?(isKo?`<span class="fname">${n}</span>,<br>당신이 쓰는 책이 더 궁금해.`:`<span class="fname">${n}</span>,<br>we’re more curious<br><span class="nb">about the book</span> <span class="nb">you write.</span>`)
     :(isKo?'우리는<br>당신이 쓰는 책이 더 궁금해.':'We’re more curious<br>about the book you write.');
 }
 function renderTitle(){ setWord(Math.max(0,wordIdx),false); renderFinale(false); }
