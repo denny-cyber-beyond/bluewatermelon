@@ -414,6 +414,7 @@ const OFF=.3;
 const Rs=()=>Math.min(W,H)*.085, Rb=()=>Math.min(W*.6,H*.55);
 const lerpLo=(a,b,e)=>a+((((b-a)%360)+540)%360-180)*e;
 const SIDE=()=>W>=820&&W>=H*1.1;
+let TB=0, CAPH=26; // 작은 화면: 위 문장 아래끝·도시 이름 높이(onScroll이 갱신)
 let PC=null; // 인물 자리(넓은 화면) — 지구 핀에서 빛줄을 잇는 데 씀
 function cam(P){
   const rb=Rb(), rs=Rs(), pyB=H*.5+rb*.55-Math.sin(OFF)*rb, pyS=H*.66;
@@ -431,6 +432,10 @@ function cam(P){
   // 넓은 화면: 여섯 사람 동안 지구는 왼쪽, 인물은 오른쪽
   const sk=SIDE()?ease(clamp((P-.14)/.05))*(1-ease(clamp((P-.745)/.05))):0;
   if(sk>0){ const k=Math.min(W*.25,H*.4)/rb; px+=(W*.3-px)*sk; py+=(H*.56-py)*sk; R*=1+(k-1)*sk; }
+  // 세로 화면(태블릿·폰): 여섯 사람 동안 지구를 아래로 내려 영상 자리를 넓힘(핀은 화면 안)
+  const tk=(SIDE()||!TB)?0:ease(clamp((P-.14)/.05))*(1-ease(clamp((P-.745)/.05)));
+  if(tk>0){ const vh=Math.min(W*.86,720)*9/16, want=TB+10+CAPH+vh*.78, gTop=py+Math.sin(off)*R-R;
+    py+=Math.min(Math.max(0,want-gTop),Math.max(0,H-130-py))*tk; }
   return {la,lo,off,R,px,py,card,cardK,zoom,sk};
 }
 let landed=false;
@@ -518,7 +523,7 @@ const pcard=document.getElementById('pcard'), pcity=document.getElementById('pci
 const city=document.getElementById('city'), cEarth=document.getElementById('credit-earth');
 const player=document.getElementById('player'), prog=document.getElementById('prog'), progbar=document.getElementById('progbar');
 let P=0, cardIdx=-1;
-// 마지막 야경 1편(Pexels, 푸른 흑백, 앞뒤로 이어 6초 반복) — 문구에 집중하도록 한 화면만
+// 마지막 야경 1편(Pexels, 푸른 흑백, 0.5배 느리게·앞으로만, 끝을 처음에 녹여 4.8초 이음매 없는 반복) — 문구에 집중하도록 한 화면만
 // 휴대폰·느린 회선 = 영상 대신 정지 사진(천천히 다가가기)
 const CLIPS=['night'], C0=.835, CSEG=(1-C0)/CLIPS.length, CF=CSEG*.28;
 const conn=navigator.connection||{};
@@ -557,6 +562,7 @@ function onScroll(){
   blurIn(tour,io(.135,.16,.745,.77),10);
   const wi=clamp(Math.floor((P-.15)/.1),0,5);
   if(wi!==wordIdx){ wordIdx=wi; setWord(wi,P>.13&&P<.77); }
+  if(!SIDE()&&P>.12&&P<.8){ TB=tourt.getBoundingClientRect().bottom; CAPH=pcity.offsetHeight+4; }
   const c=cam(P);
   if(c.card>=0&&c.card!==cardIdx){ cardIdx=c.card; const q=CITIES[cardIdx]; pcity.textContent=`${q.en} · ${fmtLL(q.la,q.lo)}`; setPerson(cardIdx); }
   const side=c.sk>.5; pcard.classList.toggle('side',side);
@@ -570,7 +576,7 @@ function onScroll(){
   if(c.cardK>0&&!side){
     // 작은 화면: 위 문장 아래 ~ 지구 윗가장자리 사이에 16:9 영상, 아래 22%까지는 지구 뒤로 들어가도 됨
     const minTop=tourt.getBoundingClientRect().bottom+10, gTop=c.py+Math.sin(c.off)*c.R-c.R, capH=pcity.offsetHeight+4;
-    const h=Math.max(100,Math.min(Math.min(W*.86,520)*9/16,(gTop-minTop-capH)/.78)), w=h*16/9;
+    const h=Math.max(100,Math.min(Math.min(W*.86,720)*9/16,(gTop-minTop-capH)/.78)), w=h*16/9;
     pcard.style.width=w+'px';
     const y=Math.max(minTop,gTop+h*.22-h-capH);
     pcard.style.transform=`translate(${(W-w)/2}px,${y+(1-c.cardK)*16}px)`;
