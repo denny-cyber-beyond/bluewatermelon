@@ -245,7 +245,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
   <a href="#" class="nav-logo"><img src="logos/logo-white.png" alt="파란수박"></a>
   <div class="nav-r">
     <a href="#archive" data-ko="아카이브" data-en="Archive">아카이브</a>
-    <a href="#send" data-ko="원고 보내기" data-en="Send a manuscript">원고 보내기</a>
+    <a href="#send" data-ko="프로젝트 제안하기" data-en="Propose a project">프로젝트 제안하기</a>
     <button class="lang" id="lang" type="button">EN</button>
   </div>
 </nav>
@@ -306,10 +306,10 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
       <div class="meta"><span class="no">No.003</span><span class="no">2026</span></div>
       <div class="ttl">방학동은 언제나 방학이야</div>
     </a>
-    <a class="book next rise d3" href="#send" aria-label="다음 책 — 원고 보내기">
+    <a class="book next rise d3" href="#send" aria-label="다음 이야기 — 프로젝트 제안하기">
       <div class="cover empty" data-ko="비어 있음" data-en="Empty">비어 있음</div>
       <div class="meta"><span class="no">No.004</span><span class="no">—</span></div>
-      <div class="ttl empty" data-ko="다음 책" data-en="Next book">다음 책</div>
+      <div class="ttl empty" data-ko="다음 이야기" data-en="Next story">다음 이야기</div>
     </a>
   </div>
 </section>
@@ -317,19 +317,19 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
 <!-- 4장면: 끝 -->
 <section class="sec end" id="send">
   <h2 class="rise" data-ko="우리가 찾던 작가는 바로 당신입니다." data-en="The author we were looking for is you.">우리가 찾던 작가는 <br class="m">바로 당신입니다.</h2>
-  <p class="send-lead rise d2" data-ko="원고 파일과 짧은 소개를 남겨 주세요. 읽고 메일로 답장드립니다." data-en="Leave your manuscript and a short note. We'll read it and reply by email.">원고 파일과 짧은 소개를 남겨 주세요. 읽고 메일로 답장드립니다.</p>
+  <p class="send-lead rise d2" data-ko="프로젝트 소개와 파일을 남겨 주세요. 읽고 메일로 답장드립니다." data-en="Tell us about your project and attach a file. We'll read it and reply by email.">프로젝트 소개와 파일을 남겨 주세요. 읽고 메일로 답장드립니다.</p>
   <form class="form rise d3" id="sendform" novalidate>
     <div class="row2">
       <label class="fld"><span data-ko="이름 또는 필명" data-en="Name or pen name">이름 또는 필명</span><input name="name" required autocomplete="name"></label>
       <label class="fld"><span data-ko="답장 받을 이메일" data-en="Your email">답장 받을 이메일</span><input name="email" type="email" required autocomplete="email"></label>
     </div>
-    <label class="fld"><span data-ko="원고 제목" data-en="Title">원고 제목</span><input name="title" required></label>
-    <label class="fld"><span data-ko="소개·제안" data-en="About the book">소개·제안</span><textarea name="note" required data-ph-ko="어떤 책인지, 왜 쓰게 되었는지 몇 줄이면 충분합니다." data-ph-en="A few lines on what it is and why you wrote it." placeholder="어떤 책인지, 왜 쓰게 되었는지 몇 줄이면 충분합니다."></textarea></label>
+    <label class="fld"><span data-ko="프로젝트명" data-en="Project name">프로젝트명</span><input name="title" required></label>
+    <label class="fld"><span data-ko="프로젝트 소개" data-en="About the project">프로젝트 소개</span><textarea name="note" required data-ph-ko="어떤 프로젝트인지, 왜 파란수박과 함께하고 싶은지 몇 줄이면 충분합니다." data-ph-en="A few lines on what it is and why you want to make it with us." placeholder="어떤 프로젝트인지, 왜 파란수박과 함께하고 싶은지 몇 줄이면 충분합니다."></textarea></label>
     <label class="drop" id="drop"><input type="file" name="file" id="file" accept=".doc,.docx,.hwp,.hwpx,.pdf,.txt,.md" hidden>
-      <div id="droptxt"><span data-ko="원고 파일 끌어 놓기 또는 눌러서 고르기" data-en="Drop your file here or click to choose">원고 파일 끌어 놓기 또는 눌러서 고르기</span><small>docx · hwp · pdf · txt, 20MB</small></div></label>
+      <div id="droptxt"><span data-ko="제안서·원고 파일 끌어 놓기 또는 눌러서 고르기" data-en="Drop your file here or click to choose">제안서·원고 파일 끌어 놓기 또는 눌러서 고르기</span><small>docx · hwp · pdf · txt, 20MB</small></div></label>
     <label class="hp" aria-hidden="true">website<input name="website" tabindex="-1" autocomplete="off"></label>
     <label class="agree"><input type="checkbox" name="agree" required><span data-ko="답장을 위해 이름·이메일을 받고, 검토가 끝나면 지웁니다. 이에 동의합니다." data-en="We collect your name and email only to reply, and delete them after review. I agree.">답장을 위해 이름·이메일을 받고, 검토가 끝나면 지웁니다. 이에 동의합니다.</span></label>
-    <button class="pill" type="submit" id="sendbtn"><span data-ko="원고 보내기" data-en="Send manuscript">원고 보내기</span> →</button>
+    <button class="pill" type="submit" id="sendbtn"><span data-ko="제안하기" data-en="Send proposal">제안하기</span> →</button>
     <p class="msg" id="msg" role="status"></p>
   </form>
 </section>
@@ -722,7 +722,7 @@ const MAXMB=20;
   const T=(ko,en)=>isKo?ko:en;
   // 휴대폰(손가락·좁은 화면)은 끌어 놓기가 없으니 '눌러서 고르기'만
   const TAP=matchMedia('(pointer:coarse)').matches&&innerWidth<=720,
-        DK=TAP?'눌러서 원고 파일 고르기':'원고 파일 끌어 놓기 또는 눌러서 고르기', DE=TAP?'Tap to choose your file':'Drop your file here or click to choose';
+        DK=TAP?'눌러서 제안서·원고 파일 고르기':'제안서·원고 파일 끌어 놓기 또는 눌러서 고르기', DE=TAP?'Tap to choose your file':'Drop your file here or click to choose';
   { const s0=dt.querySelector('span'); s0.dataset.ko=DK; s0.dataset.en=DE; s0.textContent=T(DK,DE); }
   const esc=t=>String(t).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
   const show=file=>{ if(!file) return; drop.classList.add('has');
@@ -746,7 +746,7 @@ const MAXMB=20;
     let dots=''; for(let i=0;i<26;i++) dots+=`<i style="left:${(Math.random()*96+2).toFixed(1)}%;top:${(Math.random()*92+4).toFixed(1)}%;--o:${(Math.random()*.45+.12).toFixed(2)}"></i>`;
     done.innerHTML=`<div class="newsky">${dots}<span class="nring"></span><span class="nstar"></span>
       <span class="nlabel">✦ ${esc(name)} · ${isKo?'《'+esc(title)+'》':'“'+esc(title)+'”'}</span></div>
-      <div class="dtxt"><b>${T('원고가 잘 보내졌습니다.','Your manuscript has been sent.')}</b>
+      <div class="dtxt"><b>${T('제안이 잘 보내졌습니다.','Your proposal has been sent.')}</b>
       <p>${T('오늘 밤하늘에 별 하나가 늘었어요.',"There is one more star in the sky tonight.")}</p>
       <p>${T('꼼꼼히 읽고 남겨 주신 메일로 답장드릴게요.','We will read it carefully and reply by email.')}</p>
       ${!DRAFT||ENDPOINT?'':`<div><small style="color:var(--dim)">${T('(시안 모드: 실제로 보내지지 않았습니다)','(Draft mode: nothing was actually sent)')}</small><br><button class="again" type="button">${T('시안: 다시 해 보기','Draft: try again')}</button></div>`}</div>`;
@@ -796,21 +796,21 @@ const MAXMB=20;
     if(d.get('website')) return;
     for(const k of ['name','email','title','note']) if(!String(d.get(k)||'').trim()) return err(T('빈칸을 모두 채워 주세요.','Please fill in all the fields.'));
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(d.get('email')).trim())) return err(T('이메일 주소 형식이 맞지 않아요. 예) name@gmail.com','That email address does not look right (e.g. name@gmail.com).'));
-    if(!file&&!MAILONLY) return err(T('원고 파일을 첨부해 주세요.','Please attach your manuscript file.'));
+    if(!file&&!MAILONLY) return err(T('제안서나 원고 파일을 첨부해 주세요.','Please attach your proposal or manuscript file.'));
     if(check(file)) return err(check(file));
     if(!d.get('agree')) return err(T('개인정보 동의에 표시해 주세요.','Please tick the consent box.'));
     if(MAILONLY){
-      const sub=`[원고] ${String(d.get('title')).trim()} — ${String(d.get('name')).trim()}`;
+      const sub=`[제안] ${String(d.get('title')).trim()} — ${String(d.get('name')).trim()}`;
       const body=`이름: ${d.get('name')}
 이메일: ${String(d.get('email')).trim()}
-제목: ${d.get('title')}
+프로젝트명: ${d.get('title')}
 
-소개·제안:
+프로젝트 소개:
 ${d.get('note')}
 
-(원고 파일을 이 메일에 첨부해 주세요)`;
+(제안서·원고 파일을 이 메일에 첨부해 주세요)`;
       location.href='mailto:donghoon807@gmail.com?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
-      msg.className='msg'; msg.textContent=T('메일 창이 열렸어요. 원고 파일을 첨부해서 보내 주세요.','Your mail app has opened. Please attach your manuscript and send.');
+      msg.className='msg'; msg.textContent=T('메일 창이 열렸어요. 제안서나 원고 파일을 첨부해서 보내 주세요.','Your mail app has opened. Please attach your file and send.');
       return;
     }
     btn.disabled=true; msg.textContent=T('보내는 중…','Sending…');
@@ -852,7 +852,7 @@ function setLang(ko){
   isKo=ko; const b=document.getElementById('lang'); b.textContent=isKo?'EN':'KO'; document.documentElement.lang=isKo?'ko':'en';
   document.querySelectorAll('[data-ko][data-en]').forEach(el=>{el.innerHTML=isKo?el.dataset.ko.replace('작가는 ','작가는 <br class="m">'):el.dataset.en});
   document.querySelectorAll('[data-ph-ko]').forEach(el=>el.placeholder=isKo?el.dataset.phKo:el.dataset.phEn);
-  gname.setAttribute('aria-label',isKo?'이름':'Name'); document.querySelector('a.book.next').setAttribute('aria-label',isKo?'다음 책 — 원고 보내기':'Next book — send your manuscript'); if(player.classList.contains('hint')) playBtn.textContent=isKo?'▶ 재생':'▶ Play'; playBtn.setAttribute('aria-label',playing?(isKo?'일시 정지':'Pause'):(isKo?'재생':'Play'));
+  gname.setAttribute('aria-label',isKo?'이름':'Name'); document.querySelector('a.book.next').setAttribute('aria-label',isKo?'다음 이야기 — 프로젝트 제안하기':'Next story — propose a project'); if(player.classList.contains('hint')) playBtn.textContent=isKo?'▶ 재생':'▶ Play'; playBtn.setAttribute('aria-label',playing?(isKo?'일시 정지':'Pause'):(isKo?'재생':'Play'));
   renderTitle(); if(cardIdx>=0) setWord(Math.max(0,wordIdx),false);
 }
 document.getElementById('lang').onclick=()=>{ setLang(!isKo); try{localStorage.setItem('bw_lang',isKo?'ko':'en')}catch(e){} };
