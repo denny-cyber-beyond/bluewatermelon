@@ -132,7 +132,7 @@ body.gated{overflow:hidden}
 .label{font-size:13px;font-weight:600;letter-spacing:.24em;color:var(--dim);margin-bottom:22px}
 .sec h2{font-size:clamp(34px,4.6vw,68px);font-weight:700;letter-spacing:-.035em;line-height:1.2}
 .shelf{display:flex;gap:28px;margin-top:64px;flex-wrap:wrap}
-.book{width:min(300px,80vw);display:block}
+.book{width:clamp(200px,calc((100% - 84px) / 4),300px);display:block}
 .cover{aspect-ratio:480/681;border-radius:18px;overflow:hidden;background:#0b1020;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
 .cover img{width:100%;height:100%;object-fit:cover;display:block}
 a.book:hover .cover{transform:translateY(-10px) rotate(-1deg);box-shadow:0 40px 80px -20px rgba(80,120,255,.35)}
@@ -296,9 +296,19 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
       <div class="meta"><span class="no">No.001</span><span class="no">2026</span></div>
       <div class="ttl">베테랑 비욘드</div>
     </a>
+    <a class="book rise d2" href="books.html#reely">
+      <div class="cover"><img src="books/reely-480.jpg" srcset="books/reely-480.jpg 480w, books/reely-960.jpg 960w" sizes="300px" alt="Reely 표지" loading="lazy"></div>
+      <div class="meta"><span class="no">No.002</span><span class="no">2026</span></div>
+      <div class="ttl">Reely</div>
+    </a>
+    <a class="book rise d3" href="books.html#banghak">
+      <div class="cover"><img src="books/banghak-480.jpg" srcset="books/banghak-480.jpg 480w, books/banghak-960.jpg 960w" sizes="300px" alt="방학동은 언제나 방학이야 표지" loading="lazy"></div>
+      <div class="meta"><span class="no">No.003</span><span class="no">2026</span></div>
+      <div class="ttl">방학동은 언제나 방학이야</div>
+    </a>
     <a class="book next rise d3" href="#send" aria-label="다음 책 — 원고 보내기">
       <div class="cover empty" data-ko="비어 있음" data-en="Empty">비어 있음</div>
-      <div class="meta"><span class="no">No.002</span><span class="no">—</span></div>
+      <div class="meta"><span class="no">No.004</span><span class="no">—</span></div>
       <div class="ttl empty" data-ko="다음 책" data-en="Next book">다음 책</div>
     </a>
   </div>
