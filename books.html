@@ -34,6 +34,8 @@
 html{background:var(--bg)}
 body{background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,p,li,span{word-break:keep-all}
+p,li,cite,.book-quote span,.book-blurb{text-wrap:pretty}
+h1,h2,.book-sub,.book-meta{text-wrap:balance}
 a{color:inherit;text-decoration:none}
 
 /* 배경: 은하수를 아주 어둡게 */
@@ -60,6 +62,7 @@ main{position:relative;z-index:1;padding:24vh 8vw 14vh;max-width:1280px;margin:0
 .book-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .book-code{font-size:12px;font-weight:600;letter-spacing:.2em;color:var(--blue)}
 .book-title{font-size:clamp(34px,4vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1.15;margin-top:14px}
+.book-title.long{font-size:clamp(28px,3.3vw,48px)}
 .book-sub{font-size:clamp(18px,1.6vw,22px);color:rgba(255,255,255,.82);margin-top:8px;font-weight:500}
 .book-meta{font-size:15px;color:var(--dim);margin-top:14px}
 .book-blurbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
@@ -146,14 +149,14 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
       </div>
 
       <div class="book-desc">
-        <p data-ko="군대는 창업과 가장 거리가 먼 조직처럼 보인다. 명령과 복종, 위계와 규율, 그리고 무엇보다 “실패해서는 안 된다”는 압박으로 이루어진 세계." data-en="The military looks like the organization furthest from entrepreneurship: a world of orders and obedience, hierarchy and discipline, and above all the pressure that failure is not an option.">군대는 창업과 가장 거리가 먼 조직처럼 보인다. 명령과 복종, 위계와 규율, 그리고 무엇보다 “실패해서는 안 된다”는 압박으로 이루어진 세계.</p>
-        <p data-ko="그러나 이 책은 정반대를 증명한다. 전장에서 발견한 문제, 군에서 단련된 역량, 생사를 함께한 전우 네트워크가 어떻게 세상을 바꾸는 창업으로 이어졌는가." data-en="This book proves the opposite: how problems found on the battlefield, capabilities forged in service, and networks of comrades became ventures that change the world.">그러나 이 책은 정반대를 증명한다. 전장에서 발견한 문제, 군에서 단련된 역량, 생사를 함께한 전우 네트워크가 어떻게 세상을 바꾸는 창업으로 이어졌는가.</p>
-        <p data-ko="『베테랑 비욘드』는 대한민국 1세대 군인 창업 연구자가 글로벌 10개국 25개 기업을 추적해 완성한 ‘세계 군인 창업 백과’다." data-en="Veteran Beyond is an encyclopedia of military entrepreneurship, built by tracking 25 companies across 10 countries.">『베테랑 비욘드』는 대한민국 1세대 군인 창업 연구자가 글로벌 10개국 25개 기업을 추적해 완성한 ‘세계 군인 창업 백과’다.</p>
-        <p data-ko="창업을 꿈꾸는 이, 군복을 벗고 새 길을 모색하는 예비 창업가, 국방·안보 정책 입안자, 그리고 군인정신의 진짜 쓸모가 궁금한 모든 독자에게 권한다." data-en="For aspiring founders, service members seeking a new path after the uniform, defense and security policymakers, and every reader curious about what the military spirit is really good for.">창업을 꿈꾸는 이, 군복을 벗고 새 길을 모색하는 예비 창업가, 국방·안보 정책 입안자, 그리고 군인정신의 진짜 쓸모가 궁금한 모든 독자에게 권한다.</p>
+        <p data-ko="군대는 창업과 가장 거리가 먼 조직처럼 보인다. 명령과 복종, 위계와 규율, 그리고 무엇보다 “실패해서는 안 된다”는 압박으로 이루어진 세계." data-en="The military looks like the organization furthest from entrepreneurship: a world of orders and obedience, hierarchy and discipline, and above all the pressure that failure is not an option.">군대는 창업과 가장 거리가 먼 조직처럼 보인다. 명령과 복종, 위계와 규율, 그리고 무엇보다 “실패해서는 안 된다”는 압박으로 이루어진 세계.</p>
+        <p data-ko="그러나 이 책은 정반대를 증명한다. 전장에서 발견한 문제, 군에서 단련된 역량, 생사를 함께한 전우 네트워크가 어떻게 세상을 바꾸는 창업으로 이어졌는가." data-en="This book proves the opposite: how problems found on the battlefield, capabilities forged in service, and networks of comrades became ventures that change the world.">그러나 이 책은 정반대를 증명한다. 전장에서 발견한 문제, 군에서 단련된 역량, 생사를 함께한 전우 네트워크가 어떻게 세상을 바꾸는 창업으로 이어졌는가.</p>
+        <p data-ko="『베테랑 비욘드』는 대한민국 1세대 군인 창업 연구자가 글로벌 10개국 25개 기업을 추적해 완성한 ‘세계 군인 창업 백과’다." data-en="Veteran Beyond is an encyclopedia of military entrepreneurship, built by tracking 25 companies across 10 countries.">『베테랑 비욘드』는 대한민국 1세대 군인 창업 연구자가 글로벌 10개국 25개 기업을 추적해 완성한 ‘세계 군인 창업 백과’다.</p>
+        <p data-ko="창업을 꿈꾸는 이, 군복을 벗고 새 길을 모색하는 예비 창업가, 국방·안보 정책 입안자, 그리고 군인정신의 진짜 쓸모가 궁금한 모든 독자에게 권한다." data-en="For aspiring founders, service members seeking a new path after the uniform, defense and security policymakers, and every reader curious about what the military spirit is really good for.">창업을 꿈꾸는 이, 군복을 벗고 새 길을 모색하는 예비 창업가, 국방·안보 정책 입안자, 그리고 군인정신의 진짜 쓸모가 궁금한 모든 독자에게 권한다.</p>
       </div>
 
       <blockquote class="book-quote">
-        <span data-ko="오랫동안 군인은 창업과 무관한 집단으로 여겨져 왔다. 이 책은 그 인식에 대한 이의 제기다." data-en="For a long time, soldiers were seen as a group with nothing to do with entrepreneurship. This book is an objection to that view.">오랫동안 군인은 창업과 무관한 집단으로 여겨져 왔다. 이 책은 그 인식에 대한 이의 제기다.</span>
+        <span data-ko="오랫동안 군인은 창업과 무관한 집단으로 여겨져 왔다. 이 책은 그 인식에 대한 이의 제기다." data-en="For a long time, soldiers were seen as a group with nothing to do with entrepreneurship. This book is an objection to that view.">오랫동안 군인은 창업과 무관한 집단으로 여겨져 왔다. 이 책은 그 인식에 대한 이의 제기다.</span>
         <cite data-ko="— ‘들어서는 말’ 중에서" data-en="— from the Introduction">— ‘들어서는 말’ 중에서</cite>
       </blockquote>
 
@@ -189,9 +192,9 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
       </div>
 
       <div class="book-desc">
-        <p data-ko="Reely는 세계 웹소설의 흐름을 읽고, 작품을 기획해 연재하고, 그 이야기를 숏드라마로 옮기는 파란수박의 제작 스튜디오입니다." data-en="Reely is Blue Watermelon's production studio: it reads global web novel trends, plans and serializes original works, and adapts those stories into short dramas.">Reely는 세계 웹소설의 흐름을 읽고, 작품을 기획해 연재하고, 그 이야기를 숏드라마로 옮기는 파란수박의 제작 스튜디오입니다.</p>
-        <p data-ko="한 편의 이야기를 한 나라에만 두지 않습니다. 작품을 여러 언어로 옮겨 여러 나라의 연재 플랫폼에 함께 올립니다." data-en="We don't keep a story in one country. Each work is translated into several languages and serialized on platforms around the world.">한 편의 이야기를 한 나라에만 두지 않습니다. 작품을 여러 언어로 옮겨 여러 나라의 연재 플랫폼에 함께 올립니다.</p>
-        <p data-ko="모든 지구인이 저자라는 파란수박의 믿음을, 이번에는 세계의 독자에게로 넓힙니다." data-en="Blue Watermelon believes every earthling is an author. Reely carries that belief to readers around the world.">모든 지구인이 저자라는 파란수박의 믿음을, 이번에는 세계의 독자에게로 넓힙니다.</p>
+        <p data-ko="Reely는 세계 웹소설의 흐름을 읽고, 작품을 기획해 연재하고, 그 이야기를 숏드라마로 옮기는 파란수박의 제작 스튜디오입니다." data-en="Reely is Blue Watermelon's production studio: it reads global web novel trends, plans and serializes original works, and adapts those stories into short dramas.">Reely는 세계 웹소설의 흐름을 읽고, 작품을 기획해 연재하고, 그 이야기를 숏드라마로 옮기는 파란수박의 제작 스튜디오입니다.</p>
+        <p data-ko="한 편의 이야기를 한 나라에만 두지 않습니다. 작품을 여러 언어로 옮겨 여러 나라의 연재 플랫폼에 함께 올립니다." data-en="We don't keep a story in one country. Each work is translated into several languages and serialized on platforms around the world.">한 편의 이야기를 한 나라에만 두지 않습니다. 작품을 여러 언어로 옮겨 여러 나라의 연재 플랫폼에 함께 올립니다.</p>
+        <p data-ko="모든 지구인이 저자라는 파란수박의 믿음을, 이번에는 세계의 독자에게로 넓힙니다." data-en="Blue Watermelon believes every earthling is an author. Reely carries that belief to readers around the world.">모든 지구인이 저자라는 파란수박의 믿음을, 이번에는 세계의 독자에게로 넓힙니다.</p>
       </div>
 
       <div class="buy"><a class="book-buy" href="https://reely-blue.vercel.app/" target="_blank" rel="noopener"><span data-ko="Reely 홈페이지 가기" data-en="Visit Reely">Reely 홈페이지 가기</span> →</a>
@@ -205,7 +208,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
     </div>
     <div class="book-info rise d2">
       <div class="book-code" data-ko="No.003 · 애니메이션 팟캐스트" data-en="No.003 · ANIMATED PODCAST">No.003 · 애니메이션 팟캐스트</div>
-      <h2 class="book-title">방학동은 언제나 방학이야</h2>
+      <h2 class="book-title long">방학동은 언제나 방학이야</h2>
       <p class="book-sub" data-ko="손자가 묻고 할머니가 답하는 팟캐스트" data-en="A grandson asks, his grandmother answers">손자가 묻고 할머니가 답하는 팟캐스트</p>
       <p class="book-meta" data-ko="파란수박 · 유튜브·인스타그램" data-en="Blue Watermelon · YouTube & Instagram">파란수박 · 유튜브·인스타그램</p>
 
@@ -216,8 +219,8 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
       </div>
 
       <div class="book-desc">
-        <p data-ko="‘방학동은 언제나 방학이야’는 가족, 동네 어른들과 나눈 수다를 녹음해 그림 캐릭터에 목소리를 입힌 애니메이션 팟캐스트입니다." data-en="‘Banghak-dong Is Always on Vacation’ is an animated podcast: we record everyday chats with family and neighborhood elders, then give those voices to drawn characters.">‘방학동은 언제나 방학이야’는 가족, 동네 어른들과 나눈 수다를 녹음해 그림 캐릭터에 목소리를 입힌 애니메이션 팟캐스트입니다.</p>
-        <p data-ko="피난길에서 헤어진 사람, 선 보던 날, 항아리에 모은 돈, 산파 없이 태어난 아빠 이야기까지. 교과서에는 없지만 우리 집에는 있는 이야기를 하나씩 꺼내 둡니다." data-en="A person lost on the road of war refugees, a matchmaking day, money saved in a jar, a father born without a midwife: stories no textbook holds, but our family does.">피난길에서 헤어진 사람, 선 보던 날, 항아리에 모은 돈, 산파 없이 태어난 아빠 이야기까지. 교과서에는 없지만 우리 집에는 있는 이야기를 하나씩 꺼내 둡니다.</p>
+        <p data-ko="‘방학동은 언제나 방학이야’는 가족, 동네 어른들과 나눈 수다를 녹음해 그림 캐릭터에 목소리를 입힌 애니메이션 팟캐스트입니다." data-en="‘Banghak-dong Is Always on Vacation’ is an animated podcast: we record everyday chats with family and neighborhood elders, then give those voices to drawn characters.">‘방학동은 언제나 방학이야’는 가족, 동네 어른들과 나눈 수다를 녹음해 그림 캐릭터에 목소리를 입힌 애니메이션 팟캐스트입니다.</p>
+        <p data-ko="피난길에서 헤어진 사람, 선 보던 날, 항아리에 모은 돈, 산파 없이 태어난 아빠 이야기까지. 교과서에는 없지만 우리 집에는 있는 이야기를 하나씩 꺼내 둡니다." data-en="A person lost on the road of war refugees, a matchmaking day, money saved in a jar, a father born without a midwife: stories no textbook holds, but our family does.">피난길에서 헤어진 사람, 선 보던 날, 항아리에 모은 돈, 산파 없이 태어난 아빠 이야기까지. 교과서에는 없지만 우리 집에는 있는 이야기를 하나씩 꺼내 둡니다.</p>
         <p data-ko="할머니 댁 평상에 앉은 기분으로 들어 주세요." data-en="Listen as if you were sitting on the wooden bench at grandma's house.">할머니 댁 평상에 앉은 기분으로 들어 주세요.</p>
       </div>
 
@@ -231,7 +234,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
     <div>
       <div class="book-code" data-ko="No.004 · 비어 있는 칸" data-en="No.004 · AN EMPTY SLOT">No.004 · 비어 있는 칸</div>
       <h2 class="next-title" data-ko="다음 칸은 당신의 책입니다" data-en="The next slot is for your book">다음 칸은 당신의 책입니다</h2>
-      <p class="next-desc" data-ko="모든 지구인은 한 권의 책입니다. 쓰고 싶은 이야기가 있다면 신호를 보내주세요." data-en="Every earthling is a book. If you have a story to write, send us a signal.">모든 지구인은 한 권의 책입니다. 쓰고 싶은 이야기가 있다면 신호를 보내주세요.</p>
+      <p class="next-desc" data-ko="모든 지구인은 한 권의 책입니다. 쓰고 싶은 이야기가 있다면 신호를 보내주세요." data-en="Every earthling is a book. If you have a story to write, send us a signal.">모든 지구인은 한 권의 책입니다. 쓰고 싶은 이야기가 있다면 신호를 보내주세요.</p>
       <a class="next-link" href="index.html#send" data-ko="원고 보내기 →" data-en="Send a manuscript →">원고 보내기 →</a>
     </div>
   </section>
