@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>파란수박 — 우리는 당신이 쓰는 책이 더 궁금해</title>
+<title>파란수박 — 우리는 당신이 들려주는 이야기가 더 궁금해</title>
 <meta name="description" content="외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.">
 <link rel="canonical" href="https://bluewatermelon.co.kr/">
 <meta name="theme-color" content="#080810">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="파란수박">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="파란수박 — 우리는 당신이 쓰는 책이 더 궁금해">
+<meta property="og:title" content="파란수박 — 우리는 당신이 들려주는 이야기가 더 궁금해">
 <meta property="og:description" content="외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.">
 <meta property="og:url" content="https://bluewatermelon.co.kr/">
 <meta property="og:image" content="https://bluewatermelon.co.kr/og/og-logo.jpg">
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="파란수박 로고">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="파란수박 — 우리는 당신이 쓰는 책이 더 궁금해">
+<meta name="twitter:title" content="파란수박 — 우리는 당신이 들려주는 이야기가 더 궁금해">
 <meta name="twitter:description" content="외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.">
 <meta name="twitter:image" content="https://bluewatermelon.co.kr/og/og-logo.jpg">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "파란수박", "alternateName": "Blue Watermelon", "url": "https://bluewatermelon.co.kr/", "logo": "https://bluewatermelon.co.kr/icons/icon-512.png", "description": "외계인이 설립한 출판사. 모든 지구인은 한 권의 책입니다.", "email": "donghoon807@gmail.com"}</script>
@@ -148,8 +148,8 @@ a.book.next:hover .ttl.empty,a.book.next:focus-visible .ttl.empty{color:rgba(255
 /* 4장면: 끝 */
 .end{text-align:center;padding:26vh 8vw 22vh}
 .end h2{font-size:clamp(32px,4.4vw,68px)}
-.end br.m{display:none}
-@media (max-width:720px){.end br.m{display:inline}}
+br.m{display:none}
+@media (max-width:720px){br.m{display:inline}}
 .pill{display:inline-flex;align-items:center;gap:10px;margin-top:48px;padding:17px 34px;border-radius:999px;background:#fff;color:#04060d;font-size:17px;font-weight:700;transition:transform .25s,box-shadow .25s}
 .pill:hover{transform:translateY(-2px);box-shadow:0 12px 40px -8px rgba(143,180,255,.6)}
 /* 원고 보내기 양식 */
@@ -257,7 +257,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
     <div id="city" aria-hidden="true"></div>
     <div class="earth-text">
       <p id="l1" data-ko="이 푸른 별 어딘가에" data-en="Somewhere on this blue planet">이 푸른 별 어딘가에</p>
-      <p id="l2" data-ko="우리가 찾는 작가가 있습니다." data-en="is the author we're looking for.">우리가 찾는 작가가 있습니다.</p>
+      <p id="l2" data-ko="우리가 찾는 이야기가 있습니다" data-en="is the story we're looking for">우리가 찾는 이야기가 있습니다</p>
     </div>
     <div class="tour" id="tour"><p id="tourt"></p></div>
     <figure class="pcard" id="pcard" aria-hidden="true">
@@ -265,7 +265,7 @@ footer{position:relative;z-index:1;padding:0 8vw 36px;overflow:hidden}
       <figcaption id="pcity"></figcaption><i class="stem" id="pstem"></i>
     </figure>
     <div class="finale" id="finale">
-      <h1 id="ftitle">우리는<br>당신이 쓰는 책이 더 궁금해</h1>
+      <h1 id="ftitle">우리는<br>당신이 들려주는 <br class="m">이야기가 더 궁금해</h1>
       <div class="again2" id="again2" hidden><button type="button" id="replay" data-ko="↺ 처음부터 다시 보기" data-en="↺ Watch again">↺ 처음부터 다시 보기</button><button type="button" id="rename" data-ko="이름 바꾸기" data-en="Change name">이름 바꾸기</button></div>
     </div>
     <div class="credit"><span id="credit-earth" style="opacity:0;transition:opacity .4s"><a href="https://www.pexels.com/" target="_blank" rel="noopener">Video: Pexels · Sourabh Narwade 외</a> · </span><a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener">Milky Way: ESO/S. Brunier</a></div>
@@ -520,8 +520,8 @@ function setWord(i,anim){
 function renderFinale(anim){
   const n=anim?chars(NAME,'in',200):escH(NAME);
   ftitle.innerHTML=NAME
-    ?(isKo?`<span class="fname">${n}</span>,<br>당신이 쓰는 책이 더 궁금해.`:`<span class="fname">${n}</span>,<br>we’re more curious<br><span class="nb">about the book</span> <span class="nb">you write.</span>`)
-    :(isKo?'우리는<br>당신이 쓰는 책이 더 궁금해.':'We’re more curious<br>about the book you write.');
+    ?(isKo?`<span class="fname">${n}</span>,<br>당신이 들려주는 <br class="m">이야기가 더 궁금해`:`<span class="fname">${n}</span>,<br>we’re more curious<br><span class="nb">about the story</span> <span class="nb">you tell</span>`)
+    :(isKo?'우리는<br>당신이 들려주는 <br class="m">이야기가 더 궁금해':'We’re more curious<br>about the story you tell');
 }
 function renderTitle(){ setWord(Math.max(0,wordIdx),false); renderFinale(false); }
 renderTitle();
